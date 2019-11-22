@@ -1488,7 +1488,7 @@ show_date_time();
           repo: 'gitalk',
           owner: 'xzy012',
           admin: ['xzy012'],
-          id: location.pathname,
+          id: '.split("/").pop().substring(0, 49)'
           labels: ['Gitalk'],
           perPage: 15,
           pagerDirection: 'last',
