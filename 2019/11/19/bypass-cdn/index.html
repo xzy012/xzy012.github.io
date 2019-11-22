@@ -1119,6 +1119,7 @@ show_date_time();
 
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
+  <script src="/js/src/md5.min.js"></script>
    <script type="text/javascript">
         var gitalk = new Gitalk({
           clientID: '7834f2c22d33806630a5',
@@ -1126,7 +1127,7 @@ show_date_time();
           repo: 'gitalk',
           owner: 'xzy012',
           admin: ['xzy012'],
-          id: '.split("/").pop().substring(0, 49)',
+          id: md5(location.pathname),
           labels: ['Gitalk'],
           perPage: 15,
           pagerDirection: 'last',
