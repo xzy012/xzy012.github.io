@@ -97,13 +97,13 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714113039494.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714120032496.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.gif">
-<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717105731138.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717112751028.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717113439764.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717114624467.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717114611209.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717113817539.png">
-<meta property="og:updated_time" content="2020-07-20T01:56:32.675Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717105731138.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717112751028.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717113439764.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717114624467.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717114611209.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717113817539.png">
+<meta property="og:updated_time" content="2020-07-20T02:01:47.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714095712858.png">
 
@@ -527,7 +527,7 @@
 <hr>
 <p>上个版本的插件已经能够满足日常的基本使用了，但是由于localStorage的5M大小的限制，使得标签的数量被限制在了10W以下（利用假数据简单测试结果是7W多条），为了能够储存更多的数据，不得不放弃localstorage从而寻找新的思路。</p>
 <p>查阅资料可以使用chrome.storage，通过在赋予unlimitedStorage权限，在本地存储区储存的数据量大小不受限制。但在实际使用过程中遇到了chrome.storage未定义的问题，有可能是我的使用方式存在问题，查询大量资料之后无果，遂放弃。</p>
-<p><img src="/2020/07/20/etherscan-tags/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717105731138.png" alt="image-20200717105731138"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717105731138.png" alt="image-20200717105731138"></p>
 <p>在Storage中，一共有五个储存数据的地方，如上图所示，详细介绍如下表所示：</p>
 <table>
 <thead>
@@ -594,7 +594,7 @@
 <p>本次我采用的是localForage。</p>
 <p>引入localforage.js文件文件后便可以利用localforage中定义的方法来进行indexedDB的使用了，而不需要去写复杂的语句。</p>
 <p>插件中使用localforage很顺利，但在网页上使用出现了问题：提示localforage未定义。</p>
-<p><img src="/2020/07/20/etherscan-tags/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717112751028.png" alt="image-20200717112751028"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717112751028.png" alt="image-20200717112751028"></p>
 <p>查阅资料后，在<a href="https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html" target="_blank" rel="noopener">【干货】Chrome插件(扩展)开发全攻略</a>这篇文章中看到，文中提到content-script只能操作DOM，但DOM却不能调用它，也就是说DOM没办法直接使用插件内部的js文件，只有通过向页面注入代码后才能调用，注入代码如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 向页面注入JS</span><br><span class="line">function injectCustomJs(jsPath)</span><br><span class="line">&#123;</span><br><span class="line">	jsPath = jsPath || &apos;js/inject.js&apos;;</span><br><span class="line">	var temp = document.createElement(&apos;script&apos;);</span><br><span class="line">	temp.setAttribute(&apos;type&apos;, &apos;text/javascript&apos;);</span><br><span class="line">	// 获得的地址类似：chrome-extension://ihcokhadfjfchaeagdoclpnjdiokfakg/js/inject.js</span><br><span class="line">	temp.src = chrome.extension.getURL(jsPath);</span><br><span class="line">	temp.onload = function()</span><br><span class="line">	&#123;</span><br><span class="line">		// 放在页面不好看，执行完后移除掉</span><br><span class="line">		this.parentNode.removeChild(this);</span><br><span class="line">	&#125;;</span><br><span class="line">	document.head.appendChild(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -602,17 +602,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 普通页面能够直接访问的插件资源列表，如果不设置是无法直接访问的</span><br><span class="line">&quot;web_accessible_resources&quot;: [&quot;js/inject.js&quot;],</span><br></pre></td></tr></table></figure>
 
 <p>向页面注入localforage.js后发现，能够使用localforage了：</p>
-<p><img src="/2020/07/20/etherscan-tags/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717113439764.png" alt="image-20200717113439764"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717113439764.png" alt="image-20200717113439764"></p>
 <p>localforage的使用可以参考这个网站：<a href="http://localforage.docschina.org/" target="_blank" rel="noopener">http://localforage.docschina.org/</a></p>
 <p>localforage简单测试：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function()&#123;</span><br><span class="line">	localforage.setItem(&apos;key&apos;, &apos;value&apos;).then(</span><br><span class="line">		localforage.getItem(&apos;key&apos;, function(err, value) &#123;</span><br><span class="line">    // 当离线仓库中的值被载入时，此处代码运行</span><br><span class="line">    		console.log(value);</span><br><span class="line">		&#125;)</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>导入插件后，刷新网页可以发现，成功插入了键值对key：value。</p>
-<p><img src="/2020/07/20/etherscan-tags/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717114624467.png" alt="image-20200717114624467"></p>
-<p><img src="/2020/07/20/etherscan-tags/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717114611209.png" alt="image-20200717114611209"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717114624467.png" alt="image-20200717114624467"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717114611209.png" alt="image-20200717114611209"></p>
 <hr>
 <p>此外，如果想要打包扩展程序后生成crx文件后在其他浏览器中导入，如果没有在chrome商店中上传并通过审核，会遇到如下问题：</p>
-<p><img src="/2020/07/20/etherscan-tags/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200717113817539.png" alt="image-20200717113817539"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717113817539.png" alt="image-20200717113817539"></p>
 <p>解决方案有两个：</p>
 <p>第一个当然是花费5刀注册为chrome插件开发者，然后上传自己的插件，不过这中方式耗时很长，短期可以选择另一种方式；</p>
 <p>第二个是修改本地组策略，在<a href="https://cloud.tencent.com/developer/article/1506583" target="_blank" rel="noopener">已解决!该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的</a>这篇文章中介绍很详细。</p>
