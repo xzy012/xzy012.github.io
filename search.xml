@@ -267,8 +267,8 @@ function ethTag(){
         <category>web渗透</category>
       </categories>
       <tags>
-        <tag>信息收集</tag>
         <tag>安全</tag>
+        <tag>信息收集</tag>
       </tags>
   </entry>
   <entry>
@@ -870,9 +870,9 @@ function ethTag(){
         <category>区块链</category>
       </categories>
       <tags>
-        <tag>安全</tag>
         <tag>Ethernaut</tag>
         <tag>WriteUp</tag>
+        <tag>安全</tag>
         <tag>solidity</tag>
       </tags>
   </entry>
