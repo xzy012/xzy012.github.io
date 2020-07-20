@@ -6,7 +6,7 @@
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><em>Etherscan 是</em>以太坊上应用最广泛的区块链浏览器，日常工作中经常需要使用到它。在实际使用中，经常需要在不同的地址交易信息之间来回切换，有时候会忘记了哪个地址是什么的地址。于是乎某个周五的日常工（mo）作（yu）中和同事聊到了这个，在网上搜索也没有看见有类似的插件（有也当没看见，哈哈哈哈<del>~</del>），于是突发奇想——要是做个插件，让浏览器在加载页面的时候就将自己自定义的标签渲染出来，岂不美哉！</p>
 <hr>
 <p>下面就是实现的效果：</p>
-<p><img src="/2020/07/20/etherscan-tags/Users/xuzhi/Desktop/image-20200714095712858.png" alt="image-20200714095712858"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714095712858.png" alt="image-20200714095712858"></p>
 <p>PS：由于本人CSS、Html等知识严重缺乏，没有对那些按钮啥的进行美化，全部都是用的默认样式，难看是难看了一点，能用就行<del>~</del></p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>要完成一个自定义标签插件的实现，最开始面临的问题主要是两个方面：一是插件的编写；二是自定义标签数据存储在什么地方。</p>
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>首先是第一个问题，插件的编写。百度、谷歌一搜，一大堆的编写教程，这个倒不是什么大问题。</p>
@@ -49,11 +49,11 @@
 
 <p>大概意思就是不能在https网站中使用http请求来访问资源。</p>
 <p>又双叒叕是一通百度，最后发现在phpstudy中可以切换为https：</p>
-<p><img src="/2020/07/20/etherscan-tags/Users/xuzhi/Desktop/image-20200714111524304.png" alt="image-20200714111524304"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714111524304.png" alt="image-20200714111524304"></p>
 <p>只不过需要一个SSL证书，这个倒不是什么大问题，我的网站之前就有证书，直接拿下来用，改下host就可以了。</p>
-<p><img src="/2020/07/20/etherscan-tags/Users/xuzhi/Desktop/image-20200714111702158.png" alt="image-20200714111702158"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714111702158.png" alt="image-20200714111702158"></p>
 <p>改好之后便可以通过<a href="https://localhost来访问本地服务器中的文件了！" target="_blank" rel="noopener">https://localhost来访问本地服务器中的文件了！</a></p>
-<p><img src="/2020/07/20/etherscan-tags/Users/xuzhi/Desktop/image-20200714135033177.png" alt="image-20200714135033177"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714135033177.png" alt="image-20200714135033177"></p>
 <p>在js中使用Jquery获取数据：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.getJSON(&quot;https://xxxxx.cn:18081&quot;,function(result)&#123;</span><br><span class="line">	for(var key in result)&#123;</span><br><span class="line">		tag[key.toLowerCase()] = result[key]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
@@ -65,16 +65,16 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var app = require(&apos;express&apos;)();</span><br><span class="line">var fs = require(&apos;fs&apos;);</span><br><span class="line">var http = require(&apos;http&apos;);</span><br><span class="line">var https = require(&apos;https&apos;);</span><br><span class="line">var privateKey  = fs.readFileSync(&quot;./https/https.key&quot;, &apos;utf8&apos;);</span><br><span class="line">var certificate = fs.readFileSync(&quot;./https/https.crt&quot;, &apos;utf8&apos;);</span><br><span class="line">var credentials = &#123;key: privateKey, cert: certificate&#125;;</span><br><span class="line"></span><br><span class="line">var httpServer = http.createServer(app);</span><br><span class="line">var httpsServer = https.createServer(credentials, app);</span><br><span class="line">var PORT = 18080;</span><br><span class="line">var SSLPORT = 18081;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//设置允许跨域</span><br><span class="line">app.all(&apos;*&apos;,function(req,res,next)&#123;</span><br><span class="line">  res.header(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);</span><br><span class="line">  res.header(&quot;Access-Control-Allow-Methods&quot;,&quot;PUT,GET,POST,DELETE,OPTIONS&quot;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Headers&apos;, &apos;Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild&apos;);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">httpServer.listen(PORT, function() &#123;</span><br><span class="line">    console.log(&apos;HTTP Server is running on: http://localhost:%s&apos;, PORT);</span><br><span class="line">&#125;);</span><br><span class="line">httpsServer.listen(SSLPORT, function() &#123;</span><br><span class="line">    console.log(&apos;HTTPS Server is running on: https://localhost:%s&apos;, SSLPORT);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// Welcome</span><br><span class="line">app.get(&apos;/&apos;, function(req, res) &#123;</span><br><span class="line">    if(req.protocol === &apos;https&apos;) &#123;</span><br><span class="line">        var file=&quot;./addr_tag.json&quot;;</span><br><span class="line">        var result=JSON.parse(fs.readFileSync(file));</span><br><span class="line">        console.log(result)</span><br><span class="line">        res.send(result)</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        res.status(200).send(&apos;Welcome!&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>在采用nodejs方式搭建时，由于有了phpstudy的失败经历，nodejs直接选择了https形式的搭建，过程中没有在遇到其他的问题，成功实现了数据的获取。</p>
-<p><img src="/2020/07/20/etherscan-tags/Users/xuzhi/Desktop/image-20200714115438099.png" alt="image-20200714115438099"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714115438099.png" alt="image-20200714115438099"></p>
 <hr>
 <p>做完之后，不禁想到，搭建服务器的方式有点太复杂了，https证书也麻烦，于是又想了一下。想到了直接在插件的js文件中保存数据即可，直接将数据存入addr_tag.js文件中，在manifest文件中导入后，直接在contentscript.js文件中使用即可，以后每次修改数据直接在add_tag文件中修改即可，不需要经历繁琐的步骤去搭建服务器了。</p>
-<p><img src="/2020/07/20/etherscan-tags/Users/xuzhi/Desktop/image-20200714113039494.png" alt="image-20200714113039494"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714113039494.png" alt="image-20200714113039494"></p>
 <hr>
 <p>后来第二天上班的时候，把我做好的这个两个版本给同事看了之后，他问我为啥不用localstorage来存储数据？？？Excuse me？？？为啥我把这个给忘了！</p>
 <p>于是我又改了改代码，直接使用localstorage.getItem来获取里面的数据，然后在加载到页面上。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var tokenTag = document.getElementsByClassName(&apos;hash-tag text-truncate&apos;);</span><br><span class="line">for(var x =0;x&lt;tokenTag.length;x++)&#123;</span><br><span class="line">	if(localStorage.getItem((ethTag[x].innerText.toLowerCase()))!=undefined)&#123;</span><br><span class="line">	tokenTag[x].innerText =	&apos;Local:&apos;+localStorage.getItem(ethTag[x].innerText.toLowerCase());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/07/20/etherscan-tags/Users/xuzhi/Desktop/image-20200714120032496.png" alt="image-20200714120032496"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714120032496.png" alt="image-20200714120032496"></p>
 <p>虽然能够避免繁琐的前置步骤了，但在使用中，同</p>
 <hr>
 <p>事又提出了新的”需求“——每次更新数据都要打开F12，太麻烦了。</p>
@@ -87,7 +87,7 @@
 
 <p>上面代码实现了在etherscan的页面上添加了两个输入框和四个按钮，分别是地址、标签的输入以及添加/修改标签按钮、删除标签按钮、导出标签按钮和批量导入标签按钮。</p>
 <p>最终效果：</p>
-<p><img src="/2020/07/20/etherscan-tags/Users/xuzhi/Desktop/%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.gif" alt="最终效果"></p>
+<p><img src="/2020/07/20/etherscan-tags/%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.gif" alt="最终效果"></p>
 <hr>
 <p>2020.07.17更新</p>
 <hr>
@@ -372,8 +372,8 @@
         <category>web渗透</category>
       </categories>
       <tags>
-        <tag>信息收集</tag>
         <tag>安全</tag>
+        <tag>信息收集</tag>
       </tags>
   </entry>
   <entry>
@@ -975,9 +975,9 @@
         <category>区块链</category>
       </categories>
       <tags>
-        <tag>安全</tag>
         <tag>Ethernaut</tag>
         <tag>WriteUp</tag>
+        <tag>安全</tag>
         <tag>solidity</tag>
       </tags>
   </entry>
