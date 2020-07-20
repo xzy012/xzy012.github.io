@@ -1,97 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>etherscan-tags/地址自定义标签插件/scripts/contentscript</title>
-    <url>/2020/07/20/etherscan-tags/%E5%9C%B0%E5%9D%80%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/scripts/contentscript/</url>
-    <content><![CDATA[function add_data_button(){
-	var MyDiv =document.getElementById("logoAndNav");
-
-	var addr_data =document.createElement('input');
-    addr_data.setAttribute('type', 'text');//输入框的类型
-    addr_data.setAttribute("placeholder", "地址");
-    addr_data.setAttribute('id','addr_data')
-    addr_data.style.width = "16%";
-    MyDiv.appendChild(addr_data);
-
-    var tag_data =document.createElement('input');
-    tag_data.setAttribute('type', 'text');//输入框的类型
-    tag_data.setAttribute("placeholder", "标签名");
-    tag_data.setAttribute('id','tag_data')
-    tag_data.style.width = "16%";
-    MyDiv.appendChild(tag_data);
-
-   	var button = document.createElement("input");
-	button.setAttribute("type", "button");
-	button.setAttribute("value", "添加/修改标签");
-	button.style.width = "17%";
-	button.setAttribute("onclick", 
-		"javascript:\
-			var addr_data = document.getElementById('addr_data'); \
-			var tag_data = document.getElementById('tag_data'); \
-			if(addr_data.value!=''&&tag_data.value!=''){\
-				localStorage.setItem(addr_data.value.toLowerCase(),tag_data.value);\
-				document.location.reload();\
-			}\
-			else{\
-				alert(\"请输入数据哦！\")\
-			}\
-		"
-		)
-	MyDiv.appendChild(button);
-
-	var button2 = document.createElement("input");
-	button2.setAttribute("type", "button");
-	button2.setAttribute("value", "删除标签");
-	button2.style.width = "17%";
-	button2.setAttribute("onclick", 
-		"javascript:\
-			var addr_data = document.getElementById('addr_data'); \
-			if(addr_data.value!=''){\
-				localStorage.removeItem(addr_data.value.toLowerCase());\
-				document.location.reload();\
-			}\
-			else{\
-				alert(\"请输入要删除的地址哦！\")\
-			}\
-		"
-		)
-	MyDiv.appendChild(button2);
-
-	var button3 = document.createElement("input");
-	button3.setAttribute("type", "button");
-	button3.setAttribute("value", "导出标签");
-	button3.style.width = "17%";
-	button3.setAttribute("onclick", 
-		"javascript:\
-			var output_data={};\
-			for(var i=0;i<localStorage.length;i++){\ output_data[localstorage.key(i)]="localStorage.getItem(localStorage.key(i));\" }\ function download(filename, text) {\ var pom="document.createElement('a');\" pom.setattribute('href', 'data:text plain;charset="utf-8,'" + encodeuricomponent(text));\ pom.setattribute('download', filename);\ if (document.createevent) event="document.createEvent('MouseEvents');\" event.initevent('click', true, true);\ pom.dispatchevent(event)\ } else pom.click();\ download('tag_data.txt',json.stringify(output_data));\ " ) mydiv.appendchild(button3); inputobj="document.createElement('input')" inputobj.setattribute('id','upload_data'); inputobj.setattribute('type','file'); inputobj.setattribute("style",'visibility:hidden'); document.body.appendchild(inputobj); button4="document.createElement("input");" button4.setattribute("type", "button"); button4.setattribute("value", "批量导入标签"); button4.style.width="17%" ; button4.setattribute("onclick", "javascript:\ input="document.getElementById('upload_data');\" input.click();\ input.addeventlistener('change',()>{\
-			    var reader = new FileReader();\
-			    reader.readAsText(input.files[0],'utf8');\
-			    reader.onload = ()=>{\
-			      	var input_data = JSON.parse(reader.result);\
-					for(var key in input_data){\
-						localStorage.setItem(key,input_data[key]);\
-					}\
-					document.location.reload();\
-			    }\
-			}, false);	\
-		")
-	MyDiv.appendChild(button4);
-}
-
-function ethTag(){
-	var ethTag = document.getElementsByClassName('hash-tag text-truncate');
-	for(var x =0;x</localStorage.length;i++){\>]]></content>
-  </entry>
-  <entry>
-    <title>etherscan-tags/地址自定义标签插件/manifest</title>
-    <url>/2020/07/20/etherscan-tags/%E5%9C%B0%E5%9D%80%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6/manifest/</url>
-    <content><![CDATA[{"name":"etherscan 自定义地址标签插件","description":"自定义标签","version":"3.1.1","manifest_version":2,"icons":{"16":"img/icon.png","48":"img/icon.png","128":"img/icon.png"},"content_scripts":[{"matches":["http://cn.etherscan.com/*","https://cn.etherscan.com/*","http://etherscan.io/*","https://etherscan.io/*"],"js":["scripts/contentscript.js"],"all_frames":false,"default_locale":"zh_CN"}]}]]></content>
-  </entry>
-  <entry>
     <title>区块链学习资料</title>
     <url>/2019/11/20/encrypt/</url>
-    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码." /><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="d794ef138a6190707d71350e5f37c6b9464e47da56ead23ddd4b46adf028883e">66b988e26e34afa58004159beaf681e016e0ab23a2f8b58cdfa05194027d0556261919d6a7e5f608a945ce2bd66dd1e7970b50c8e80319d3e8aeecd62baa7914ffde2b532cb5c48e2fa4216590e39b458cc6a7697c151ddf12316b03d645ab81f07642cbb15872a501e2d7e1867fe077229a6cb63ee90e26a12565fcae80ca11</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码."><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="d794ef138a6190707d71350e5f37c6b9464e47da56ead23ddd4b46adf028883e">66b988e26e34afa58004159beaf681e016e0ab23a2f8b58cdfa05194027d0556261919d6a7e5f608a945ce2bd66dd1e7970b50c8e80319d3e8aeecd62baa7914ffde2b532cb5c48e2fa4216590e39b458cc6a7697c151ddf12316b03d645ab81f07642cbb15872a501e2d7e1867fe077229a6cb63ee90e26a12565fcae80ca11</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>区块链</category>
       </categories>
