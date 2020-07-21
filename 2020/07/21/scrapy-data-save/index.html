@@ -97,7 +97,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721160222218.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721161128541.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721161905518.png">
-<meta property="og:updated_time" content="2020-07-21T10:23:35.609Z">
+<meta property="og:updated_time" content="2020-07-21T10:25:18.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721152719497.png">
 
@@ -479,13 +479,14 @@
 
 <p>然后，令人吃惊的事情发生了:</p>
 <p><img src="/2020/07/21/scrapy-data-save/image-20200721161128541.png" alt="image-20200721161128541"></p>
-<p>成功的按照自己想要的顺序写入了cvs文件中（写这篇文章的时候，试了好多次都没成功，结果写文章的时候就好了！）。</p>
+<p>成功的按照自己想要的顺序写入了cvs文件中（写这篇文章之前，试了好多次都没成功，结果写文章的时候就好了！）。</p>
 <hr>
 <p>因为最开始的时候，遇到了csv中顺序错误的问题，然后搜索了一堆解决方案也没有解决，我就放弃了上面的那种方式（谁知道它现在就好了！），找到了另一种更为简单的方式。</p>
 <p>不得不说stack overflow真的是个好东西，以前好几次在其他地方找不到解决方法的问题，都是在上面得到了解决。</p>
 <p>在<a href="https://stackoverflow.com/questions/20753358/how-can-i-use-the-fields-to-export-attribute-in-baseitemexporter-to-order-my-scr" target="_blank" rel="noopener">How can I use the fields_to_export attribute in BaseItemExporter to order my Scrapy CSV data?</a>这篇文章中使用了custom_settings的方式，在spider中进行定义，不需要额外的设置什么东西就能够让csv按照自己想要的顺序进行输出。</p>
 <p><img src="/2020/07/21/scrapy-data-save/image-20200721161905518.png" alt="image-20200721161905518"></p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>至此，本文所描述的内容已经结束。通过本次问题的解决过程，发现了自己在进行实际操作的时候还是可能会遗漏些问题，以后还得更加细心啊。完结<em>★,°</em>:.☆(￣▽￣)/$:<em>.°★</em> 。。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>至此，本文所描述的内容已经结束。通过本次问题的解决过程，发现了自己在进行实际操作的时候还是可能会遗漏些问题，以后还得更加细心啊。</p>
+<p>完结<em>★,°</em>:.☆(￣▽￣)/$:<em>.°★</em> 。。</p>
 
       
     </div>

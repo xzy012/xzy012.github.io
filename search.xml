@@ -51,13 +51,14 @@
 
 <p>然后，令人吃惊的事情发生了:</p>
 <p><img src="/2020/07/21/scrapy-data-save/image-20200721161128541.png" alt="image-20200721161128541"></p>
-<p>成功的按照自己想要的顺序写入了cvs文件中（写这篇文章的时候，试了好多次都没成功，结果写文章的时候就好了！）。</p>
+<p>成功的按照自己想要的顺序写入了cvs文件中（写这篇文章之前，试了好多次都没成功，结果写文章的时候就好了！）。</p>
 <hr>
 <p>因为最开始的时候，遇到了csv中顺序错误的问题，然后搜索了一堆解决方案也没有解决，我就放弃了上面的那种方式（谁知道它现在就好了！），找到了另一种更为简单的方式。</p>
 <p>不得不说stack overflow真的是个好东西，以前好几次在其他地方找不到解决方法的问题，都是在上面得到了解决。</p>
 <p>在<a href="https://stackoverflow.com/questions/20753358/how-can-i-use-the-fields-to-export-attribute-in-baseitemexporter-to-order-my-scr" target="_blank" rel="noopener">How can I use the fields_to_export attribute in BaseItemExporter to order my Scrapy CSV data?</a>这篇文章中使用了custom_settings的方式，在spider中进行定义，不需要额外的设置什么东西就能够让csv按照自己想要的顺序进行输出。</p>
 <p><img src="/2020/07/21/scrapy-data-save/image-20200721161905518.png" alt="image-20200721161905518"></p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>至此，本文所描述的内容已经结束。通过本次问题的解决过程，发现了自己在进行实际操作的时候还是可能会遗漏些问题，以后还得更加细心啊。完结<em>★,°</em>:.☆(￣▽￣)/$:<em>.°★</em> 。。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>至此，本文所描述的内容已经结束。通过本次问题的解决过程，发现了自己在进行实际操作的时候还是可能会遗漏些问题，以后还得更加细心啊。</p>
+<p>完结<em>★,°</em>:.☆(￣▽￣)/$:<em>.°★</em> 。。</p>
 ]]></content>
       <categories>
         <category>python</category>
@@ -264,7 +265,7 @@
   <entry>
     <title>区块链学习资料</title>
     <url>/2019/11/20/encrypt/</url>
-    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码."><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="d794ef138a6190707d71350e5f37c6b9464e47da56ead23ddd4b46adf028883e">66b988e26e34afa58004159beaf681e016e0ab23a2f8b58cdfa05194027d0556261919d6a7e5f608a945ce2bd66dd1e7970b50c8e80319d3e8aeecd62baa7914ffde2b532cb5c48e2fa4216590e39b458cc6a7697c151ddf12316b03d645ab81f07642cbb15872a501e2d7e1867fe077229a6cb63ee90e26a12565fcae80ca11</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码." /><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="d794ef138a6190707d71350e5f37c6b9464e47da56ead23ddd4b46adf028883e">66b988e26e34afa58004159beaf681e016e0ab23a2f8b58cdfa05194027d0556261919d6a7e5f608a945ce2bd66dd1e7970b50c8e80319d3e8aeecd62baa7914ffde2b532cb5c48e2fa4216590e39b458cc6a7697c151ddf12316b03d645ab81f07642cbb15872a501e2d7e1867fe077229a6cb63ee90e26a12565fcae80ca11</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>区块链</category>
       </categories>
