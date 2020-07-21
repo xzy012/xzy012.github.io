@@ -94,10 +94,10 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721154814042.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721155041990.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721155440701.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200721160222218.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721160222218.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721161128541.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721161905518.png">
-<meta property="og:updated_time" content="2020-07-21T08:26:40.059Z">
+<meta property="og:updated_time" content="2020-07-21T10:23:35.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;21&#x2F;scrapy-data-save&#x2F;image-20200721152719497.png">
 
@@ -473,7 +473,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from getAllTxs import settings</span><br><span class="line">from scrapy.exporters import CsvItemExporter</span><br></pre></td></tr></table></figure>
 
 <p>然后又报错：</p>
-<p><img src="/2020/07/21/scrapy-data-save/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200721160222218.png" alt="image-20200721160222218"></p>
+<p><img src="/2020/07/21/scrapy-data-save/image-20200721160222218.png" alt="image-20200721160222218"></p>
 <p>在<a href="https://www.cnblogs.com/banshaohuan/p/11848264.html" target="_blank" rel="noopener">新版 Scrapy 中 sys.conf.settings 的替代方法</a>看到了解决方法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.conf <span class="keyword">import</span> settings</span><br><span class="line"><span class="comment">#替换为</span></span><br><span class="line"><span class="keyword">from</span> scrapy.utils.project <span class="keyword">import</span> get_project_settings</span><br><span class="line">settings = get_project_settings()</span><br></pre></td></tr></table></figure>
 

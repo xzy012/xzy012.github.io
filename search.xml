@@ -45,7 +45,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from getAllTxs import settings</span><br><span class="line">from scrapy.exporters import CsvItemExporter</span><br></pre></td></tr></table></figure>
 
 <p>然后又报错：</p>
-<p><img src="/2020/07/21/scrapy-data-save/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200721160222218.png" alt="image-20200721160222218"></p>
+<p><img src="/2020/07/21/scrapy-data-save/image-20200721160222218.png" alt="image-20200721160222218"></p>
 <p>在<a href="https://www.cnblogs.com/banshaohuan/p/11848264.html" target="_blank" rel="noopener">新版 Scrapy 中 sys.conf.settings 的替代方法</a>看到了解决方法：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.conf <span class="keyword">import</span> settings</span><br><span class="line"><span class="comment">#替换为</span></span><br><span class="line"><span class="keyword">from</span> scrapy.utils.project <span class="keyword">import</span> get_project_settings</span><br><span class="line">settings = get_project_settings()</span><br></pre></td></tr></table></figure>
 
@@ -264,7 +264,7 @@
   <entry>
     <title>区块链学习资料</title>
     <url>/2019/11/20/encrypt/</url>
-    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码." /><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="d794ef138a6190707d71350e5f37c6b9464e47da56ead23ddd4b46adf028883e">66b988e26e34afa58004159beaf681e016e0ab23a2f8b58cdfa05194027d0556261919d6a7e5f608a945ce2bd66dd1e7970b50c8e80319d3e8aeecd62baa7914ffde2b532cb5c48e2fa4216590e39b458cc6a7697c151ddf12316b03d645ab81f07642cbb15872a501e2d7e1867fe077229a6cb63ee90e26a12565fcae80ca11</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码."><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="d794ef138a6190707d71350e5f37c6b9464e47da56ead23ddd4b46adf028883e">66b988e26e34afa58004159beaf681e016e0ab23a2f8b58cdfa05194027d0556261919d6a7e5f608a945ce2bd66dd1e7970b50c8e80319d3e8aeecd62baa7914ffde2b532cb5c48e2fa4216590e39b458cc6a7697c151ddf12316b03d645ab81f07642cbb15872a501e2d7e1867fe077229a6cb63ee90e26a12565fcae80ca11</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>区块链</category>
       </categories>
