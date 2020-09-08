@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="安全,Ethernaut,WriteUp,solidity," />
+  <meta name="keywords" content="Ethernaut,WriteUp,安全,solidity," />
 
 
 
@@ -82,7 +82,7 @@
 
 
 <meta name="description" content="Zeppelin-Ethernaut-WriteUp参考文章：感谢大佬 xuing Ethernaut WriteUp 更新到22题 Shop 本文单纯记录下自己的学（mo）习（yu）过程。 Hello Ethernaut第一关很简单，首先是教你如何去使用MetaMask浏览器扩展程序。 使用基础命令查看信息：  player ：查看自己的地址。  getBalance(player) ：查看当前">
-<meta name="keywords" content="安全,Ethernaut,WriteUp,solidity">
+<meta name="keywords" content="Ethernaut,WriteUp,安全,solidity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zeppelin Ethernaut WriteUp">
 <meta property="og:url" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;09&#x2F;Ethernaut%20WriteUp&#x2F;index.html">
@@ -98,7 +98,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;09&#x2F;Ethernaut%20WriteUp&#x2F;img6.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;09&#x2F;Ethernaut%20WriteUp&#x2F;img4.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;09&#x2F;Ethernaut%20WriteUp&#x2F;img9.png">
-<meta property="og:updated_time" content="2020-07-31T06:26:35.174Z">
+<meta property="og:updated_time" content="2020-09-08T01:25:06.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;09&#x2F;Ethernaut%20WriteUp&#x2F;img7.png">
 
@@ -983,7 +983,8 @@
 
 <p>​    然而，编译都通不过！因为view这个修饰符的限定，我们不能修改状态，修改状态在官方文档中如是介绍：</p>
 <blockquote>
-<h5 id="View-函数"><a href="#View-函数" class="headerlink" title="View 函数"></a>View 函数</h5><p>可以将函数声明为 <code>view</code> 类型，这种情况下要保证不修改状态。</p>
+<p>View 函数</p>
+<p>可以将函数声明为 <code>view</code> 类型，这种情况下要保证不修改状态。</p>
 <p>下面的语句被认为是修改状态：</p>
 <ol>
 <li>修改状态变量。</li>
@@ -1001,7 +1002,8 @@
 
 <p>​    然而，编译是通过了，在调用函数的时候，Remix提示如下：</p>
 <blockquote>
-<h6 id="Gas-estimation-failed"><a href="#Gas-estimation-failed" class="headerlink" title="Gas estimation failed"></a>Gas estimation failed</h6><p>Gas estimation errored with the following message (see below). The transaction execution will likely fail. Do you want to force sending?<br>gas required exceeds allowance (8000029) or always failing transaction</p>
+<p>Gas estimation failed</p>
+<p>Gas estimation errored with the following message (see below). The transaction execution will likely fail. Do you want to force sending?<br>gas required exceeds allowance (8000029) or always failing transaction</p>
 </blockquote>
 <p>​    这段话大概的意思就是无法估计gas的消耗，搜索一通后还是没有解决这个问题。</p>
 <p>​    后来在他人的帮助下才知道，不能使用变量作为判断条件，因为在执行判断之前还要去storage中访问target变量的值，这会消耗大量的gas，导致后面无法正常运行，从而失败。</p>
@@ -1058,11 +1060,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tags"></i> 安全</a>
-          
             <a href="/tags/Ethernaut/" rel="tag"><i class="fa fa-tags"></i> Ethernaut</a>
           
             <a href="/tags/WriteUp/" rel="tag"><i class="fa fa-tags"></i> WriteUp</a>
+          
+            <a href="/tags/%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tags"></i> 安全</a>
           
             <a href="/tags/solidity/" rel="tag"><i class="fa fa-tags"></i> solidity</a>
           
@@ -1213,7 +1215,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1298,7 +1300,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Zeppelin-Ethernaut-WriteUp"><span class="nav-number">1.</span> <span class="nav-text">Zeppelin-Ethernaut-WriteUp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Ethernaut"><span class="nav-number">1.1.</span> <span class="nav-text">Hello Ethernaut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fallback"><span class="nav-number">1.2.</span> <span class="nav-text">Fallback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fallout"><span class="nav-number">1.3.</span> <span class="nav-text">Fallout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coin-Flip"><span class="nav-number">1.4.</span> <span class="nav-text">Coin Flip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Telephone"><span class="nav-number">1.5.</span> <span class="nav-text">Telephone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Token"><span class="nav-number">1.6.</span> <span class="nav-text">Token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delegation"><span class="nav-number">1.7.</span> <span class="nav-text">Delegation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Force"><span class="nav-number">1.8.</span> <span class="nav-text">Force</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vault"><span class="nav-number">1.9.</span> <span class="nav-text">Vault</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#King"><span class="nav-number">1.10.</span> <span class="nav-text">King</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re-entrancy"><span class="nav-number">1.11.</span> <span class="nav-text">Re-entrancy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elevator"><span class="nav-number">1.12.</span> <span class="nav-text">Elevator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privacy"><span class="nav-number">1.13.</span> <span class="nav-text">Privacy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gatekeeper-One"><span class="nav-number">1.14.</span> <span class="nav-text">Gatekeeper One</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gatekeeper-Two"><span class="nav-number">1.15.</span> <span class="nav-text">Gatekeeper Two</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Naught-Coin"><span class="nav-number">1.16.</span> <span class="nav-text">Naught Coin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preservation"><span class="nav-number">1.17.</span> <span class="nav-text">Preservation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Locked"><span class="nav-number">1.18.</span> <span class="nav-text">Locked</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recovery"><span class="nav-number">1.19.</span> <span class="nav-text">Recovery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MagicNumber"><span class="nav-number">1.20.</span> <span class="nav-text">MagicNumber</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Alien-Codex"><span class="nav-number">1.21.</span> <span class="nav-text">Alien Codex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Denial"><span class="nav-number">1.22.</span> <span class="nav-text">Denial</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shop"><span class="nav-number">1.23.</span> <span class="nav-text">Shop</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#View-函数"><span class="nav-number">1.23.0.0.1.</span> <span class="nav-text">View 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Gas-estimation-failed"><span class="nav-number">1.23.0.0.1.1.</span> <span class="nav-text">Gas estimation failed</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Zeppelin-Ethernaut-WriteUp"><span class="nav-number">1.</span> <span class="nav-text">Zeppelin-Ethernaut-WriteUp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Ethernaut"><span class="nav-number">1.1.</span> <span class="nav-text">Hello Ethernaut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fallback"><span class="nav-number">1.2.</span> <span class="nav-text">Fallback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fallout"><span class="nav-number">1.3.</span> <span class="nav-text">Fallout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coin-Flip"><span class="nav-number">1.4.</span> <span class="nav-text">Coin Flip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Telephone"><span class="nav-number">1.5.</span> <span class="nav-text">Telephone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Token"><span class="nav-number">1.6.</span> <span class="nav-text">Token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delegation"><span class="nav-number">1.7.</span> <span class="nav-text">Delegation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Force"><span class="nav-number">1.8.</span> <span class="nav-text">Force</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vault"><span class="nav-number">1.9.</span> <span class="nav-text">Vault</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#King"><span class="nav-number">1.10.</span> <span class="nav-text">King</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re-entrancy"><span class="nav-number">1.11.</span> <span class="nav-text">Re-entrancy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elevator"><span class="nav-number">1.12.</span> <span class="nav-text">Elevator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Privacy"><span class="nav-number">1.13.</span> <span class="nav-text">Privacy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gatekeeper-One"><span class="nav-number">1.14.</span> <span class="nav-text">Gatekeeper One</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gatekeeper-Two"><span class="nav-number">1.15.</span> <span class="nav-text">Gatekeeper Two</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Naught-Coin"><span class="nav-number">1.16.</span> <span class="nav-text">Naught Coin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preservation"><span class="nav-number">1.17.</span> <span class="nav-text">Preservation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Locked"><span class="nav-number">1.18.</span> <span class="nav-text">Locked</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recovery"><span class="nav-number">1.19.</span> <span class="nav-text">Recovery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MagicNumber"><span class="nav-number">1.20.</span> <span class="nav-text">MagicNumber</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Alien-Codex"><span class="nav-number">1.21.</span> <span class="nav-text">Alien Codex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Denial"><span class="nav-number">1.22.</span> <span class="nav-text">Denial</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shop"><span class="nav-number">1.23.</span> <span class="nav-text">Shop</span></a></li></ol></li></ol></div>
             
 
           </div>
