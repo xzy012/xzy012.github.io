@@ -9,10 +9,13 @@
 <p><a href="https://yuedu.baidu.com/ebook/478d1a62376baf1ffc4fad99" target="_blank" rel="noopener">HTTP/2.0中文翻译</a></p>
 <p><a href="https://blog.csdn.net/javajiawei/article/details/50563154" target="_blank" rel="noopener">HTTP之X-Requested-With分析和思考</a></p>
 <p>有 X-Requested-With: XMLHttpRequest：</p>
-<p><img src="/2020/08/27/mess/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200827154323749.png" alt="image-20200827154323749"></p>
+<p><img src="/2020/08/27/mess/img1.png" alt="image-20200827154323749"></p>
 <p>没有 X-Requested-With: XMLHttpRequest：</p>
-<p><img src="/2020/08/27/mess/C:%5CUsers%5Cxuzhi%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200827154337346.png" alt="image-20200827154337346"></p>
+<p><img src="/2020/08/27/mess/img2.png" alt="image-20200827154337346"></p>
 ]]></content>
+      <tags>
+        <tag>随便记记</tag>
+      </tags>
   </entry>
   <entry>
     <title>JavaScript同步、异步、回调</title>
