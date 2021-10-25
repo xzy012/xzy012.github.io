@@ -170,9 +170,9 @@
       
         <tags>
             
-            <tag> 信息收集 </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> 信息收集 </tag>
             
         </tags>
       
@@ -197,11 +197,11 @@
       
         <tags>
             
-            <tag> 安全 </tag>
-            
             <tag> Ethernaut </tag>
             
             <tag> WriteUp </tag>
+            
+            <tag> 安全 </tag>
             
             <tag> solidity </tag>
             
