@@ -3,11 +3,20 @@ window.__require = function e(t, a, i) {
         if (!a[s]) {
             if (!t[s]) {
                 var r = s.split("/");
-                if (r = r[r.length - 1], !t[r]) { var h = "function" == typeof __require && __require; if (!c && h) return h(r, !0); if (n) return n(r, !0); throw new Error("Cannot find module '" + s + "'") }
+                if (r = r[r.length - 1], !t[r]) {
+                    var h = "function" == typeof __require && __require;
+                    if (!c && h) return h(r, !0);
+                    if (n) return n(r, !0);
+                    throw new Error("Cannot find module '" + s + "'")
+                }
                 s = r
             }
-            var l = a[s] = { exports: {} };
-            t[s][0].call(l.exports, function(e) { return o(t[s][1][e] || e) }, l, l.exports, e, t, a, i)
+            var l = a[s] = {
+                exports: {}
+            };
+            t[s][0].call(l.exports, function(e) {
+                return o(t[s][1][e] || e)
+            }, l, l.exports, e, t, a, i)
         }
         return a[s].exports
     }
@@ -23,7 +32,9 @@ window.__require = function e(t, a, i) {
                 var i = t.split(""),
                     o = 0,
                     n = a / i.length;
-                e.node.runAction(cc.sequence(cc.callFunc(function() { e.string = e.string + i[o], o++ }), cc.delayTime(n)).repeat(i.length))
+                e.node.runAction(cc.sequence(cc.callFunc(function() {
+                    e.string = e.string + i[o], o++
+                }), cc.delayTime(n)).repeat(i.length))
             },
             gunNumLabAni: function(e, t, a, i, o) {
                 if (void 0 === a && (a = 30), o = o || parseInt(e.string), t != o) {
@@ -31,11 +42,17 @@ window.__require = function e(t, a, i) {
                     var n = 0,
                         s = Math.abs(t - o),
                         c = o > t ? -1 : 1;
-                    Math.abs(t - o) > a && (s = a, c *= Math.abs(t - o) / a), e.node.runAction(cc.sequence(cc.callFunc(function() { n >= s - 1 ? e.string = i ? ToolsJs.getStrForNum2(t) : t : (o += Math.floor(c), e.string = i ? ToolsJs.getStrForNum2(o) : Math.floor(o)), n++ }), cc.delayTime(.02)).repeat(s))
+                    Math.abs(t - o) > a && (s = a, c *= Math.abs(t - o) / a), e.node.runAction(cc.sequence(cc.callFunc(function() {
+                        n >= s - 1 ? e.string = i ? ToolsJs.getStrForNum2(t) : t : (o += Math.floor(c), e.string = i ? ToolsJs.getStrForNum2(o) : Math.floor(o)), n++
+                    }), cc.delayTime(.02)).repeat(s))
                 }
             },
-            openUIAni: function(e, t, a, i) { void 0 === a && (a = .3), e.opacity = 0, t.scale = 0, e.runAction(cc.fadeTo(a, 100)), t.runAction(cc.sequence(cc.scaleTo(a, 1).easing(cc.easeBackOut()), cc.callFunc(i))) },
-            closeUIAni: function(e, t, a, i) { void 0 === a && (a = .2), e.runAction(cc.fadeOut(a)), t.runAction(cc.sequence(cc.scaleTo(a, 0).easing(cc.easeBackIn()), cc.callFunc(i), cc.removeSelf(!0))) },
+            openUIAni: function(e, t, a, i) {
+                void 0 === a && (a = .3), e.opacity = 0, t.scale = 0, e.runAction(cc.fadeTo(a, 100)), t.runAction(cc.sequence(cc.scaleTo(a, 1).easing(cc.easeBackOut()), cc.callFunc(i)))
+            },
+            closeUIAni: function(e, t, a, i) {
+                void 0 === a && (a = .2), e.runAction(cc.fadeOut(a)), t.runAction(cc.sequence(cc.scaleTo(a, 0).easing(cc.easeBackIn()), cc.callFunc(i), cc.removeSelf(!0)))
+            },
             sortFadeInArr: function(e, t, a) {
                 void 0 === t && (t = .3), void 0 === a && (a = .02);
                 for (var i = 0; i < e.length; i++) {
@@ -59,18 +76,28 @@ window.__require = function e(t, a, i) {
                     l = n ? 0 : e.opacity;
                 e.runAction(cc.sequence(cc.spawn(cc.scaleTo(r + .1, h), cc.moveBy(r, c).easing(cc.easeQuadraticActionOut()), cc.fadeTo(r + .1, l)), cc.fadeOut(.1), cc.removeSelf(!0)))
             },
-            moveByOutInit: function(e, t, a, i) { void 0 === t && (t = .5), void 0 === a && (a = 0), void 0 === i && (i = 0), e.x += a, e.y += i, e.runAction(cc.moveBy(t, cc.v2(-a, -i)).easing(cc.easeBackOut())) },
+            moveByOutInit: function(e, t, a, i) {
+                void 0 === t && (t = .5), void 0 === a && (a = 0), void 0 === i && (i = 0), e.x += a, e.y += i, e.runAction(cc.moveBy(t, cc.v2(-a, -i)).easing(cc.easeBackOut()))
+            },
             sprRedAni: function(e, t, a, i) {
                 var o = 0;
-                e.runAction(cc.sequence(cc.delayTime(t), cc.callFunc(function(e) { e.color = cc.Color.RED }), cc.delayTime(t), cc.callFunc(function(e) { e.color = cc.Color.WHITE, ++o >= a && null != i && i() })).repeat(a))
+                e.runAction(cc.sequence(cc.delayTime(t), cc.callFunc(function(e) {
+                    e.color = cc.Color.RED
+                }), cc.delayTime(t), cc.callFunc(function(e) {
+                    e.color = cc.Color.WHITE, ++o >= a && null != i && i()
+                })).repeat(a))
             },
             shakeAni: function(e, t, a, i, o) {
                 void 0 === a && (a = 10), void 0 === i && (i = .1), void 0 === o && (o = 2);
                 var n = cc.sequence(cc.rotateBy(i, a), cc.rotateBy(i, -a), cc.rotateBy(i, -a), cc.rotateBy(i, a), cc.rotateBy(i, a), cc.rotateBy(i, -a), cc.delayTime(o));
                 t ? e.runAction(n.repeatForever()) : e.runAction(n)
             },
-            playAni: function(e, t) { e.getComponent(cc.Animation).play(t) },
-            stopAni: function(e, t) { e.getComponent(cc.Animation).stop(t) },
+            playAni: function(e, t) {
+                e.getComponent(cc.Animation).play(t)
+            },
+            stopAni: function(e, t) {
+                e.getComponent(cc.Animation).stop(t)
+            },
             addNodeAni: function(e, t, a, i, o, n, s) {
                 var c = e.getComponent(cc.Animation);
                 null == c && (c = e.addComponent(cc.Animation));
@@ -82,24 +109,45 @@ window.__require = function e(t, a, i) {
                     }
                     this.addClipForAnimaton(c, r, a, s, n)
                 } else
-                    for (var m = this, d = 0, u = o - i + 1, g = function(e) { cc.loader.loadRes(t + e, cc.SpriteFrame, function(t, i) { i && (d++, i.index = e, r.push(i)), d >= u && (ToolsJs.sortArrForObject(r, "index"), m.addClipForAnimaton(c, r, a, s, n)) }) }, p = i; p <= o; p++) g(p)
+                    for (var m = this, d = 0, u = o - i + 1, g = function(e) {
+                            cc.loader.loadRes(t + e, cc.SpriteFrame, function(t, i) {
+                                i && (d++, i.index = e, r.push(i)), d >= u && (ToolsJs.sortArrForObject(r, "index"), m.addClipForAnimaton(c, r, a, s, n))
+                            })
+                        }, p = i; p <= o; p++) g(p)
             },
             addClipForAnimaton: function(e, t, a, i, o) {
                 var n = cc.AnimationClip.createWithSpriteFrames(t, t.length);
                 n.name = a, n.speed = i, n.wrapMode = o ? cc.WrapMode.Loop : cc.WrapMode.Normal, e.addClip(n)
             },
-            returnRanNum: function(e, t) { return e + Math.floor(Math.random() * (t - e + 1)) }
+            returnRanNum: function(e, t) {
+                return e + Math.floor(Math.random() * (t - e + 1))
+            }
         };
         window.AniTools = a, cc._RF.pop()
     }, {}],
     EventData: [function(e, t) {
         "use strict";
-        cc._RF.push(t, "00f19xAv/JGmKf/MZ/AWHni", "EventData"), window.EventData = { UPDATE_GLOD: "updateGlod" }, cc._RF.pop()
+        cc._RF.push(t, "00f19xAv/JGmKf/MZ/AWHni", "EventData"), window.EventData = {
+            UPDATE_GLOD: "updateGlod"
+        }, cc._RF.pop()
     }, {}],
     EventManager: [function(e, t) {
         "use strict";
         cc._RF.push(t, "94634X4eDVNUoEnqKm3D5/S", "EventManager");
-        var a = { addListener: function(e, t, a) { cc.systemEvent.on(e, t, a) }, removeListener: function(e, t, a) { cc.systemEvent.off(e, t, a) }, dispachEvent: function(e, t, a, i, o, n) { cc.systemEvent.emit(e, t, a, i, o, n) }, removeListenerForTarget: function(e) { cc.systemEvent.targetOff(e) } };
+        var a = {
+            addListener: function(e, t, a) {
+                cc.systemEvent.on(e, t, a)
+            },
+            removeListener: function(e, t, a) {
+                cc.systemEvent.off(e, t, a)
+            },
+            dispachEvent: function(e, t, a, i, o, n) {
+                cc.systemEvent.emit(e, t, a, i, o, n)
+            },
+            removeListenerForTarget: function(e) {
+                cc.systemEvent.targetOff(e)
+            }
+        };
         window.EventManager = a, cc._RF.pop()
     }, {}],
     GameConfig: [function(e, t) {
@@ -133,7 +181,9 @@ window.__require = function e(t, a, i) {
             noTouchBool: !0,
             enterGameNum: 0,
             enterGameFlags: !1,
-            returnRanNum: function(e, t) { return e + Math.floor(Math.random() * (t - e + 1)) },
+            returnRanNum: function(e, t) {
+                return e + Math.floor(Math.random() * (t - e + 1))
+            },
             getAngle: function(e, t, a, i) {
                 var o = Math.abs(e - a),
                     n = Math.abs(t - i),
@@ -142,8 +192,12 @@ window.__require = function e(t, a, i) {
                     r = 180 / (Math.PI / c);
                 return t > i && (r = 180 - r), e > a && (r *= -1), r
             },
-            setLocalStorage: function(e, t) { cc.sys.localStorage.setItem(e, t) },
-            getLocalStorage: function(e) { return cc.sys.localStorage.getItem(e) }
+            setLocalStorage: function(e, t) {
+                cc.sys.localStorage.setItem(e, t)
+            },
+            getLocalStorage: function(e) {
+                return cc.sys.localStorage.getItem(e)
+            }
         };
         t.exports = a, cc._RF.pop()
     }, {}],
@@ -151,8 +205,13 @@ window.__require = function e(t, a, i) {
         "use strict";
         cc._RF.push(t, "b21e8tF461OFalpptyeuAE2", "GameUiTools"), e("GameConfig");
         var a = {
-            newSprite: function(e, t) { var a = new cc.Node; return t ? (e = e.split(".")[0], a.addComponent(cc.Sprite).spriteFrame = GameTools.love2048FrameCache.getSpriteFrame(e)) : a.addComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame("res/raw-assets/resources/" + e), a },
-            setNodeSpriteFrame: function(e, t) { e.getComponent(cc.Sprite).spriteFrame = GameTools.love2048FrameCache.getSpriteFrame(t) },
+            newSprite: function(e, t) {
+                var a = new cc.Node;
+                return t ? (e = e.split(".")[0], a.addComponent(cc.Sprite).spriteFrame = GameTools.love2048FrameCache.getSpriteFrame(e)) : a.addComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame("res/raw-assets/resources/" + e), a
+            },
+            setNodeSpriteFrame: function(e, t) {
+                e.getComponent(cc.Sprite).spriteFrame = GameTools.love2048FrameCache.getSpriteFrame(t)
+            },
             setButtonClickEvents: function(e, t, a, i, o) {
                 var n = new Array;
                 null == t.length ? n[0] = t : n = t;
@@ -163,12 +222,18 @@ window.__require = function e(t, a, i) {
                     r.clickEvents.push(c), (null == o || o) && (r.transition = cc.Button.Transition.SCALE, r.duration = .1, r.zoomScale = 1.2)
                 }
             },
-            scheduleOnce: function(e, t, a) { e.runAction(cc.sequence(cc.delayTime(a), cc.callFunc(t, e))) },
+            scheduleOnce: function(e, t, a) {
+                e.runAction(cc.sequence(cc.delayTime(a), cc.callFunc(t, e)))
+            },
             loadingScene: function(e, t) {
                 t ? cc.loader.loadRes("panel/LoadingLayer", function(t, a) {
                     var i = cc.instantiate(a);
-                    cc.director.getScene().children[0].addChild(i), cc.director.preloadScene(e, function() { cc.director.loadScene(e) })
-                }) : cc.director.preloadScene(e, function() { cc.director.loadScene(e) })
+                    cc.director.getScene().children[0].addChild(i), cc.director.preloadScene(e, function() {
+                        cc.director.loadScene(e)
+                    })
+                }) : cc.director.preloadScene(e, function() {
+                    cc.director.loadScene(e)
+                })
             },
             loadingLayer: function(e) {
                 cc.loader.loadRes(e, function(e, t) {
@@ -180,23 +245,47 @@ window.__require = function e(t, a, i) {
             }
         };
         t.exports = a, cc._RF.pop()
-    }, { GameConfig: "GameConfig" }],
+    }, {
+        GameConfig: "GameConfig"
+    }],
     HttpManagerJs: [function(e, t) {
         "use strict";
         var a;
         cc._RF.push(t, "197e1hfNnxIcJx73V3VhUxY", "HttpManagerJs");
         var i = e("GameConfig"),
-            o = ((a = { URL: "http://g.vsane.com/Service/Share/index", cacheList: null, isBusy: null, req: null, perform: null, retGameId: 0 }).cacheList = [], a.ctor = function() {}, a.checkHave = function() { this.isBusy || this.sendOne() }, a.httpInitUrl = function(e) {
+            o = ((a = {
+                URL: "http://g.vsane.com/Service/Share/index",
+                cacheList: null,
+                isBusy: null,
+                req: null,
+                perform: null,
+                retGameId: 0
+            }).cacheList = [], a.ctor = function() {}, a.checkHave = function() {
+                this.isBusy || this.sendOne()
+            }, a.httpInitUrl = function(e) {
                 var t = window.location.href,
                     a = t.substring(0, t.lastIndexOf("//") + 2) + window.location.host + "/Service/Share/index";
                 this.URL = a, console.log("data", this.URL), this.retGameId = e
-            }, a.send = function(e, t, a, i) { this.cacheList.push({ type: e, data: t, func: a, target: i }), this.isBusy || this.sendOne() }, a.sendOne = function() {
+            }, a.send = function(e, t, a, i) {
+                this.cacheList.push({
+                    type: e,
+                    data: t,
+                    func: a,
+                    target: i
+                }), this.isBusy || this.sendOne()
+            }, a.sendOne = function() {
                 if (0 != this.cacheList.length) {
                     this.isBusy = !0, this.perform = this.cacheList.shift(), this.req = cc.loader.getXMLHttpRequest(), this.req.onreadystatechange = this.onDataHandler.bind(this), this.req.onerror = this.onErrorHandler.bind(this), this.req.ontimeout = this.onTimeoutHandler.bind(this), this.req.timeout = 2e3, cc.log("pos", this.URL), this.req.open("POST", this.URL), this.req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
                     var e = this.returnLanguage();
                     console.log("gameIdid", this.retGameId);
                     var t = this.retGameId,
-                        a = { type: this.perform.type, gid: t, mid: null, data: this.perform.data, languageType: e },
+                        a = {
+                            type: this.perform.type,
+                            gid: t,
+                            mid: null,
+                            data: this.perform.data,
+                            languageType: e
+                        },
                         i = "send=" + JSON.stringify(a);
                     this.req.send(i)
                 }
@@ -217,7 +306,13 @@ window.__require = function e(t, a, i) {
                         cc.loader.onProgress = null, console.log("Success to load scene: " + t)
                     })
                 }
-            }, a.returnLanguage = function() { return ("" + window.navigator.language).toLocaleLowerCase() }, a.onErrorHandler = function() { cc.log("\u7f51\u7edc\u9519\u8bef"), this.isBusy = !1, this.perform.target ? this.perform.func.call(this.perform.target, -1) : this.perform.func(-1) }, a.onTimeoutHandler = function() { cc.log("\u8bf7\u6c42\u8d85\u65f6"), this.isBusy = !1, this.perform.target ? this.perform.func.call(this.perform.target, -1) : this.perform.func(-1) }, a.clearAll = function() {
+            }, a.returnLanguage = function() {
+                return ("" + window.navigator.language).toLocaleLowerCase()
+            }, a.onErrorHandler = function() {
+                cc.log("\u7f51\u7edc\u9519\u8bef"), this.isBusy = !1, this.perform.target ? this.perform.func.call(this.perform.target, -1) : this.perform.func(-1)
+            }, a.onTimeoutHandler = function() {
+                cc.log("\u8bf7\u6c42\u8d85\u65f6"), this.isBusy = !1, this.perform.target ? this.perform.func.call(this.perform.target, -1) : this.perform.func(-1)
+            }, a.clearAll = function() {
                 for (var e = this.cacheList.length, t = 0; t < e; t++) {
                     var a = this.cacheList[t];
                     a && (a.target ? a.func.call(a.target, -1) : a.func(-1))
@@ -225,10 +320,55 @@ window.__require = function e(t, a, i) {
                 this.cacheList.length = 0
             }, a);
         t.exports = o, cc._RF.pop()
-    }, { GameConfig: "GameConfig" }],
+    }, {
+        GameConfig: "GameConfig"
+    }],
     LanguageSetJs: [function(e, t) {
         "use strict";
-        cc._RF.push(t, "4754e8KuPZJCqklCNyKpG29", "LanguageSetJs"), t.exports = { language_1: { game_name: "\u300c\u53ec\u5524\u795e\u9f99\u300d", game_name1: "\u53ec\u5524\u795e\u9f99", game_info: "\u70b9\u51fb\u5c4f\u5e55\u4e32\u73e0\u5b50\uff0c\u4e24\u4e2a\u76f8\u540c\u7ea7\u522b\u7684\u73e0\u5b50\u4f1a\u5408\u6210\u66f4\u9ad8\u7ea7\u7684\u73e0\u5b50\u3002", txtStart: "\u5f00\u59cb", txtMore: "\u66f4\u591a\u6e38\u620f", txtAgain: "\u518d\u73a9\u4e00\u6b21", txtShare1: "\u5728\u6e38\u620f\u4e2d ", txtShare2: "\u5f97\u5206\u4e86\uff0c\u597d\u554a!\u4f60\u548c\u6211\u4e00\u8d77\u6765\u6bd4\u8d5b!", bgRgb: "#3698C5", gameT1: "\u5173\u6ce8\u6211\u4eec", gameT2: "\u7eb8\u724c\u63a5\u9f99", gameT3: "\u9526\u4e0a\u6dfb\u82b1", gameUrl1: "http://g.regogame.com/game/9/", gameUrl2: "http://g.regogame.com/game/3/", gameT11: "\u5173\u6ce8\u5fae\u4fe1", gameT12: "\u5173\u6ce8Kakao", gameT13: "\u5173\u6ce8Line", gameEndL: "\u6e38 \u620f \u7ed3 \u675f", gameEndL1: "\u7a0d \u5019 \u67e5 \u770b \u5206 \u6570" }, language_2: { game_name: "\u300cDragon Merge\u300d", game_name1: "Dragon Merge", game_info: "Tap the screen to string beads, and two beads of the same level will synthesize more advanced beads.", txtStart: "Start", txtMore: "More Game", txtAgain: "Play Again", txtShare1: "In Game ", txtShare2: " Let's play together!", bgRgb: "#3698C5", gameT1: "Follow Us", gameT2: "Thousand Flower", gameT3: "Eliminate Star", gameUrl1: "http://g.fromgame.com/game/53", gameUrl2: "http://g.fromgame.com/game/13", gameT11: "Focus WeChat", gameT12: "Focus Kakao", gameT13: "Focus Line", gameEndL: "Game OVer", gameEndL1: "View the score later" } }, cc._RF.pop()
+        cc._RF.push(t, "4754e8KuPZJCqklCNyKpG29", "LanguageSetJs"), t.exports = {
+            language_1: {
+                game_name: "\u300c\u53ec\u5524\u795e\u9f99\u300d",
+                game_name1: "\u53ec\u5524\u795e\u9f99",
+                game_info: "\u70b9\u51fb\u5c4f\u5e55\u4e32\u73e0\u5b50\uff0c\u4e24\u4e2a\u76f8\u540c\u7ea7\u522b\u7684\u73e0\u5b50\u4f1a\u5408\u6210\u66f4\u9ad8\u7ea7\u7684\u73e0\u5b50\u3002",
+                txtStart: "\u5f00\u59cb",
+                txtMore: "\u66f4\u591a\u6e38\u620f",
+                txtAgain: "\u518d\u73a9\u4e00\u6b21",
+                txtShare1: "\u5728\u6e38\u620f\u4e2d ",
+                txtShare2: "\u5f97\u5206\u4e86\uff0c\u597d\u554a!\u4f60\u548c\u6211\u4e00\u8d77\u6765\u6bd4\u8d5b!",
+                bgRgb: "#3698C5",
+                gameT1: "\u5173\u6ce8\u6211\u4eec",
+                gameT2: "\u7eb8\u724c\u63a5\u9f99",
+                gameT3: "\u9526\u4e0a\u6dfb\u82b1",
+                gameUrl1: "http://g.regogame.com/game/9/",
+                gameUrl2: "http://g.regogame.com/game/3/",
+                gameT11: "\u5173\u6ce8\u5fae\u4fe1",
+                gameT12: "\u5173\u6ce8Kakao",
+                gameT13: "\u5173\u6ce8Line",
+                gameEndL: "\u6e38 \u620f \u7ed3 \u675f",
+                gameEndL1: "\u7a0d \u5019 \u67e5 \u770b \u5206 \u6570"
+            },
+            language_2: {
+                game_name: "\u300cDragon Merge\u300d",
+                game_name1: "Dragon Merge",
+                game_info: "Tap the screen to string beads, and two beads of the same level will synthesize more advanced beads.",
+                txtStart: "Start",
+                txtMore: "More Game",
+                txtAgain: "Play Again",
+                txtShare1: "In Game ",
+                txtShare2: " Let's play together!",
+                bgRgb: "#3698C5",
+                gameT1: "Follow Us",
+                gameT2: "Thousand Flower",
+                gameT3: "Eliminate Star",
+                gameUrl1: "http://g.fromgame.com/game/53",
+                gameUrl2: "http://g.fromgame.com/game/13",
+                gameT11: "Focus WeChat",
+                gameT12: "Focus Kakao",
+                gameT13: "Focus Line",
+                gameEndL: "Game OVer",
+                gameEndL1: "View the score later"
+            }
+        }, cc._RF.pop()
     }, {}],
     LoadSceneJs: [function(e, t) {
         "use strict";
@@ -238,7 +378,9 @@ window.__require = function e(t, a, i) {
                 var n = e;
                 n = null == n || null == n || e, console.log("LoadBoolBeforeLoadS", n), this.needShow = !1, n && n ? (this.needShow = !0, showMyAds()) : this.needShow = !1, this.needShow ? (null == preloader && this.startGoToGame(a, i, o), resCompleteFlag = !0, adCompleteFlag && resCompleteFlag && this.startGoToGame(a, i, o)) : this.startGoToGame(a, i, o)
             },
-            startGoToGame: function() { console.log("goToScene"), noAdGoToScene() }
+            startGoToGame: function() {
+                console.log("goToScene"), noAdGoToScene()
+            }
         };
         t.exports = a, cc._RF.pop()
     }, {}],
@@ -252,10 +394,56 @@ window.__require = function e(t, a, i) {
             s = (n.scheduleOnce, n.setNodeSpriteFrame, e("../commonJs/mTool_WHQ"));
         e("../MainManage").endHttpShowInfo, cc.Class({
             extends: cc.Component,
-            properties: { startBgNode: cc.Node, sceneScore: cc.Label, gameOverT1: cc.Label, gameOverT2: cc.Label, nameLabel: cc.Label, blackLayerPre: cc.Node, enemyNode: cc.Node, playerNode: cc.Node, leafNode: cc.Node, carmeraNode: cc.Node, liziNode: cc.Node, stoneNode: cc.Node, gameOverPre: cc.Prefab, leafPre: cc.Prefab, enemyPreArr: [cc.Prefab], newFishPreArr: [cc.Prefab], BGPre: cc.Prefab, bianjiePre: cc.Prefab, BubblePre: cc.Prefab, PanlongPre: cc.Prefab, bowenPre: cc.Prefab, bloodPre: cc.Prefab, replayButtonPre: cc.Prefab, mainBtnPre: cc.Prefab, ripplePre: cc.Prefab, liziPre: cc.Prefab, starPre: cc.Prefab, lightPre: cc.Prefab, eatMusic: { default: null, type: cc.AudioClip }, HurtMusic: { default: null, type: cc.AudioClip }, failMusic: { default: null, type: cc.AudioClip } },
+            properties: {
+                startBgNode: cc.Node,
+                sceneScore: cc.Label,
+                gameOverT1: cc.Label,
+                gameOverT2: cc.Label,
+                nameLabel: cc.Label,
+                blackLayerPre: cc.Node,
+                enemyNode: cc.Node,
+                playerNode: cc.Node,
+                leafNode: cc.Node,
+                carmeraNode: cc.Node,
+                liziNode: cc.Node,
+                stoneNode: cc.Node,
+                gameOverPre: cc.Prefab,
+                leafPre: cc.Prefab,
+                enemyPreArr: [cc.Prefab],
+                newFishPreArr: [cc.Prefab],
+                BGPre: cc.Prefab,
+                bianjiePre: cc.Prefab,
+                BubblePre: cc.Prefab,
+                PanlongPre: cc.Prefab,
+                bowenPre: cc.Prefab,
+                bloodPre: cc.Prefab,
+                replayButtonPre: cc.Prefab,
+                mainBtnPre: cc.Prefab,
+                ripplePre: cc.Prefab,
+                liziPre: cc.Prefab,
+                starPre: cc.Prefab,
+                lightPre: cc.Prefab,
+                eatMusic: {
+                    default: null,
+                    type: cc.AudioClip
+                },
+                HurtMusic: {
+                    default: null,
+                    type: cc.AudioClip
+                },
+                failMusic: {
+                    default: null,
+                    type: cc.AudioClip
+                }
+            },
             judgeCurPlatform: function() {
                 console.log(navigator.userAgent);
-                var e, t, a, i, o, n, s, c = (e = navigator.userAgent, t = /(?:Windows Phone)/.test(e), a = /(?:SymbianOS)/.test(e) || t, i = /(?:Android)/.test(e), o = /(?:Firefox)/.test(e), /(?:Chrome|CriOS)/.test(e), { isTablet: n = /(?:iPad|PlayBook)/.test(e) || i && !/(?:Mobile)/.test(e) || o && /(?:Tablet)/.test(e), isPhone: s = /(?:iPhone)/.test(e) && !n, isAndroid: i, isPc: !s && !i && !a });
+                var e, t, a, i, o, n, s, c = (e = navigator.userAgent, t = /(?:Windows Phone)/.test(e), a = /(?:SymbianOS)/.test(e) || t, i = /(?:Android)/.test(e), o = /(?:Firefox)/.test(e), /(?:Chrome|CriOS)/.test(e), {
+                    isTablet: n = /(?:iPad|PlayBook)/.test(e) || i && !/(?:Mobile)/.test(e) || o && /(?:Tablet)/.test(e),
+                    isPhone: s = /(?:iPhone)/.test(e) && !n,
+                    isAndroid: i,
+                    isPc: !s && !i && !a
+                });
                 c.isAndroid || c.isPhone ? this.platFromNum = 1 : c.isTablet ? this.platFromNum = 2 : c.isPc && (this.platFromNum = 3)
             },
             adapterScreen: function() {
@@ -286,7 +474,16 @@ window.__require = function e(t, a, i) {
             play: function() {
                 console.log(1);
                 var e = this;
-                adBreak({ type: "next", name: "restart-game", beforeBreak: function() { e.enableButtons() }, afterBreak: function() { e.enableButtons() } })
+                adBreak({
+                    type: "next",
+                    name: "restart-game",
+                    beforeBreak: function() {
+                        e.enableButtons()
+                    },
+                    afterBreak: function() {
+                        e.enableButtons()
+                    }
+                })
             },
             enableButtons: function() {},
             returnCurrentLanType: function() {
@@ -303,7 +500,9 @@ window.__require = function e(t, a, i) {
                 }
                 return e
             },
-            changeSize: function(e) { e.scaleX = (e.scaleX - .1) * this.SizeScale, e.scaleY = (e.scaleY - .1) * this.SizeScale },
+            changeSize: function(e) {
+                e.scaleX = (e.scaleX - .1) * this.SizeScale, e.scaleY = (e.scaleY - .1) * this.SizeScale
+            },
             CreateBG: function() {
                 for (var e = this.BGNum, t = 0; t < e; t++) {
                     for (var a = [], i = 0; i < e; i++) {
@@ -427,7 +626,9 @@ window.__require = function e(t, a, i) {
                     t - e > 0 && (i = !1);
                     var o = Math.abs(t - e),
                         n = Math.floor(o / .01);
-                    a.runAction(cc.sequence(cc.callFunc(function() { a.getComponent(cc.Camera).zoomRatio != t && (i ? a.getComponent(cc.Camera).zoomRatio -= .01 : a.getComponent(cc.Camera).zoomRatio += .01) }, this), cc.delayTime(.005)).repeat(n))
+                    a.runAction(cc.sequence(cc.callFunc(function() {
+                        a.getComponent(cc.Camera).zoomRatio != t && (i ? a.getComponent(cc.Camera).zoomRatio -= .01 : a.getComponent(cc.Camera).zoomRatio += .01)
+                    }, this), cc.delayTime(.005)).repeat(n))
                 }
             },
             getEnemyPos: function(e, t) {
@@ -476,14 +677,20 @@ window.__require = function e(t, a, i) {
                 }
                 this.firstFlags = !1
             },
-            updateCreate: function() { this.gameOverFlags || this.CreateSingleEnemy(1, this.playerNode.typeID) },
+            updateCreate: function() {
+                this.gameOverFlags || this.CreateSingleEnemy(1, this.playerNode.typeID)
+            },
             CreateSingleEnemy: function(e, t) {
                 if (!this.gameOverFlags) {
                     var a = this.enemyNode.children.length,
                         i = this.playerNode.typeID;
-                    i = 3;
-                    t = 3;
-                    if (i <= 3) { if (a > 60) return } else if (i >= 4 && i <= 5) { if (a > 50) return } else if (i > 5 && i <= 7) { if (a > 40) return } else if (i > 7 && a > 20) return;
+                    if (i <= 3) {
+                        if (a > 60) return
+                    } else if (i >= 4 && i <= 5) {
+                        if (a > 50) return
+                    } else if (i > 5 && i <= 7) {
+                        if (a > 40) return
+                    } else if (i > 7 && a > 20) return;
                     for (var o = 0; o < e; o++) {
                         var n = this.getEnemyID(t),
                             s = cc.instantiate(this.enemyPreArr[n]);
@@ -513,7 +720,9 @@ window.__require = function e(t, a, i) {
                     h = cc.misc.radiansToDegrees(r) - 90,
                     l = e.speed,
                     m = s.pDistance(a, c) / l;
-                e.runAction(cc.sequence(cc.spawn(cc.moveTo(m, c), cc.rotateTo(.3, h)), cc.callFunc(function() { this.judgeEnemyPos(e) }, this)))
+                e.runAction(cc.sequence(cc.spawn(cc.moveTo(m, c), cc.rotateTo(.3, h)), cc.callFunc(function() {
+                    this.judgeEnemyPos(e)
+                }, this)))
             },
             EnemyReturnAction: function(e) {
                 e.stopAllActions();
@@ -522,7 +731,9 @@ window.__require = function e(t, a, i) {
                     i = a / t,
                     o = Math.atan2(-e.y, -e.x),
                     n = cc.misc.radiansToDegrees(o) - 90;
-                e.runAction(cc.sequence(cc.spawn(cc.moveBy(i, a * Math.cos(o), a * Math.sin(o)), cc.rotateTo(.3, n)), cc.callFunc(function() { this.judgeEnemyPos(e) }, this)))
+                e.runAction(cc.sequence(cc.spawn(cc.moveBy(i, a * Math.cos(o), a * Math.sin(o)), cc.rotateTo(.3, n)), cc.callFunc(function() {
+                    this.judgeEnemyPos(e)
+                }, this)))
             },
             ChasePlayer: function(e) {
                 e.stopAllActions();
@@ -534,7 +745,9 @@ window.__require = function e(t, a, i) {
                     c = s.getRandomNum(100 / n, 200 / n, !1),
                     r = c / o,
                     h = cc.misc.radiansToDegrees(i) - 90;
-                e.runAction(cc.sequence(cc.spawn(cc.moveBy(r, c * Math.cos(i), c * Math.sin(i)), cc.rotateTo(2 * r / 3, h)), cc.callFunc(function() { this.ChasePlayer(e) }, this)))
+                e.runAction(cc.sequence(cc.spawn(cc.moveBy(r, c * Math.cos(i), c * Math.sin(i)), cc.rotateTo(2 * r / 3, h)), cc.callFunc(function() {
+                    this.ChasePlayer(e)
+                }, this)))
             },
             EscapePlayer: function(e) {
                 e.stopAllActions();
@@ -545,11 +758,13 @@ window.__require = function e(t, a, i) {
                     n = s.getRandomNum(100, 200, !1),
                     c = n / o,
                     r = cc.misc.radiansToDegrees(i) - 90;
-                e.runAction(cc.sequence(cc.spawn(cc.moveBy(c, n * Math.cos(i), n * Math.sin(i)), cc.rotateTo(.3, r)), cc.callFunc(function() { this.enemyAction(e) }, this)))
+                e.runAction(cc.sequence(cc.spawn(cc.moveBy(c, n * Math.cos(i), n * Math.sin(i)), cc.rotateTo(.3, r)), cc.callFunc(function() {
+                    this.enemyAction(e)
+                }, this)))
             },
             judgeIsChange: function(e) {
                 var t = this;
-                if (this.tempArr.length >= 2)
+                if (this.tempArr.length >= 1)
                     if (this.playerNode.typeID <= e) {
                         this.playerNode.typeID++, this.playerNode.typeID > this.maxTypeID && (this.maxTypeID = this.playerNode.typeID);
                         for (var a = this.playerNode.getChildByName("son").convertToNodeSpaceAR(this.playerNode.convertToWorldSpaceAR(this.myFish.position)), i = function(e) {
@@ -562,9 +777,11 @@ window.__require = function e(t, a, i) {
                                     }
                                 }, t)), cc.callFunc(function() {}, t)))
                             }, o = 0; o < this.tempArr.length; o++) i(o)
-                    } else this.playerNode.typeID > e && this.tempArr.length >= 3 && this.EatSmallAction2()
+                    } else this.playerNode.typeID > e && this.tempArr.length >= 1 && this.EatSmallAction2()
             },
-            judgePushArr: function(e, t) { 1 == e ? (this.kedouArr.push(t), this.tempArr = this.kedouArr, this.judgeIsChange(e)) : 2 == e ? (this.qingwaArr.push(t), this.tempArr = this.qingwaArr, this.judgeIsChange(e)) : 3 == e ? (this.haiguiArr.push(t), this.tempArr = this.haiguiArr, this.judgeIsChange(e)) : 4 == e ? (this.xiaojinyuArr.push(t), this.tempArr = this.xiaojinyuArr, this.judgeIsChange(e)) : 5 == e ? (this.jinliArr.push(t), this.tempArr = this.jinliArr, this.judgeIsChange(e)) : 6 == e ? (this.dianmanArr.push(t), this.tempArr = this.dianmanArr, this.judgeIsChange(e)) : 7 == e ? (this.shayuArr.push(t), this.tempArr = this.shayuArr, this.judgeIsChange(e)) : 8 == e ? (this.jingyuArr.push(t), this.tempArr = this.jingyuArr, this.judgeIsChange(e)) : 9 == e ? (this.jiaoArr.push(t), this.tempArr = this.jiaoArr, this.judgeIsChange(e)) : 10 == e && (this.longArr.push(t), this.tempArr = this.longArr, this.judgeIsChange(e)) },
+            judgePushArr: function(e, t) {
+                1 == e ? (this.kedouArr.push(t), this.tempArr = this.kedouArr, this.judgeIsChange(e)) : 2 == e ? (this.qingwaArr.push(t), this.tempArr = this.qingwaArr, this.judgeIsChange(e)) : 3 == e ? (this.haiguiArr.push(t), this.tempArr = this.haiguiArr, this.judgeIsChange(e)) : 4 == e ? (this.xiaojinyuArr.push(t), this.tempArr = this.xiaojinyuArr, this.judgeIsChange(e)) : 5 == e ? (this.jinliArr.push(t), this.tempArr = this.jinliArr, this.judgeIsChange(e)) : 6 == e ? (this.dianmanArr.push(t), this.tempArr = this.dianmanArr, this.judgeIsChange(e)) : 7 == e ? (this.shayuArr.push(t), this.tempArr = this.shayuArr, this.judgeIsChange(e)) : 8 == e ? (this.jingyuArr.push(t), this.tempArr = this.jingyuArr, this.judgeIsChange(e)) : 9 == e ? (this.jiaoArr.push(t), this.tempArr = this.jiaoArr, this.judgeIsChange(e)) : 10 == e && (this.longArr.push(t), this.tempArr = this.longArr, this.judgeIsChange(e))
+            },
             ChangeBig: function() {
                 if (!this.gameOverFlags) {
                     var e = this.carmeraNode.getChildByName("MoveCamera").getComponent(cc.Camera).zoomRatio;
@@ -575,10 +792,12 @@ window.__require = function e(t, a, i) {
             },
             EatSmallAction2: function() {
                 var e = this;
-                if (this.tempArr.length >= 3) {
+                if (this.tempArr.length >= 1) {
                     var t = function() {
                         var t = e.tempArr[0].typeID;
-                        if (9 == t) return { v: void 0 };
+                        if (9 == t) return {
+                            v: void 0
+                        };
                         var a = cc.instantiate(e.newFishPreArr[t]);
                         a.typeID = t + 1, e.changeSize(a);
                         var i = a.scaleX,
@@ -591,7 +810,9 @@ window.__require = function e(t, a, i) {
                                 e.tempArr[n].runAction(cc.sequence(cc.spawn(cc.moveTo(r, c).easing(cc.easeQuadraticActionOut()), cc.callFunc(function() {
                                     if (n == this.tempArr.length - 1) {
                                         for (var e = 0; e < this.tempArr.length; e++) this.tempArr[e].destroy();
-                                        this.tempArr.splice(0, this.tempArr.length), this.createLizi(a, !1), a.runAction(cc.sequence(cc.scaleTo(.1, i, o).easing(cc.easeQuarticActionOut()), cc.callFunc(function() { a.zIndex = 50 * (10 - t - 1), this.judgePushArr(a.typeID, a) }, this)))
+                                        this.tempArr.splice(0, this.tempArr.length), this.createLizi(a, !1), a.runAction(cc.sequence(cc.scaleTo(.1, i, o).easing(cc.easeQuarticActionOut()), cc.callFunc(function() {
+                                            a.zIndex = 50 * (10 - t - 1), this.judgePushArr(a.typeID, a)
+                                        }, this)))
                                     }
                                 }, e)), cc.callFunc(function() {}, e)))
                             }, h = 0; h < e.tempArr.length; h++) r(h)
@@ -627,10 +848,14 @@ window.__require = function e(t, a, i) {
                     o.typeID = a, this.changeSize(o);
                     var n = o.scaleX,
                         s = o.scaleY;
-                    this.playerNode.getChildByName("son").addChild(o, 100), o.setPosition(i), o.scaleX = 0, o.scaleY = 0, o.runAction(cc.sequence(cc.spawn(cc.scaleTo(.1, n, s).easing(cc.easeQuadraticActionOut()), cc.callFunc(function() { o.zIndex = 50 * (10 - a), this.judgePushArr(a, o) }, this)), cc.callFunc(function() {}, this))), this.CreateSingleEnemy(1, this.playerNode.typeID)
+                    this.playerNode.getChildByName("son").addChild(o, 100), o.setPosition(i), o.scaleX = 0, o.scaleY = 0, o.runAction(cc.sequence(cc.spawn(cc.scaleTo(.1, n, s).easing(cc.easeQuadraticActionOut()), cc.callFunc(function() {
+                        o.zIndex = 50 * (10 - a), this.judgePushArr(a, o)
+                    }, this)), cc.callFunc(function() {}, this))), this.CreateSingleEnemy(1, this.playerNode.typeID)
                 }
             },
-            JudgeSmallFish: function() { this.myFish.active = !1, this.playerNode.getChildByName("son").children.length > 0 ? (cc.audioEngine.play(this.HurtMusic, !1, 1), this.chooseBiggerFish()) : this.DieAction() },
+            JudgeSmallFish: function() {
+                this.myFish.active = !1, this.playerNode.getChildByName("son").children.length > 0 ? (cc.audioEngine.play(this.HurtMusic, !1, 1), this.chooseBiggerFish()) : this.DieAction()
+            },
             chooseBiggerFish: function() {
                 if (!this.gameOverFlags) {
                     var e = cc.instantiate(this.bloodPre);
@@ -648,7 +873,9 @@ window.__require = function e(t, a, i) {
                         g = s.pDistance(d, u) / 1e3;
                     this.playerNode.stopAllActions(), this.playerNode.runAction(cc.sequence(cc.spawn(cc.moveTo(g, d), cc.callFunc(function() {
                         var e = this;
-                        1 == r ? (ToolsJs.removeNodeForArr(this.kedouArr, o.children[l]), this.tempArr = this.kedouArr, this.myFish = this.playerNode.getChildByName("kedou"), Math.abs(c - 1) > .05 && this.CameraChangeZoomRatio(c, 1)) : 2 == r ? (ToolsJs.removeNodeForArr(this.qingwaArr, o.children[l]), this.tempArr = this.qingwaArr, this.myFish = this.playerNode.getChildByName("qingwa"), Math.abs(c - 1) > .05 && this.CameraChangeZoomRatio(c, 1)) : 3 == r ? (ToolsJs.removeNodeForArr(this.haiguiArr, o.children[l]), this.tempArr = this.haiguiArr, this.myFish = this.playerNode.getChildByName("haigui"), Math.abs(c - .75) > .05 && this.CameraChangeZoomRatio(c, .75)) : 4 == r ? (ToolsJs.removeNodeForArr(this.xiaojinyuArr, o.children[l]), this.tempArr = this.xiaojinyuArr, this.myFish = this.playerNode.getChildByName("xiaojinyu"), Math.abs(c - .65) > .05 && this.CameraChangeZoomRatio(c, .65)) : 5 == r ? (ToolsJs.removeNodeForArr(this.jinliArr, o.children[l]), this.tempArr = this.jinliArr, this.myFish = this.playerNode.getChildByName("jinli"), Math.abs(c - .55) > .05 && this.CameraChangeZoomRatio(c, .55)) : 6 == r ? (ToolsJs.removeNodeForArr(this.dianmanArr, o.children[l]), this.tempArr = this.dianmanArr, this.myFish = this.playerNode.getChildByName("dianman"), Math.abs(c - .45) > .05 && this.CameraChangeZoomRatio(c, .45)) : 7 == r ? (ToolsJs.removeNodeForArr(this.shayuArr, o.children[l]), this.tempArr = this.shayuArr, this.myFish = this.playerNode.getChildByName("shayu"), Math.abs(c - .4) > .05 && this.CameraChangeZoomRatio(c, .4)) : 8 == r && (ToolsJs.removeNodeForArr(this.jingyuArr, o.children[l]), this.tempArr = this.shayuArr, this.myFish = this.playerNode.getChildByName("jingyu"), Math.abs(c - .3) > .05 && this.CameraChangeZoomRatio(c, .3)), this.playerNode.typeID = r, o.removeChild(o.children[l]), this.myFish.active = !0, this.myFish.scaleX = this.fishScaleX[r - 1], this.myFish.scaleY = this.fishScaleY[r - 1], this.speedNum += (this.playerNode.typeID - h) * this.addSpeed / 2 / c, this.myFish.angle = n, this.scheduleOnce(function() { e.gameOverFlags }, .1)
+                        1 == r ? (ToolsJs.removeNodeForArr(this.kedouArr, o.children[l]), this.tempArr = this.kedouArr, this.myFish = this.playerNode.getChildByName("kedou"), Math.abs(c - 1) > .05 && this.CameraChangeZoomRatio(c, 1)) : 2 == r ? (ToolsJs.removeNodeForArr(this.qingwaArr, o.children[l]), this.tempArr = this.qingwaArr, this.myFish = this.playerNode.getChildByName("qingwa"), Math.abs(c - 1) > .05 && this.CameraChangeZoomRatio(c, 1)) : 3 == r ? (ToolsJs.removeNodeForArr(this.haiguiArr, o.children[l]), this.tempArr = this.haiguiArr, this.myFish = this.playerNode.getChildByName("haigui"), Math.abs(c - .75) > .05 && this.CameraChangeZoomRatio(c, .75)) : 4 == r ? (ToolsJs.removeNodeForArr(this.xiaojinyuArr, o.children[l]), this.tempArr = this.xiaojinyuArr, this.myFish = this.playerNode.getChildByName("xiaojinyu"), Math.abs(c - .65) > .05 && this.CameraChangeZoomRatio(c, .65)) : 5 == r ? (ToolsJs.removeNodeForArr(this.jinliArr, o.children[l]), this.tempArr = this.jinliArr, this.myFish = this.playerNode.getChildByName("jinli"), Math.abs(c - .55) > .05 && this.CameraChangeZoomRatio(c, .55)) : 6 == r ? (ToolsJs.removeNodeForArr(this.dianmanArr, o.children[l]), this.tempArr = this.dianmanArr, this.myFish = this.playerNode.getChildByName("dianman"), Math.abs(c - .45) > .05 && this.CameraChangeZoomRatio(c, .45)) : 7 == r ? (ToolsJs.removeNodeForArr(this.shayuArr, o.children[l]), this.tempArr = this.shayuArr, this.myFish = this.playerNode.getChildByName("shayu"), Math.abs(c - .4) > .05 && this.CameraChangeZoomRatio(c, .4)) : 8 == r && (ToolsJs.removeNodeForArr(this.jingyuArr, o.children[l]), this.tempArr = this.shayuArr, this.myFish = this.playerNode.getChildByName("jingyu"), Math.abs(c - .3) > .05 && this.CameraChangeZoomRatio(c, .3)), this.playerNode.typeID = r, o.removeChild(o.children[l]), this.myFish.active = !0, this.myFish.scaleX = this.fishScaleX[r - 1], this.myFish.scaleY = this.fishScaleY[r - 1], this.speedNum += (this.playerNode.typeID - h) * this.addSpeed / 2 / c, this.myFish.angle = n, this.scheduleOnce(function() {
+                            e.gameOverFlags
+                        }, .1)
                     }, this)), cc.callFunc(function() {}, this)))
                 }
             },
@@ -811,12 +1038,22 @@ window.__require = function e(t, a, i) {
                 var C = this.stoneNode.getChildByName("stone1"),
                     T = this.stoneNode.getChildByName("stone2"),
                     A = this.stoneNode.getChildByName("stone3");
-                this.stoneNode.runAction(cc.sequence(cc.delayTime(.15), cc.spawn(cc.scaleTo(.5, .8 * this.SizeScale, .8 * this.SizeScale).easing(cc.easeCircleActionInOut()), cc.callFunc(function() { this.carmeraNode.runAction(cc.sequence(cc.moveBy(.05, 5, 5), cc.moveBy(.05, -5, -5)).repeat(10)) }, this)), cc.delayTime(.1), cc.callFunc(function() {
+                this.stoneNode.runAction(cc.sequence(cc.delayTime(.15), cc.spawn(cc.scaleTo(.5, .8 * this.SizeScale, .8 * this.SizeScale).easing(cc.easeCircleActionInOut()), cc.callFunc(function() {
+                    this.carmeraNode.runAction(cc.sequence(cc.moveBy(.05, 5, 5), cc.moveBy(.05, -5, -5)).repeat(10))
+                }, this)), cc.delayTime(.1), cc.callFunc(function() {
                     var e = this,
                         t = cc.instantiate(this.blackLayerPre);
-                    this.node.addChild(t, 10), t.active = !0, t.opacity = 200, t.setPosition(cc.v2(0, 0)), this.scheduleOnce(function() { e.LightAction(0, .3), e.Wu.getComponent(cc.Animation).play("wu"), e.stoneNode.getChildByName("light0").active = !0 }, .3), C.runAction(cc.sequence(cc.rotateBy(1.5, 360).easing(cc.easeQuadraticActionOut()), cc.delayTime(.2), cc.callFunc(function() { C.getChildByName("light1").active = !0, C.getChildByName("light2").active = !0 }, this))), T.runAction(cc.sequence(cc.delayTime(1.7), cc.rotateBy(1, -360).easing(cc.easeQuadraticActionOut()), cc.delayTime(.2), cc.callFunc(function() { T.getChildByName("light3").active = !0 }, this))), A.runAction(cc.sequence(cc.delayTime(2.9), cc.callFunc(function() {
+                    this.node.addChild(t, 10), t.active = !0, t.opacity = 200, t.setPosition(cc.v2(0, 0)), this.scheduleOnce(function() {
+                        e.LightAction(0, .3), e.Wu.getComponent(cc.Animation).play("wu"), e.stoneNode.getChildByName("light0").active = !0
+                    }, .3), C.runAction(cc.sequence(cc.rotateBy(1.5, 360).easing(cc.easeQuadraticActionOut()), cc.delayTime(.2), cc.callFunc(function() {
+                        C.getChildByName("light1").active = !0, C.getChildByName("light2").active = !0
+                    }, this))), T.runAction(cc.sequence(cc.delayTime(1.7), cc.rotateBy(1, -360).easing(cc.easeQuadraticActionOut()), cc.delayTime(.2), cc.callFunc(function() {
+                        T.getChildByName("light3").active = !0
+                    }, this))), A.runAction(cc.sequence(cc.delayTime(2.9), cc.callFunc(function() {
                         var e = this;
-                        A.getChildByName("light4").active = !0, this.scheduleOnce(function() { e.CreatePanLong() }, .2)
+                        A.getChildByName("light4").active = !0, this.scheduleOnce(function() {
+                            e.CreatePanLong()
+                        }, .2)
                     }, this)))
                 }, this)))
             },
@@ -829,7 +1066,9 @@ window.__require = function e(t, a, i) {
                         c = cc.misc.radiansToDegrees(n) + 90;
                     t.children[i].runAction(cc.sequence(cc.spawn(cc.jumpTo(.5, a, o, 1).easing(cc.easeQuadraticActionOut()), cc.scaleTo(.5, 0, 0), cc.rotateTo(0, 1, c)), cc.callFunc(function() {}, this), cc.removeSelf()))
                 }
-                this.scheduleOnce(function() { e.StoneFadeInAction() }, 1)
+                this.scheduleOnce(function() {
+                    e.StoneFadeInAction()
+                }, 1)
             },
             CreatePanLong: function() {
                 var e = this;
@@ -846,10 +1085,14 @@ window.__require = function e(t, a, i) {
                     this.LightAction(0, .5);
                     var e = t.getChildByName("panlong").getComponent(dragonBones.ArmatureDisplay);
                     e.timeScale = 1.5, e.playAnimation("newAnimation", 1)
-                }, this)), cc.delayTime(.3), cc.callFunc(function() { l.runAction(cc.sequence(cc.scaleTo(.3, 1, 1), cc.callFunc(function() {}, this))) }, this), cc.delayTime(.6), cc.callFunc(function() {
+                }, this)), cc.delayTime(.3), cc.callFunc(function() {
+                    l.runAction(cc.sequence(cc.scaleTo(.3, 1, 1), cc.callFunc(function() {}, this)))
+                }, this), cc.delayTime(.6), cc.callFunc(function() {
                     var e = this,
                         t = cc.instantiate(this.mainBtnPre);
-                    t.scaleX = .7 * this.SizeScale, t.scaleY = .7 * this.SizeScale, this.node.addChild(t, 5e3), t.opacity = 0, t.setPosition(cc.v2(-this.gameWidth / 2 + this.gameWidth / 8, this.gameHeight / 2 - this.gameWidth / 8)), t.runAction(cc.fadeIn(.3)), t.on(cc.Node.EventType.TOUCH_START, function() {}), t.on(cc.Node.EventType.TOUCH_END, function() { console.log("MoreGame"), window.location.href = o.moreGameUrl });
+                    t.scaleX = .7 * this.SizeScale, t.scaleY = .7 * this.SizeScale, this.node.addChild(t, 5e3), t.opacity = 0, t.setPosition(cc.v2(-this.gameWidth / 2 + this.gameWidth / 8, this.gameHeight / 2 - this.gameWidth / 8)), t.runAction(cc.fadeIn(.3)), t.on(cc.Node.EventType.TOUCH_START, function() {}), t.on(cc.Node.EventType.TOUCH_END, function() {
+                        console.log("MoreGame"), window.location.href = o.moreGameUrl
+                    });
                     var n = cc.instantiate(this.replayButtonPre);
                     this.node.addChild(n, 5e3), n.scaleX = 0, n.scaleY = 0, n.setPosition(cc.v2(0, -this.stoneNode.y - 200 * this.Hscale)), n.runAction(cc.scaleTo(.5, .6 * this.SizeScale, .6 * this.SizeScale).easing(cc.easeBackOut()), cc.callFunc(function() {}, this));
                     var s = cc.find("Canvas/nameLabel");
@@ -857,8 +1100,21 @@ window.__require = function e(t, a, i) {
                     var c = cc.find("Canvas/winLabel");
                     c.zIndex = 6e3;
                     var r = cc.v2(n.x, n.y + n.height / 2 * .7 * this.Hscale + 50 * this.Hscale);
-                    c.setPosition(cc.v2(r.x, r.y - 50 * this.SizeScale)), c.runAction(cc.sequence(cc.spawn(cc.fadeIn(.3), cc.moveTo(.3, r)), cc.callFunc(function() {}, this))), this.scheduleOnce(function() { h.canTouchReplay = !0, n.runAction(cc.sequence(cc.delayTime(2), cc.scaleTo(.3, .7 * e.SizeScale).easing(cc.easeSineInOut()), cc.scaleTo(.3, .6 * e.SizeScale).easing(cc.easeSineInOut()), cc.rotateTo(.1, 15).easing(cc.easeSineInOut()), cc.rotateTo(.2, -15).easing(cc.easeSineInOut()), cc.rotateTo(.1, 15).easing(cc.easeSineInOut()), cc.rotateTo(.2, -15).easing(cc.easeSineInOut()), cc.rotateTo(.1, 0).easing(cc.easeSineInOut()))).repeatForever(), n.on(cc.Node.EventType.TOUCH_START, function() {}), n.on(cc.Node.EventType.TOUCH_END, function() { h.canTouchReplay && (cc.eventManager.removeAllListeners(), a.GAME_OVER_BOOL = !0, a.gameScore = 0, a.publicGameBool || adBreak({ type: "next", name: "restart-game" }), console.log("loadScene"), i.loadingScene("MainGameScene")) }) }, .8)
-                }, this))), this.scheduleOnce(function() { e.stoneNode.runAction(cc.sequence(cc.spawn(cc.scaleBy(.5, .8 * e.SizeScale, .8 * e.SizeScale), cc.moveTo(.5, 0, e.gameHeight / 6).easing(cc.easeBackOut()), cc.callFunc(function() { l.runAction(cc.sequence(cc.moveTo(.5, 0, this.gameHeight / 6).easing(cc.easeBackOut()), cc.callFunc(function() {}, this))) }, e)), cc.callFunc(function() {}, e))), e.scheduleOnce(function() { l.runAction(cc.sequence(cc.rotateBy(10, 360), cc.callFunc(function() {}, e)).repeatForever()) }, .5), t.runAction(cc.sequence(cc.spawn(cc.scaleTo(.5, .9 * e.SizeScale, .9 * e.SizeScale), cc.moveTo(.5, -50 * e.SizeScale, e.gameHeight / 6 - 370 * e.SizeScale).easing(cc.easeBackOut())), cc.callFunc(function() {}, e))) }, 1.3), this.scheduleOnce(function() {
+                    c.setPosition(cc.v2(r.x, r.y - 50 * this.SizeScale)), c.runAction(cc.sequence(cc.spawn(cc.fadeIn(.3), cc.moveTo(.3, r)), cc.callFunc(function() {}, this))), this.scheduleOnce(function() {
+                        h.canTouchReplay = !0, n.runAction(cc.sequence(cc.delayTime(2), cc.scaleTo(.3, .7 * e.SizeScale).easing(cc.easeSineInOut()), cc.scaleTo(.3, .6 * e.SizeScale).easing(cc.easeSineInOut()), cc.rotateTo(.1, 15).easing(cc.easeSineInOut()), cc.rotateTo(.2, -15).easing(cc.easeSineInOut()), cc.rotateTo(.1, 15).easing(cc.easeSineInOut()), cc.rotateTo(.2, -15).easing(cc.easeSineInOut()), cc.rotateTo(.1, 0).easing(cc.easeSineInOut()))).repeatForever(), n.on(cc.Node.EventType.TOUCH_START, function() {}), n.on(cc.Node.EventType.TOUCH_END, function() {
+                            h.canTouchReplay && (cc.eventManager.removeAllListeners(), a.GAME_OVER_BOOL = !0, a.gameScore = 0, a.publicGameBool || adBreak({
+                                type: "next",
+                                name: "restart-game"
+                            }), console.log("loadScene"), i.loadingScene("MainGameScene"))
+                        })
+                    }, .8)
+                }, this))), this.scheduleOnce(function() {
+                    e.stoneNode.runAction(cc.sequence(cc.spawn(cc.scaleBy(.5, .8 * e.SizeScale, .8 * e.SizeScale), cc.moveTo(.5, 0, e.gameHeight / 6).easing(cc.easeBackOut()), cc.callFunc(function() {
+                        l.runAction(cc.sequence(cc.moveTo(.5, 0, this.gameHeight / 6).easing(cc.easeBackOut()), cc.callFunc(function() {}, this)))
+                    }, e)), cc.callFunc(function() {}, e))), e.scheduleOnce(function() {
+                        l.runAction(cc.sequence(cc.rotateBy(10, 360), cc.callFunc(function() {}, e)).repeatForever())
+                    }, .5), t.runAction(cc.sequence(cc.spawn(cc.scaleTo(.5, .9 * e.SizeScale, .9 * e.SizeScale), cc.moveTo(.5, -50 * e.SizeScale, e.gameHeight / 6 - 370 * e.SizeScale).easing(cc.easeBackOut())), cc.callFunc(function() {}, e)))
+                }, 1.3), this.scheduleOnce(function() {
                     var t = e.stoneNode.getChildByName("stone1"),
                         a = e.stoneNode.getChildByName("stone2"),
                         i = e.stoneNode.getChildByName("stone3");
@@ -871,7 +1127,13 @@ window.__require = function e(t, a, i) {
                     }, e)), cc.callFunc(function() {}, e)).repeatForever())
                 }, 1)
             },
-            LightAction: function(e, t) { this.lightFlags = !1, this.light1.scaleX = .9, this.light1.scaleY = .9, this.light2.scaleX = .9, this.light2.scaleY = .9, this.light1.opacity = 255, this.light2.opacity = 255, this.light1.runAction(cc.sequence(cc.delayTime(e), cc.fadeIn(.1), cc.fadeOut(.3), cc.callFunc(function() { this.lightFlags = !0 }, this))), this.light2.runAction(cc.sequence(cc.delayTime(t), cc.fadeIn(.1), cc.fadeOut(.3), cc.callFunc(function() { this.lightFlags = !0 }, this))), this.lightjudeTime = s.getRandomNum(3, 6, !1) },
+            LightAction: function(e, t) {
+                this.lightFlags = !1, this.light1.scaleX = .9, this.light1.scaleY = .9, this.light2.scaleX = .9, this.light2.scaleY = .9, this.light1.opacity = 255, this.light2.opacity = 255, this.light1.runAction(cc.sequence(cc.delayTime(e), cc.fadeIn(.1), cc.fadeOut(.3), cc.callFunc(function() {
+                    this.lightFlags = !0
+                }, this))), this.light2.runAction(cc.sequence(cc.delayTime(t), cc.fadeIn(.1), cc.fadeOut(.3), cc.callFunc(function() {
+                    this.lightFlags = !0
+                }, this))), this.lightjudeTime = s.getRandomNum(3, 6, !1)
+            },
             BubbleAction: function() {
                 if (!this.gameOverFlags) {
                     var e = cc.instantiate(this.BubblePre);
@@ -906,7 +1168,9 @@ window.__require = function e(t, a, i) {
                 var a = 100 + 25 * t;
                 e.width = a, e.height = a;
                 var i = this.liziNode.convertToNodeSpaceAR(this.node.convertToWorldSpaceAR(this.playerNode.position));
-                e.scaleX = 0, e.scaleY = 0, e.setPosition(i), e.runAction(cc.sequence(cc.scaleTo(.5, 1.3, 1.3).easing(cc.easeSineOut()), cc.fadeOut(.3), cc.callFunc(function() { this.playerNode.destroy(), this.gameEnd() }, this), cc.removeSelf()))
+                e.scaleX = 0, e.scaleY = 0, e.setPosition(i), e.runAction(cc.sequence(cc.scaleTo(.5, 1.3, 1.3).easing(cc.easeSineOut()), cc.fadeOut(.3), cc.callFunc(function() {
+                    this.playerNode.destroy(), this.gameEnd()
+                }, this), cc.removeSelf()))
             },
             updateFishRotate: function(e, t, a) {
                 var i = e.angle % 360;
@@ -914,10 +1178,18 @@ window.__require = function e(t, a, i) {
                 var o = t < 0 ? 360 - Math.abs(t) : t;
                 Math.abs(i - o) > a && Math.abs(i - o) < 360 - a ? Math.abs(i - o) > 180 ? i - o > 180 ? e.angle += a : e.angle -= a : i >= o ? e.angle -= a : e.angle += a : e.angle = t
             },
-            setHisSocre: function(e) { cc.sys.localStorage.setItem("ZhaoHuanShenLong_12WS", e) },
+            setHisSocre: function(e) {
+                cc.sys.localStorage.setItem("ZhaoHuanShenLong_12WS", e)
+            },
             addTouchEvents: function() {
                 var e = this;
-                this.node.on(cc.Node.EventType.TOUCH_START, function(t) { if (a.GAME_OVER_BOOL && a.noTouchBool && e.touchBeginFlags) { e.touchBeginFlags = !1; var i = t.getLocation(); return e.node.convertToNodeSpaceAR(i), !0 } }, this), this.node.on(cc.Node.EventType.TOUCH_MOVE, this.on_touch_move, this), this.node.on(cc.Node.EventType.TOUCH_END, this.on_touch_end, this)
+                this.node.on(cc.Node.EventType.TOUCH_START, function(t) {
+                    if (a.GAME_OVER_BOOL && a.noTouchBool && e.touchBeginFlags) {
+                        e.touchBeginFlags = !1;
+                        var i = t.getLocation();
+                        return e.node.convertToNodeSpaceAR(i), !0
+                    }
+                }, this), this.node.on(cc.Node.EventType.TOUCH_MOVE, this.on_touch_move, this), this.node.on(cc.Node.EventType.TOUCH_END, this.on_touch_end, this)
             },
             on_touch_move: function(e) {
                 if (!this.gameOverFlags && this.canMoveFlags) {
@@ -956,18 +1228,35 @@ window.__require = function e(t, a, i) {
                 }
                 this.gameOverGoToOVer(), this.gameEndFlags
             },
-            gameEnd: function() { a.GAME_OVER_BOOL = !1, o.gameOverShowText(a.gameScore, 1), this.node.runAction(cc.sequence(cc.delayTime(.5), cc.callFunc(this.gameEnd1.bind(this)))) },
+            gameEnd: function() {
+                a.GAME_OVER_BOOL = !1, o.gameOverShowText(a.gameScore, 1), this.node.runAction(cc.sequence(cc.delayTime(.5), cc.callFunc(this.gameEnd1.bind(this))))
+            },
             gameEnd1: function() {
                 var e = cc.instantiate(this.blackLayerPre);
-                this.node.addChild(e, 2600), e.width = this.gameWidth, e.height = this.gameHeight, e.x = 0, e.y = 0, e.opacity = 0, e.active = !0, e.runAction(cc.fadeTo(.3, 140)), this.gameOveEndBool = !0, 1 == a.curType ? (this.gameOverT1.string = "\u6e38 \u620f \u7ed3 \u675f", this.gameOverT2.string = "\u70b9 \u51fb \u67e5 \u770b \u5206 \u6570") : 2 == a.curType ? (this.gameOverT1.string = "\u904a \u6232 \u7d50 \u675f", this.gameOverT2.string = "\u9ede \u64ca \u67e5 \u770b \u5206 \u6578") : 3 == a.curType ? (this.gameOverT1.string = "Game Over", this.gameOverT2.string = "Click to view the score") : 4 == a.curType && (this.gameOverT1.string = "\uac8c\uc784 \uc885\ub8cc", this.gameOverT2.string = "\ud074\ub9ad \ud558\uc5ec \uc810\uc218 \ubcf4\uae30"), this.gameOverT1.node.zIndex = 2999, this.gameOverT2.node.zIndex = 2999, this.gameOverT1.node.opacity = 0, this.gameOverT1.node.x = 0, this.gameOverT1.node.y = 0, this.gameOverT1.node.runAction(cc.sequence(cc.delayTime(.2), cc.spawn(cc.fadeIn(.5), cc.moveBy(.5, 0, -50)), cc.callFunc(function() {}, this), cc.callFunc(function() { e.canTouch = !0 }, this))), this.gameOverT2.node.opacity = 0, this.gameOverT2.node.x = 0, this.gameOverT2.node.y = 100, this.gameOverT2.node.runAction(cc.sequence(cc.delayTime(.2), cc.spawn(cc.fadeIn(.5), cc.moveBy(.5, 0, -50)), cc.callFunc(function(e) { e.runAction(cc.sequence(cc.delayTime(2), cc.scaleTo(.3, 1.2).easing(cc.easeSineInOut()), cc.scaleTo(.3, 1).easing(cc.easeSineInOut()))).repeatForever() }, this)))
+                this.node.addChild(e, 2600), e.width = this.gameWidth, e.height = this.gameHeight, e.x = 0, e.y = 0, e.opacity = 0, e.active = !0, e.runAction(cc.fadeTo(.3, 140)), this.gameOveEndBool = !0, 1 == a.curType ? (this.gameOverT1.string = "\u6e38 \u620f \u7ed3 \u675f", this.gameOverT2.string = "\u70b9 \u51fb \u67e5 \u770b \u5206 \u6570") : 2 == a.curType ? (this.gameOverT1.string = "\u904a \u6232 \u7d50 \u675f", this.gameOverT2.string = "\u9ede \u64ca \u67e5 \u770b \u5206 \u6578") : 3 == a.curType ? (this.gameOverT1.string = "Game Over", this.gameOverT2.string = "Click to view the score") : 4 == a.curType && (this.gameOverT1.string = "\uac8c\uc784 \uc885\ub8cc", this.gameOverT2.string = "\ud074\ub9ad \ud558\uc5ec \uc810\uc218 \ubcf4\uae30"), this.gameOverT1.node.zIndex = 2999, this.gameOverT2.node.zIndex = 2999, this.gameOverT1.node.opacity = 0, this.gameOverT1.node.x = 0, this.gameOverT1.node.y = 0, this.gameOverT1.node.runAction(cc.sequence(cc.delayTime(.2), cc.spawn(cc.fadeIn(.5), cc.moveBy(.5, 0, -50)), cc.callFunc(function() {}, this), cc.callFunc(function() {
+                    e.canTouch = !0
+                }, this))), this.gameOverT2.node.opacity = 0, this.gameOverT2.node.x = 0, this.gameOverT2.node.y = 100, this.gameOverT2.node.runAction(cc.sequence(cc.delayTime(.2), cc.spawn(cc.fadeIn(.5), cc.moveBy(.5, 0, -50)), cc.callFunc(function(e) {
+                    e.runAction(cc.sequence(cc.delayTime(2), cc.scaleTo(.3, 1.2).easing(cc.easeSineInOut()), cc.scaleTo(.3, 1).easing(cc.easeSineInOut()))).repeatForever()
+                }, this)))
             },
             initEndLayer: function() {
                 var e = cc.instantiate(this.gameOverPre);
                 this.node.addChild(e, 3e3)
             },
-            gameOverGoToOVer: function() { this.gameOveEndBool && (this.gameOverNum++, this.gameOverNum >= 900 && (this.gameOverNum = 0, this.gameOveEndBool = !1)) }
+            gameOverGoToOVer: function() {
+                this.gameOveEndBool && (this.gameOverNum++, this.gameOverNum >= 900 && (this.gameOverNum = 0, this.gameOveEndBool = !1))
+            }
         }), cc._RF.pop()
-    }, { "../MainManage": "MainManage", "../commonJs/GameConfig": "GameConfig", "../commonJs/GameUiTools": "GameUiTools", "../commonJs/mTool_WHQ": "mTool_WHQ", GameConfig: "GameConfig", GameUiTools: "GameUiTools", MainManage: "MainManage", mTool_WHQ: "mTool_WHQ" }],
+    }, {
+        "../MainManage": "MainManage",
+        "../commonJs/GameConfig": "GameConfig",
+        "../commonJs/GameUiTools": "GameUiTools",
+        "../commonJs/mTool_WHQ": "mTool_WHQ",
+        GameConfig: "GameConfig",
+        GameUiTools: "GameUiTools",
+        MainManage: "MainManage",
+        mTool_WHQ: "mTool_WHQ"
+    }],
     MainManage: [function(e, t) {
         "use strict";
         cc._RF.push(t, "946adGkxvdBmZXnlD952XtK", "MainManage");
@@ -1050,8 +1339,12 @@ window.__require = function e(t, a, i) {
                     this.gameHttpId = c, console.log("gameIdNew", c);
                     var r = e.substring(e.lastIndexOf("//") + 4, e.lastIndexOf("com") + 3); - 1 == e.search("/game/") ? this.moreGameUrl = t + a : this.moreGameUrl = t + r, console.log("moreGame", this.moreGameUrl)
                 },
-                gameOverShowText: function(e, t) { this.ajaxLoad(this.subScoreHttp, "gameScore=" + e + "&gameId=" + this.gameHttpId + "&gameType=" + t, this.scoreResult) },
-                gamePV_load: function() { this.ajaxLoad(this.gamePvHttp, "gameId=" + this.gameHttpId, this.ajaxOnLogoResult) },
+                gameOverShowText: function(e, t) {
+                    this.ajaxLoad(this.subScoreHttp, "gameScore=" + e + "&gameId=" + this.gameHttpId + "&gameType=" + t, this.scoreResult)
+                },
+                gamePV_load: function() {
+                    this.ajaxLoad(this.gamePvHttp, "gameId=" + this.gameHttpId, this.ajaxOnLogoResult)
+                },
                 ajaxOnLogoResult: function() {},
                 ajaxLoad: function(e, t, a) {
                     var i = cc.loader.getXMLHttpRequest();
@@ -1063,7 +1356,10 @@ window.__require = function e(t, a, i) {
                         cc.log("endshow", t.content), c.endHttpShowInfo = t.content
                     }
                 },
-                initLanguage: function() { var e = null; return cc.sys.language == cc.sys.LANGUAGE_CHINESE ? (this.curType = 1, e = i.language_1) : (cc.log("\u82f1\u6587"), this.curType = 2, e = i.language_2), e },
+                initLanguage: function() {
+                    var e = null;
+                    return cc.sys.language == cc.sys.LANGUAGE_CHINESE ? (this.curType = 1, e = i.language_1) : (cc.log("\u82f1\u6587"), this.curType = 2, e = i.language_2), e
+                },
                 getLinkGameReturn: function(e, t, a, i) {
                     if (console.log("err0", e), console.log("err1", t), console.log("err2", a), console.log("err3", i), 0 == e) {
                         this.ranLinkData = t, this.adShowBefore = this.ranLinkData.gameSet.adShowBefore, this.adShowAfter = this.ranLinkData.gameSet.adShowAfter, this.endLayCol = this.ranLinkData.gameSet.endLayerColor, this.moreBtnBgCol = this.ranLinkData.gameSet.moreBtnBgCol, this.moreBtnTextCol = this.ranLinkData.gameSet.moreBtnTextCol, this.moreGameUrl = this.ranLinkData.gameSet.moreBtnUrl, this.recGameData = a, this.ranRecGameData(), this.InfoData = i, this.endShow0 = this.InfoData.endShow0, this.endShow1 = this.InfoData.endShow1, this.endShow2 = this.InfoData.endShow2, this.endShow3 = this.InfoData.endShow3, this.infoGameName = this.InfoData.gameName, this.showText = this.InfoData.showText, this.startText = this.InfoData.startText, this.moreGameText = this.InfoData.moreGame, this.playAgainText = this.InfoData.rePlay, this.gameInfoText = this.InfoData.showText, this.txtStartText = this.InfoData.startText, this.txtMoreText = this.InfoData.moreGame, this.txtAgainText = this.InfoData.rePlay, console.log("LoadMainGameScnee");
@@ -1089,24 +1385,113 @@ window.__require = function e(t, a, i) {
                     }
                     return null
                 },
-                gotoEndLayer: function() { this.showGameEndLayer() },
-                showGameEndLayer: function() { console.log("Gottttttgameend"), s.loadingLayer("panel/GameOverLayer") }
+                gotoEndLayer: function() {
+                    this.showGameEndLayer()
+                },
+                showGameEndLayer: function() {
+                    console.log("Gottttttgameend"), s.loadingLayer("panel/GameOverLayer")
+                }
             };
         t.exports = c, cc._RF.pop()
-    }, { GameConfig: "GameConfig", GameUiTools: "GameUiTools", HttpManagerJs: "HttpManagerJs", LanguageSetJs: "LanguageSetJs", LoadSceneJs: "LoadSceneJs" }],
+    }, {
+        GameConfig: "GameConfig",
+        GameUiTools: "GameUiTools",
+        HttpManagerJs: "HttpManagerJs",
+        LanguageSetJs: "LanguageSetJs",
+        LoadSceneJs: "LoadSceneJs"
+    }],
     OtherConfig: [function(e, t) {
         "use strict";
         cc._RF.push(t, "608a3yCxFxLC6+PTyEzdmgt", "OtherConfig");
-        var a = { Continue: { CN: "\u70b9\u51fb\u7ee7\u7eed", CHT: "\u9ede\u64ca\u7e7c\u7e8c", EN: "Click Continue", KOR: "\ud074\ub9ad \ud558\uc5ec \uacc4\uc18d" }, name_1: { CN: "\u874c\u86aa", CHT: "\u874c\u86aa", EN: "Tadpole", KOR: "\uc62c\ucc59\uc774" }, name_2: { CN: "\u9752\u86d9", CHT: "\u9752\u86d9", EN: "Frog", KOR: "\uac1c\uad6c\ub9ac" }, name_3: { CN: "\u4e4c\u9f9f", CHT: "\u70cf\u9f9c", EN: "Tortoise", KOR: "\uac70\ubd81\uc774" }, name_4: { CN: "\u5c0f\u91d1\u9c7c ", CHT: "\u5c0f\u91d1\u9b5a", EN: "Goldfish", KOR: "\uc791\uc740 \uae08\ubd95\uc5b4" }, name_5: { CN: "\u9526\u9ca4\u9c7c", CHT: "\u9326\u9bc9\u9b5a", EN: "Koi Fish", KOR: "\uc789\uc5b4" }, name_6: { CN: "\u7535\u9cd7", CHT: "\u96fb\u9c3b", EN: "Eel", KOR: "\uc804\uae30\ubc40\uc7a5\uc5b4" }, name_7: { CN: "\u9ca8\u9c7c", CHT: "\u9bca\u9b5a", EN: "Shark", KOR: "\uc0c1\uc5b4." }, name_8: { CN: "\u5927\u9cb8\u9c7c", CHT: "\u5927\u9be8\u9b5a", EN: "Whale", KOR: "\ud070 \uace0\ub798" }, name_9: { CN: "\u86df", CHT: "\u86df", EN: "Snake", KOR: "\ud65c\uc6a9\ub2e8\uc5b4\ucc38\uc870" }, name_10: { CN: "\u795e\u9f99", CHT: "\u795e\u9f8d", EN: "Dragon", KOR: "\uc2e0\ub8e1" }, getStrForType: function(e) { var t; return t = "zh-CN" == window.navigator.language || "zh-cn" == window.navigator.language ? "CN" : "zh-TW" == window.navigator.language || "zh-HK" == window.navigator.language || "ja-JP" == window.navigator.language ? "CHT" : cc.sys.language == cc.sys.LANGUAGE_ENGLISH ? "EN" : cc.sys.language == cc.sys.LANGUAGE_KOREAN ? "KOR" : "EN", null != this[e] ? this[e][t] : (cc.log("\u6ca1\u6709\u7ffb\u8bd1:" + e), e) } };
-        window.renderConfig = a, window.zIndexAll = { flower: 1 }, cc._RF.pop()
+        var a = {
+            Continue: {
+                CN: "\u70b9\u51fb\u7ee7\u7eed",
+                CHT: "\u9ede\u64ca\u7e7c\u7e8c",
+                EN: "Click Continue",
+                KOR: "\ud074\ub9ad \ud558\uc5ec \uacc4\uc18d"
+            },
+            name_1: {
+                CN: "\u874c\u86aa",
+                CHT: "\u874c\u86aa",
+                EN: "Tadpole",
+                KOR: "\uc62c\ucc59\uc774"
+            },
+            name_2: {
+                CN: "\u9752\u86d9",
+                CHT: "\u9752\u86d9",
+                EN: "Frog",
+                KOR: "\uac1c\uad6c\ub9ac"
+            },
+            name_3: {
+                CN: "\u4e4c\u9f9f",
+                CHT: "\u70cf\u9f9c",
+                EN: "Tortoise",
+                KOR: "\uac70\ubd81\uc774"
+            },
+            name_4: {
+                CN: "\u5c0f\u91d1\u9c7c ",
+                CHT: "\u5c0f\u91d1\u9b5a",
+                EN: "Goldfish",
+                KOR: "\uc791\uc740 \uae08\ubd95\uc5b4"
+            },
+            name_5: {
+                CN: "\u9526\u9ca4\u9c7c",
+                CHT: "\u9326\u9bc9\u9b5a",
+                EN: "Koi Fish",
+                KOR: "\uc789\uc5b4"
+            },
+            name_6: {
+                CN: "\u7535\u9cd7",
+                CHT: "\u96fb\u9c3b",
+                EN: "Eel",
+                KOR: "\uc804\uae30\ubc40\uc7a5\uc5b4"
+            },
+            name_7: {
+                CN: "\u9ca8\u9c7c",
+                CHT: "\u9bca\u9b5a",
+                EN: "Shark",
+                KOR: "\uc0c1\uc5b4."
+            },
+            name_8: {
+                CN: "\u5927\u9cb8\u9c7c",
+                CHT: "\u5927\u9be8\u9b5a",
+                EN: "Whale",
+                KOR: "\ud070 \uace0\ub798"
+            },
+            name_9: {
+                CN: "\u86df",
+                CHT: "\u86df",
+                EN: "Snake",
+                KOR: "\ud65c\uc6a9\ub2e8\uc5b4\ucc38\uc870"
+            },
+            name_10: {
+                CN: "\u795e\u9f99",
+                CHT: "\u795e\u9f8d",
+                EN: "Dragon",
+                KOR: "\uc2e0\ub8e1"
+            },
+            getStrForType: function(e) {
+                var t;
+                return t = "zh-CN" == window.navigator.language || "zh-cn" == window.navigator.language ? "CN" : "zh-TW" == window.navigator.language || "zh-HK" == window.navigator.language || "ja-JP" == window.navigator.language ? "CHT" : cc.sys.language == cc.sys.LANGUAGE_ENGLISH ? "EN" : cc.sys.language == cc.sys.LANGUAGE_KOREAN ? "KOR" : "EN", null != this[e] ? this[e][t] : (cc.log("\u6ca1\u6709\u7ffb\u8bd1:" + e), e)
+            }
+        };
+        window.renderConfig = a, window.zIndexAll = {
+            flower: 1
+        }, cc._RF.pop()
     }, {}],
     PoolManager: [function(e, t) {
         "use strict";
         cc._RF.push(t, "6ed4diP7FRFIJc3wpj5cOOM", "PoolManager");
         var a = {
-            PoolDic: { bulletPool: null },
-            addPoolObj: function(e, t) { null == this.PoolDic[e] && (this.PoolDic[e] = new cc.NodePool(e)), this.PoolDic[e].put(t) },
-            getPoolObj: function(e) { return null == this.PoolDic[e] ? null : this.PoolDic[e].size() > 1 ? this.PoolDic[e].get() : null },
+            PoolDic: {
+                bulletPool: null
+            },
+            addPoolObj: function(e, t) {
+                null == this.PoolDic[e] && (this.PoolDic[e] = new cc.NodePool(e)), this.PoolDic[e].put(t)
+            },
+            getPoolObj: function(e) {
+                return null == this.PoolDic[e] ? null : this.PoolDic[e].size() > 1 ? this.PoolDic[e].get() : null
+            },
             clearPool: function(e) {
                 if (null != this.PoolDic[e]) return this.PoolDic[e].clear();
                 cc.error("\u6ca1\u6709\u6dfb\u52a0\u5bf9\u8c61\u6c60\uff1a", e)
@@ -1122,18 +1507,45 @@ window.__require = function e(t, a, i) {
             PrefabDic: {},
             AudioClipDic: {},
             storageName: "LILILII",
-            setStorage: function(e, t, a) { a && (t = JSON.stringify(t)), e = this.storageName + e, cc.sys.localStorage.setItem(e, t) },
-            getStorage: function(e, t) { e = this.storageName + e; var a = cc.sys.localStorage.getItem(e); return isNaN(a) || (a = parseInt(a)), "NaN" == a.toString() && (a = null), t && null != a && (a = JSON.parse(a)), a },
-            logJsonObject: function(e) { console.log(JSON.stringify(e)) },
-            addNoArr: function(e, t) { return e.indexOf(t) < 0 && (e.push(t), !0) },
-            removeNodeForArr: function(e, t) { return e.splice(e.indexOf(t), 1) },
-            addArrForIndex: function(e, t, a) { return e.splice(t, 0, a) },
-            newSprite: function(e, t) { var a = new cc.Node; return null != this.SpriteFrameDic[e] ? (a.addComponent(cc.Sprite).spriteFrame = this.SpriteFrameDic[e], null != t && t(a)) : (a.addComponent(cc.Sprite), loadTools.loadNodeSprite(a, e, t)), a },
-            setTexture: function(e, t) { this.SpriteFrameDic[t] ? e.getComponent(cc.Sprite).spriteFrame = this.SpriteFrameDic[t] : loadTools.loadNodeSprite(e, t) },
-            setBtnClickSpr: function(e, t, a, i) { this.SpriteFrameDic[t] ? (e.getComponent(cc.Button).normalSprite = this.SpriteFrameDic[t], e.getComponent(cc.Button).hoverSprite = this.SpriteFrameDic[t], e.getComponent(cc.Sprite).pressedSprite = this.SpriteFrameDic[a], null != i && i()) : (loadTools.getResSpr(t, function(t) { e.getComponent(cc.Button).normalSprite = t, e.getComponent(cc.Button).hoverSprite = t }), loadTools.getResSpr(a, function(t) { e.getComponent(cc.Button).pressedSprite = t, null != i && i() })) },
+            setStorage: function(e, t, a) {
+                a && (t = JSON.stringify(t)), e = this.storageName + e, cc.sys.localStorage.setItem(e, t)
+            },
+            getStorage: function(e, t) {
+                e = this.storageName + e;
+                var a = cc.sys.localStorage.getItem(e);
+                return isNaN(a) || (a = parseInt(a)), "NaN" == a.toString() && (a = null), t && null != a && (a = JSON.parse(a)), a
+            },
+            logJsonObject: function(e) {
+                console.log(JSON.stringify(e))
+            },
+            addNoArr: function(e, t) {
+                return e.indexOf(t) < 0 && (e.push(t), !0)
+            },
+            removeNodeForArr: function(e, t) {
+                return e.splice(e.indexOf(t), 1)
+            },
+            addArrForIndex: function(e, t, a) {
+                return e.splice(t, 0, a)
+            },
+            newSprite: function(e, t) {
+                var a = new cc.Node;
+                return null != this.SpriteFrameDic[e] ? (a.addComponent(cc.Sprite).spriteFrame = this.SpriteFrameDic[e], null != t && t(a)) : (a.addComponent(cc.Sprite), loadTools.loadNodeSprite(a, e, t)), a
+            },
+            setTexture: function(e, t) {
+                this.SpriteFrameDic[t] ? e.getComponent(cc.Sprite).spriteFrame = this.SpriteFrameDic[t] : loadTools.loadNodeSprite(e, t)
+            },
+            setBtnClickSpr: function(e, t, a, i) {
+                this.SpriteFrameDic[t] ? (e.getComponent(cc.Button).normalSprite = this.SpriteFrameDic[t], e.getComponent(cc.Button).hoverSprite = this.SpriteFrameDic[t], e.getComponent(cc.Sprite).pressedSprite = this.SpriteFrameDic[a], null != i && i()) : (loadTools.getResSpr(t, function(t) {
+                    e.getComponent(cc.Button).normalSprite = t, e.getComponent(cc.Button).hoverSprite = t
+                }), loadTools.getResSpr(a, function(t) {
+                    e.getComponent(cc.Button).pressedSprite = t, null != i && i()
+                }))
+            },
             setSpriteState: function(e, t) {
                 var a = 0 == t ? "2d_sprite" : "gray_sprite";
-                cc.loader.loadRes("materials/" + a, cc.Material, function(t, a) { t ? cc.error(t) : e.getComponent(cc.Sprite).setMaterial(0, a) })
+                cc.loader.loadRes("materials/" + a, cc.Material, function(t, a) {
+                    t ? cc.error(t) : e.getComponent(cc.Sprite).setMaterial(0, a)
+                })
             },
             clonePrefab: function(e, t, a, i, o) {
                 void 0 === o && (o = 0);
@@ -1148,34 +1560,74 @@ window.__require = function e(t, a, i) {
                 var c = s.addComponent(cc.Label);
                 return c.string = e, c.fontSize = a, t.addChild(s, n), s
             },
-            delayTimeCall: function(e, t, a, i) { e.runAction(cc.sequence(cc.delayTime(a), cc.callFunc(t, i))) },
-            getDistance: function(e, t) { return e.sub(t).mag() },
+            delayTimeCall: function(e, t, a, i) {
+                e.runAction(cc.sequence(cc.delayTime(a), cc.callFunc(t, i)))
+            },
+            getDistance: function(e, t) {
+                return e.sub(t).mag()
+            },
             getDiscForNode: function(e, t) {
                 var a = this.getToWorldPosAR(e),
                     i = this.getToWorldPosAR(t);
                 return this.getDistance(a, i)
             },
-            getVectorForPos: function(e, t) { return t.sub(e) },
-            getStrForNum: function(e, t, a) { void 0 === t && (t = 1), void 0 === a && (a = 2); var i = ""; return e >= 1e3 * Math.pow(10, a - 1) ? (e /= 1e3, i = "k", (e = Math.floor(e * Math.pow(10, t)) / Math.pow(10, t)) >= 1e3 && (e /= 1e3, i = "M", e = Math.floor(e * Math.pow(10, t)) / Math.pow(10, t)), e >= 1e3 && (e /= 1e3, i = "G", e = Math.floor(e * Math.pow(10, t)) / Math.pow(10, t)), e + i) : (e = Math.ceil(e)) + i },
-            getStrForNum2: function(e) { var t = ""; if ((e = (e || 0).toString()) <= 3) return e; for (; e.length > 3;) t = "," + e.slice(-3) + t, e = e.slice(0, e.length - 3); return e && (t = e + t), t },
-            insertStrForIndex: function(e, t, a) { return e.slice(0, t) + a + e.slice(t) },
-            prefixInteger: function(e, t) { return void 0 === t && (t = 2), (Array(t).join("0") + e).slice(-t) },
-            getNodePosForWroldPos: function(e, t) { return e.convertToNodeSpaceAR(t) },
-            getToNodePos: function(e, t) { var a = e.parent.convertToWorldSpaceAR(e.position); return t.convertToNodeSpaceAR(a) },
-            getToWorldPosAR: function(e) { return e.parent.convertToWorldSpaceAR(e.position) },
-            getToWorldPos: function(e) { return e.parent.convertToWorldSpace(e.position) },
-            isBoxContainPos: function(e, t) { return e.getBoundingBox().contains(t) },
-            isBoxContainWorldPos: function(e, t) { return e.getBoundingBoxToWorld().contains(t) },
-            isRectInterRect: function(e, t) { return e.getBoundingBoxToWorld().intersects(t.getBoundingBoxToWorld()) },
-            returnRandom: function(e, t) { return e + Math.floor(Math.random() * (t - e + 1)) },
+            getVectorForPos: function(e, t) {
+                return t.sub(e)
+            },
+            getStrForNum: function(e, t, a) {
+                void 0 === t && (t = 1), void 0 === a && (a = 2);
+                var i = "";
+                return e >= 1e3 * Math.pow(10, a - 1) ? (e /= 1e3, i = "k", (e = Math.floor(e * Math.pow(10, t)) / Math.pow(10, t)) >= 1e3 && (e /= 1e3, i = "M", e = Math.floor(e * Math.pow(10, t)) / Math.pow(10, t)), e >= 1e3 && (e /= 1e3, i = "G", e = Math.floor(e * Math.pow(10, t)) / Math.pow(10, t)), e + i) : (e = Math.ceil(e)) + i
+            },
+            getStrForNum2: function(e) {
+                var t = "";
+                if ((e = (e || 0).toString()) <= 3) return e;
+                for (; e.length > 3;) t = "," + e.slice(-3) + t, e = e.slice(0, e.length - 3);
+                return e && (t = e + t), t
+            },
+            insertStrForIndex: function(e, t, a) {
+                return e.slice(0, t) + a + e.slice(t)
+            },
+            prefixInteger: function(e, t) {
+                return void 0 === t && (t = 2), (Array(t).join("0") + e).slice(-t)
+            },
+            getNodePosForWroldPos: function(e, t) {
+                return e.convertToNodeSpaceAR(t)
+            },
+            getToNodePos: function(e, t) {
+                var a = e.parent.convertToWorldSpaceAR(e.position);
+                return t.convertToNodeSpaceAR(a)
+            },
+            getToWorldPosAR: function(e) {
+                return e.parent.convertToWorldSpaceAR(e.position)
+            },
+            getToWorldPos: function(e) {
+                return e.parent.convertToWorldSpace(e.position)
+            },
+            isBoxContainPos: function(e, t) {
+                return e.getBoundingBox().contains(t)
+            },
+            isBoxContainWorldPos: function(e, t) {
+                return e.getBoundingBoxToWorld().contains(t)
+            },
+            isRectInterRect: function(e, t) {
+                return e.getBoundingBoxToWorld().intersects(t.getBoundingBoxToWorld())
+            },
+            returnRandom: function(e, t) {
+                return e + Math.floor(Math.random() * (t - e + 1))
+            },
             setAngleForParent: function() {},
             setNodeParent: function(e, t, a) {
                 void 0 === a && (a = !0);
                 var i = this.getToNodePos(e, t);
                 e.parent = t, e.position = i, a && e.parent && (e.angle += e.parent.angle)
             },
-            refractionY: function(e) { return Math.atan2(Math.sin(e), -Math.cos(e)) },
-            refractionX: function(e) { return Math.atan2(-Math.sin(e), Math.cos(e)) },
+            refractionY: function(e) {
+                return Math.atan2(Math.sin(e), -Math.cos(e))
+            },
+            refractionX: function(e) {
+                return Math.atan2(-Math.sin(e), Math.cos(e))
+            },
             aginSortArr: function(e) {
                 for (var t = 0; t < e.length; t++) {
                     var i = a.returnRandom(0, e.length - 1);
@@ -1185,9 +1637,26 @@ window.__require = function e(t, a, i) {
                     }
                 }
             },
-            returnCurrentLanType: function() { return cc.sys.language == cc.sys.LANGUAGE_CHINESE ? -1 != cc.sys.languageCode.toLowerCase().indexOf("zh-cn") || -1 != cc.sys.languageCode.toLowerCase().indexOf("zh_cn") ? 1 : 2 : cc.sys.language == cc.sys.LANGUAGE_KOREAN ? 4 : 3 },
-            getBeatItScore: function(e, t, a) { if (e > a) return 100; if (e <= t) { if (0 == e) return 0; var i = e / t * 80 + this.returnRandom(-3, 3); return Math.max(Math.floor(i), 5) } var o = 80 + (e - t) / (a - t) * 20 + this.returnRandom(-3, 3); return Math.min(Math.floor(o), 99) },
-            sortArrForObject: function(e, t, a) { void 0 === a && (a = !1), a ? e.sort(function(e, a) { return a[t] - e[t] }) : e.sort(function(e, a) { return e[t] - a[t] }) },
+            returnCurrentLanType: function() {
+                return cc.sys.language == cc.sys.LANGUAGE_CHINESE ? -1 != cc.sys.languageCode.toLowerCase().indexOf("zh-cn") || -1 != cc.sys.languageCode.toLowerCase().indexOf("zh_cn") ? 1 : 2 : cc.sys.language == cc.sys.LANGUAGE_KOREAN ? 4 : 3
+            },
+            getBeatItScore: function(e, t, a) {
+                if (e > a) return 100;
+                if (e <= t) {
+                    if (0 == e) return 0;
+                    var i = e / t * 80 + this.returnRandom(-3, 3);
+                    return Math.max(Math.floor(i), 5)
+                }
+                var o = 80 + (e - t) / (a - t) * 20 + this.returnRandom(-3, 3);
+                return Math.min(Math.floor(o), 99)
+            },
+            sortArrForObject: function(e, t, a) {
+                void 0 === a && (a = !1), a ? e.sort(function(e, a) {
+                    return a[t] - e[t]
+                }) : e.sort(function(e, a) {
+                    return e[t] - a[t]
+                })
+            },
             getDiffNumRandom: function(e, t, a) {
                 for (var i = [], o = e; o <= t; o++) i.push(o);
                 for (var n = i.length - a, s = 0; s < n; s++) {
@@ -1199,7 +1668,9 @@ window.__require = function e(t, a, i) {
             writeJson: function(e, t) {
                 if (cc.sys.isBrowser) {
                     console.log("\u6d4f\u89c8\u5668");
-                    var a = new Blob([e], { type: "application/json" }),
+                    var a = new Blob([e], {
+                            type: "application/json"
+                        }),
                         i = document.createElement("a");
                     i.download = t, i.innerHTML = "Download File", null != window.webkitURL ? i.href = window.webkitURL.createObjectURL(a) : (i.href = window.URL.createObjectURL(a), i.onclick = destroyClickedElement, i.style.display = "none", document.body.appendChild(i)), i.click()
                 }
@@ -1212,10 +1683,22 @@ window.__require = function e(t, a, i) {
         cc._RF.push(t, "866bf0oenZKtoq5L6EbRayh", "UIManager");
         var a = {
             UIDic: {},
-            OpenUI: function(e, t, a) { var o; "string" == typeof e || (e = e.name), i && i[e] && (o = i[e]), null != o ? null == this.UIDic[e] ? (1 == a && this.removeAllUI(), this.CreateUI(o, t)) : cc.error("\u5df2\u7ecf\u6253\u5f00\u8fc7UI:" + e) : cc.error("\u672a\u627e\u5230\u8be5UI\u7684\u914d\u7f6e\u4fe1\u606f:" + e) },
-            CloseUI: function(e, t) { var a; "string" == typeof e || (e = e.name), null != (a = this.UIDic[e]) ? (a.getComponent(a.config.com) && null != a.getComponent(a.config.com).closeUI ? a.getComponent(a.config.com).closeUI(t) : a.destroy(), this.UIDic[e] = null) : cc.error("\u5df2\u7ecf\u5173\u95ed\u8fc7UI:" + e) },
-            GetUI: function(e) { var t = this.UIDic[e]; return null != t ? t : (cc.log("\u6ca1\u6709\u6253\u5f00UI:" + e), null) },
-            GetUIForJs: function(e) { var t = this.UIDic[e]; return null != t ? t.getComponent(t.config.com) : (cc.error("\u6ca1\u6709\u6253\u5f00UI:" + e), null) },
+            OpenUI: function(e, t, a) {
+                var o;
+                "string" == typeof e || (e = e.name), i && i[e] && (o = i[e]), null != o ? null == this.UIDic[e] ? (1 == a && this.removeAllUI(), this.CreateUI(o, t)) : cc.error("\u5df2\u7ecf\u6253\u5f00\u8fc7UI:" + e) : cc.error("\u672a\u627e\u5230\u8be5UI\u7684\u914d\u7f6e\u4fe1\u606f:" + e)
+            },
+            CloseUI: function(e, t) {
+                var a;
+                "string" == typeof e || (e = e.name), null != (a = this.UIDic[e]) ? (a.getComponent(a.config.com) && null != a.getComponent(a.config.com).closeUI ? a.getComponent(a.config.com).closeUI(t) : a.destroy(), this.UIDic[e] = null) : cc.error("\u5df2\u7ecf\u5173\u95ed\u8fc7UI:" + e)
+            },
+            GetUI: function(e) {
+                var t = this.UIDic[e];
+                return null != t ? t : (cc.log("\u6ca1\u6709\u6253\u5f00UI:" + e), null)
+            },
+            GetUIForJs: function(e) {
+                var t = this.UIDic[e];
+                return null != t ? t.getComponent(t.config.com) : (cc.error("\u6ca1\u6709\u6253\u5f00UI:" + e), null)
+            },
             CreateUI: function(e, t) {
                 var a = this;
                 if (null == this.UIDic[e.name]) {
@@ -1227,15 +1710,34 @@ window.__require = function e(t, a, i) {
                     }, e.zIndex)
                 }
             },
-            removeAllUI: function() { for (var e in this.UIDic) this.CloseUI(e) },
+            removeAllUI: function() {
+                for (var e in this.UIDic) this.CloseUI(e)
+            },
             openTipUI: function(e, t, a, i, o, n, s, c, r) {
                 void 0 === t && (t = 2), void 0 === a && (a = 0), void 0 === n && (n = !1), void 0 === s && (s = 1);
-                var h = { tipStr: e, glodNum: a, tipType: t, yesCall: i, noCall: o, isDouble: n, glodType: s, yesStr: c || 2 == t ? renderConfig.getStrForType("yesStr") : renderConfig.getStrForType("sureStr"), noStr: r || renderConfig.getStrForType("noStr") };
+                var h = {
+                    tipStr: e,
+                    glodNum: a,
+                    tipType: t,
+                    yesCall: i,
+                    noCall: o,
+                    isDouble: n,
+                    glodType: s,
+                    yesStr: c || 2 == t ? renderConfig.getStrForType("yesStr") : renderConfig.getStrForType("sureStr"),
+                    noStr: r || renderConfig.getStrForType("noStr")
+                };
                 this.OpenUI("tipUIPanel", h)
             }
         };
         window.UIManager = a;
-        var i = { nextPanel: { name: "nextPanel", resUrl: "nextPanel", com: "nextPanel", zIndex: 99 } };
+        var i = {
+            nextPanel: {
+                name: "nextPanel",
+                resUrl: "nextPanel",
+                com: "nextPanel",
+                zIndex: 99
+            }
+        };
         window.UIConfig = i, cc._RF.pop()
     }, {}],
     audioTools: [function(e, t) {
@@ -1245,10 +1747,18 @@ window.__require = function e(t, a, i) {
             bgAudio: null,
             isPlayAudio: !0,
             isPlayBG: !0,
-            playBG: function(e, t) { void 0 === t && (t = .3), this.isPlayBG && this.isPlayAudio && (this.stopBG(), null != ToolsJs.AudioClipDic[e] ? this.bgAudio = cc.audioEngine.play(ToolsJs.AudioClipDic[e], !0, t) : this.bgAudio = cc.audioEngine.play(cc.url.raw("resources/music/" + e + ".mp3"), !0, t)) },
-            stopBG: function() { this.stopAudio(this.bgAudio) },
-            playAudio: function(e, t, a) { if (void 0 === t && (t = .5), void 0 === a && (a = !1), this.isPlayAudio) return null != ToolsJs.AudioClipDic[e] ? cc.audioEngine.play(ToolsJs.AudioClipDic[e], a, t) : cc.audioEngine.play(cc.url.raw("resources/music/" + e + ".mp3"), a, t) },
-            stopAudio: function(e) { null != e && (cc.audioEngine.stop(e), e = null) },
+            playBG: function(e, t) {
+                void 0 === t && (t = .3), this.isPlayBG && this.isPlayAudio && (this.stopBG(), null != ToolsJs.AudioClipDic[e] ? this.bgAudio = cc.audioEngine.play(ToolsJs.AudioClipDic[e], !0, t) : this.bgAudio = cc.audioEngine.play(cc.url.raw("resources/music/" + e + ".mp3"), !0, t))
+            },
+            stopBG: function() {
+                this.stopAudio(this.bgAudio)
+            },
+            playAudio: function(e, t, a) {
+                if (void 0 === t && (t = .5), void 0 === a && (a = !1), this.isPlayAudio) return null != ToolsJs.AudioClipDic[e] ? cc.audioEngine.play(ToolsJs.AudioClipDic[e], a, t) : cc.audioEngine.play(cc.url.raw("resources/music/" + e + ".mp3"), a, t)
+            },
+            stopAudio: function(e) {
+                null != e && (cc.audioEngine.stop(e), e = null)
+            },
             newAduioSource: function(e) {
                 var t;
                 if (null != ToolsJs.AudioClipDic[e]) t = ToolsJs.AudioClipDic[e];
@@ -1269,21 +1779,30 @@ window.__require = function e(t, a, i) {
         cc.Class({
             extends: cc.Component,
             properties: {},
-            onLoad: function() { this.mainSelf = cc.find("Canvas").getComponent("MainGameJS") },
+            onLoad: function() {
+                this.mainSelf = cc.find("Canvas").getComponent("MainGameJS")
+            },
             clickEnterOverLayer: function() {
-                if (this.node.canTouch && (this.node.canTouch = !1, a.publicGameBool || adBreak({ type: "next", name: "restart-game" }), this.mainSelf.initEndLayer(), this.mainSelf.gameOverT1.node.destroy(), this.mainSelf.gameOverT2.node.destroy(), this.mainSelf.enemyNode.children.length > 0))
+                if (this.node.canTouch && (this.node.canTouch = !1, a.publicGameBool || adBreak({
+                        type: "next",
+                        name: "restart-game"
+                    }), this.mainSelf.initEndLayer(), this.mainSelf.gameOverT1.node.destroy(), this.mainSelf.gameOverT2.node.destroy(), this.mainSelf.enemyNode.children.length > 0))
                     for (var e = 0; e < this.mainSelf.enemyNode.children.length; e++) this.mainSelf.enemyNode.children[e].typeID >= this.mainSelf.maxTypeID && this.mainSelf.enemyNode.children[e].destroy()
             },
             start: function() {},
             update: function() {}
         }), cc._RF.pop()
-    }, { GameConfig: "GameConfig" }],
+    }, {
+        GameConfig: "GameConfig"
+    }],
     enemyJS: [function(e, t) {
         "use strict";
         cc._RF.push(t, "9bf97/TUWJAtJTYemvyINjL", "enemyJS"), cc.Class({
             extends: cc.Component,
             properties: {},
-            onLoad: function() { this.mainSelf = cc.find("Canvas").getComponent("MainGameJS") },
+            onLoad: function() {
+                this.mainSelf = cc.find("Canvas").getComponent("MainGameJS")
+            },
             start: function() {},
             onCollisionEnter: function(e, t) {
                 if (!this.mainSelf.gameOverFlags && (this.mainSelf.collision = t.node, 666 == t.tag)) {
@@ -1309,7 +1828,19 @@ window.__require = function e(t, a, i) {
             o = e("MainManage");
         cc.Class({
             extends: cc.Component,
-            properties: { bgLayer: cc.Node, overScoreT: cc.Label, overInfoT: cc.Label, moreBtn: cc.Button, leftBtn: cc.Button, maxScoreText: cc.Label, nametext: cc.Label, nowFishNode: cc.Node, maxFishNode: cc.Node, mainNode: cc.Node, replayBtn: cc.Node },
+            properties: {
+                bgLayer: cc.Node,
+                overScoreT: cc.Label,
+                overInfoT: cc.Label,
+                moreBtn: cc.Button,
+                leftBtn: cc.Button,
+                maxScoreText: cc.Label,
+                nametext: cc.Label,
+                nowFishNode: cc.Node,
+                maxFishNode: cc.Node,
+                mainNode: cc.Node,
+                replayBtn: cc.Node
+            },
             onLoad: function() {
                 this.mainSelf = cc.find("Canvas").getComponent("MainGameJS"), this.canTouchReplay = !1, this.standardScore = i.standScore, this.game_max_score = 2 * this.standardScore, this.endPercent = ToolsJs.getBeatItScore(this.mainSelf.maxTypeID, i.standScore, 2 * i.standScore), this.rigthBtnGameName = null, this.rightBtnGameUrl = null, this.UIPosChange(), this.addClickBtns();
                 var e;
@@ -1317,7 +1848,9 @@ window.__require = function e(t, a, i) {
                 this.maxScoreText.string = n, this.maxScoreText._forceUpdateRenderData(), e = this.maxScoreText.node.width;
                 var t = this.maxScoreText.node.children[0],
                     a = e + t.width * t.scale * this.maxScoreText.node.scale + 8;
-                this.maxScoreText.node.x = a / 2 - e, this.node.opacity = 0, this.node.runAction(cc.sequence(cc.fadeIn(.3), cc.callFunc(function() { this.canTouchReplay = !0, this.replayBtn.runAction(cc.sequence(cc.delayTime(2), cc.scaleTo(.3, .8).easing(cc.easeSineInOut()), cc.scaleTo(.3, .7).easing(cc.easeSineInOut()), cc.rotateTo(.1, 15).easing(cc.easeSineInOut()), cc.rotateTo(.2, -15).easing(cc.easeSineInOut()), cc.rotateTo(.1, 15).easing(cc.easeSineInOut()), cc.rotateTo(.2, -15).easing(cc.easeSineInOut()), cc.rotateTo(.1, 0).easing(cc.easeSineInOut()))).repeatForever() }, this))), this.moreBtn.node.y = cc.winSize.height / 2 - 80;
+                this.maxScoreText.node.x = a / 2 - e, this.node.opacity = 0, this.node.runAction(cc.sequence(cc.fadeIn(.3), cc.callFunc(function() {
+                    this.canTouchReplay = !0, this.replayBtn.runAction(cc.sequence(cc.delayTime(2), cc.scaleTo(.3, .8).easing(cc.easeSineInOut()), cc.scaleTo(.3, .7).easing(cc.easeSineInOut()), cc.rotateTo(.1, 15).easing(cc.easeSineInOut()), cc.rotateTo(.2, -15).easing(cc.easeSineInOut()), cc.rotateTo(.1, 15).easing(cc.easeSineInOut()), cc.rotateTo(.2, -15).easing(cc.easeSineInOut()), cc.rotateTo(.1, 0).easing(cc.easeSineInOut()))).repeatForever()
+                }, this))), this.moreBtn.node.y = cc.winSize.height / 2 - 80;
                 var o = this.mainSelf.maxTypeID,
                     n = this.getHighScore();
                 n ? n < this.mainSelf.maxTypeID && (this.setHisSocre(this.mainSelf.maxTypeID), n = this.mainSelf.maxTypeID) : (this.setHisSocre(this.mainSelf.maxTypeID), n = o), this.typeID = n, this.endPageDisplay(), this.nametext.string = renderConfig.getStrForType("name_" + this.mainSelf.maxTypeID)
@@ -1340,8 +1873,12 @@ window.__require = function e(t, a, i) {
                 }
                 return e
             },
-            setHisSocre: function(e) { cc.sys.localStorage.setItem("ZhaoHuanShenLong_12WS", e) },
-            getHighScore: function() { return cc.sys.localStorage.getItem("ZhaoHuanShenLong_12WS") },
+            setHisSocre: function(e) {
+                cc.sys.localStorage.setItem("ZhaoHuanShenLong_12WS", e)
+            },
+            getHighScore: function() {
+                return cc.sys.localStorage.getItem("ZhaoHuanShenLong_12WS")
+            },
             UIPosChange: function() {
                 this.overScoreT.string = i.gameScore, console.log("lang", o.langugeType);
                 var e = null,
@@ -1350,9 +1887,18 @@ window.__require = function e(t, a, i) {
             },
             addClickBtns: function() {
                 var e = this;
-                e.moreBtn.node.on(cc.Node.EventType.TOUCH_START, function() {}), e.moreBtn.node.on(cc.Node.EventType.TOUCH_END, function() { console.log("MoreGame"), window.location.href = o.moreGameUrl }), e.leftBtn.node.on(cc.Node.EventType.TOUCH_START, function() {}), e.leftBtn.node.on(cc.Node.EventType.TOUCH_END, function() { e.canTouchReplay && (cc.eventManager.removeAllListeners(), i.GAME_OVER_BOOL = !0, i.gameScore = 0, i.publicGameBool || adBreak({ type: "next", name: "restart-game" }), console.log("loadScene"), a.loadingScene("MainGameScene")) })
+                e.moreBtn.node.on(cc.Node.EventType.TOUCH_START, function() {}), e.moreBtn.node.on(cc.Node.EventType.TOUCH_END, function() {
+                    console.log("MoreGame"), window.location.href = o.moreGameUrl
+                }), e.leftBtn.node.on(cc.Node.EventType.TOUCH_START, function() {}), e.leftBtn.node.on(cc.Node.EventType.TOUCH_END, function() {
+                    e.canTouchReplay && (cc.eventManager.removeAllListeners(), i.GAME_OVER_BOOL = !0, i.gameScore = 0, i.publicGameBool || adBreak({
+                        type: "next",
+                        name: "restart-game"
+                    }), console.log("loadScene"), a.loadingScene("MainGameScene"))
+                })
             },
-            getPercent: function(e) { return e <= 0 ? 0 : e <= 30 ? 1 + Math.floor(3 * Math.random()) : e <= 40 ? 5 + Math.floor(10 * Math.random()) : e <= 50 ? 10 + Math.floor(10 * Math.random()) : e <= 60 ? 20 + Math.floor(15 * Math.random()) : e <= 70 ? 30 + Math.floor(15 * Math.random()) : e <= 80 ? 40 + Math.floor(20 * Math.random()) : e <= 100 ? 50 + Math.floor(30 * Math.random()) : e <= 120 ? 60 + Math.floor(30 * Math.random()) : e <= 160 ? 70 + Math.floor(25 * Math.random()) : e <= 190 ? 80 + Math.floor(19 * Math.random()) : e <= 250 ? 91 + Math.floor(9 * Math.random()) : 100 },
+            getPercent: function(e) {
+                return e <= 0 ? 0 : e <= 30 ? 1 + Math.floor(3 * Math.random()) : e <= 40 ? 5 + Math.floor(10 * Math.random()) : e <= 50 ? 10 + Math.floor(10 * Math.random()) : e <= 60 ? 20 + Math.floor(15 * Math.random()) : e <= 70 ? 30 + Math.floor(15 * Math.random()) : e <= 80 ? 40 + Math.floor(20 * Math.random()) : e <= 100 ? 50 + Math.floor(30 * Math.random()) : e <= 120 ? 60 + Math.floor(30 * Math.random()) : e <= 160 ? 70 + Math.floor(25 * Math.random()) : e <= 190 ? 80 + Math.floor(19 * Math.random()) : e <= 250 ? 91 + Math.floor(9 * Math.random()) : 100
+            },
             getContentByScore: function(e, t) {
                 var a = "\u6211\u771f\u662f\u592a\u5389\u5bb3\uff0c\u5728" + t + "\u4e2d\u7adf\u7136\u5f97\u4e860\u5206\uff0c\u5168\u7403\u53ea\u67091\u4e2a\u4eba\u5f970\u5206\uff01",
                     i = parseInt(.3 * this.standardScore),
@@ -1389,20 +1935,34 @@ window.__require = function e(t, a, i) {
                     s = this.endPercent;
                 return e > 0 && e <= a ? t = "\uc800 \ub294 \uac8c\uc784 \uc5d0\uc11c " + e + " \uc810 \uc744 \ud68d\ub4dd \ud558\uc5ec \uc804 \uc138\uacc4 " + s + "% \uc720 \uc800 \ub97c \uaca9\ud30c \ud558 \uc600 \uc2b5 \ub2c8 \ub2e4!" : e > a && e <= this.standardScore ? t = "\uc800 \ub294 \uac8c\uc784 \uc5d0\uc11c " + e + " \uc810 \uc744 \ud68d\ub4dd \ud558\uc5ec \uc804 \uc138\uacc4 " + s + "% \uc720 \uc800 \ub97c \uaca9\ud30c \ud558 \uc600 \uc2b5 \ub2c8 \ub2e4!" : e > this.standardScore && e <= i ? t = "\uc800 \ub294 \uac8c\uc784 \uc5d0\uc11c " + e + " \uc810 \uc744 \ud68d\ub4dd \ud558\uc5ec \uc804 \uc138\uacc4 " + s + "% \uc720 \uc800 \ub97c \uaca9\ud30c \ud558 \uc600 \uc2b5 \ub2c8 \ub2e4!" : e > i && e <= o ? t = "\uc800 \ub294 \uac8c\uc784 \uc5d0\uc11c " + e + " \uc810 \uc744 \ud68d\ub4dd \ud558\uc5ec \uc804 \uc138\uacc4 " + s + "% \uc720 \uc800 \ub97c \uaca9\ud30c \ud558 \uc600 \uc2b5 \ub2c8 \ub2e4!" : e > o && e <= n ? t = "\uc800 \ub294 \uac8c\uc784 \uc5d0\uc11c " + e + " \uc810 \uc744 \ud68d\ub4dd \ud558\uc5ec \uc804 \uc138\uacc4 " + s + "% \uc720 \uc800 \ub97c \uaca9\ud30c \ud558 \uc600 \uc2b5 \ub2c8 \ub2e4!" : e > n && e < this.game_max_score ? t = "\uc800 \ub294 \uac8c\uc784 \uc5d0\uc11c " + e + " \uc810 \uc744 \ud68d\ub4dd \ud558\uc5ec \uc804 \uc138\uacc4 " + s + "% \uc720 \uc800 \ub97c \uaca9\ud30c \ud558 \uc600 \uc2b5 \ub2c8 \ub2e4!" : e >= this.game_max_score && (t = "\uc800 \ub294 \uac8c\uc784 \uc5d0\uc11c " + e + " \uc810 \uc744 \ud68d\ub4dd \ud558\uc5ec \uc804 \uc138\uacc4 " + s + "% \uc720 \uc800 \ub97c \uaca9\ud30c \ud558 \uc600 \uc2b5 \ub2c8 \ub2e4!"), t
             },
-            getContentByScore1: function() { return "\u51fb\u8d25\u4e86\u5168\u7403" + this.endPercent + "%\u7684\u73a9\u5bb6\uff01" },
-            getContentByScore2: function() { return "\u64ca\u6557\u4e86\u5168\u7403" + this.endPercent + "%\u7684\u73a9\u5bb6\uff01" },
-            getContentByScore3: function() { return "Beat " + this.endPercent + "% of the world's players!" },
-            getContentByScore4: function() { return "\uc804 \uc138\uacc4" + this.endPercent + "%\uc720 \uc800 \ub97c \ucc98\uce58 \ud558 \uc600 \uc2b5 \ub2c8 \ub2e4!" },
+            getContentByScore1: function() {
+                return "\u51fb\u8d25\u4e86\u5168\u7403" + this.endPercent + "%\u7684\u73a9\u5bb6\uff01"
+            },
+            getContentByScore2: function() {
+                return "\u64ca\u6557\u4e86\u5168\u7403" + this.endPercent + "%\u7684\u73a9\u5bb6\uff01"
+            },
+            getContentByScore3: function() {
+                return "Beat " + this.endPercent + "% of the world's players!"
+            },
+            getContentByScore4: function() {
+                return "\uc804 \uc138\uacc4" + this.endPercent + "%\uc720 \uc800 \ub97c \ucc98\uce58 \ud558 \uc600 \uc2b5 \ub2c8 \ub2e4!"
+            },
             start: function() {},
             update: function() {}
         }), cc._RF.pop()
-    }, { GameConfig: "GameConfig", GameUiTools: "GameUiTools", MainManage: "MainManage" }],
+    }, {
+        GameConfig: "GameConfig",
+        GameUiTools: "GameUiTools",
+        MainManage: "MainManage"
+    }],
     jianceJS: [function(e, t) {
         "use strict";
         cc._RF.push(t, "671d7/ykbxBLKzxFW4yZU5f", "jianceJS"), cc.Class({
             extends: cc.Component,
             properties: {},
-            onLoad: function() { this.mainSelf = cc.find("Canvas").getComponent("MainGameJS") },
+            onLoad: function() {
+                this.mainSelf = cc.find("Canvas").getComponent("MainGameJS")
+            },
             start: function() {},
             onCollisionEnter: function(e, t) {
                 if (!this.mainSelf.gameOverFlags && 2 == e.tag) {
@@ -1426,24 +1986,33 @@ window.__require = function e(t, a, i) {
         cc.Class({
             extends: cc.Component,
             properties: {},
-            onLoad: function() { this.mainSelf = cc.find("Canvas").getComponent("MainGameJS"), this.delay = a.getRandomNum(.5, 5, !1), this.startScaleX = this.node.scaleX, this.startScaleY = this.node.scaleY, this.random = a.getRandomNum(1, 10), this.random <= 3 && this.Action() },
+            onLoad: function() {
+                this.mainSelf = cc.find("Canvas").getComponent("MainGameJS"), this.delay = a.getRandomNum(.5, 5, !1), this.startScaleX = this.node.scaleX, this.startScaleY = this.node.scaleY, this.random = a.getRandomNum(1, 10), this.random <= 3 && this.Action()
+            },
             start: function() {},
             Action: function() {
                 this.node.runAction(cc.sequence(cc.scaleBy(.2, 1.1, 1.1), cc.scaleTo(.2, this.startScaleX, this.startScaleY), cc.scaleBy(.2, 1.1, 1.1), cc.scaleTo(.2, this.startScaleX, this.startScaleY), cc.callFunc(function() {
                     var e = this;
-                    this.scheduleOnce(function() { e.random = a.getRandomNum(1, 10), e.random <= 3 && e.Action(), e.delay = a.getRandomNum(2, 5, !1) }, this.delay)
+                    this.scheduleOnce(function() {
+                        e.random = a.getRandomNum(1, 10), e.random <= 3 && e.Action(), e.delay = a.getRandomNum(2, 5, !1)
+                    }, this.delay)
                 }, this)))
             },
             update: function() {}
         }), cc._RF.pop()
-    }, { "../commonJs/mTool_WHQ": "mTool_WHQ" }],
+    }, {
+        "../commonJs/mTool_WHQ": "mTool_WHQ"
+    }],
     linkHttpIconJs: [function(e, t) {
         "use strict";
         cc._RF.push(t, "95474fr0oNDP7SAidILF03q", "linkHttpIconJs");
         var a = e("MainManage");
         e("GameConfig"), cc.Class({
             extends: cc.Component,
-            properties: { iconSpr: cc.Node, iconSpr1: cc.Node },
+            properties: {
+                iconSpr: cc.Node,
+                iconSpr1: cc.Node
+            },
             onLoad: function() {
                 if (this._imageArr = [], this.stopUpdateBool = !0, this.gameWidth = cc.winSize.width, this.gameHeight = cc.winSize.height, null != a.recGameData && "" != a.recGameData && null != a.recGameimg1 && "" != a.recGameimg1) {
                     var e = 50 - this.gameWidth / 2,
@@ -1454,26 +2023,55 @@ window.__require = function e(t, a, i) {
                         n = this.iconSpr,
                         s = this.iconSpr1,
                         c = this;
-                    cc.loader.load(i, function(a, i) { n.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(i), c.iconSpr.opacity = 0, c.iconSpr.x = e, c.iconSpr.y = t, c._imageArr.push(c.iconSpr) }), cc.loader.load(o, function(a, i) { s.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(i), c.iconSpr1.opacity = 0, c.iconSpr1.x = e, c.iconSpr1.y = t, c._imageArr.push(c.iconSpr1) })
+                    cc.loader.load(i, function(a, i) {
+                        n.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(i), c.iconSpr.opacity = 0, c.iconSpr.x = e, c.iconSpr.y = t, c._imageArr.push(c.iconSpr)
+                    }), cc.loader.load(o, function(a, i) {
+                        s.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(i), c.iconSpr1.opacity = 0, c.iconSpr1.x = e, c.iconSpr1.y = t, c._imageArr.push(c.iconSpr1)
+                    })
                 }
                 this.addTouchEvents()
             },
             showLinkPic: function() {
                 var e, t;
-                e = null != a.recGameDelPau ? a.recGameDelPau : 6, cc.log("dMainManager.recGameDelPer", a.recGameDelPer), t = null != a.recGameDelPer ? a.recGameDelPer : .7, this._imageArr[0].opacity = 255, this._imageArr[0].runAction(cc.repeatForever(cc.sequence(cc.delayTime(e), cc.rotateBy(t, 0, 180), cc.callFunc(function() { this._imageArr[0].setRotation(0), this._imageArr[0].opacity = 0, this._imageArr[1].opacity = 255 }, this), cc.delayTime(e), cc.callFunc(function() { this.flowerAction(this._imageArr[1], t) }, this), cc.delayTime(t), cc.callFunc(function() { this._imageArr[1].opacity = 0, this._imageArr[0].opacity = 255 }, this))))
+                e = null != a.recGameDelPau ? a.recGameDelPau : 6, cc.log("dMainManager.recGameDelPer", a.recGameDelPer), t = null != a.recGameDelPer ? a.recGameDelPer : .7, this._imageArr[0].opacity = 255, this._imageArr[0].runAction(cc.repeatForever(cc.sequence(cc.delayTime(e), cc.rotateBy(t, 0, 180), cc.callFunc(function() {
+                    this._imageArr[0].setRotation(0), this._imageArr[0].opacity = 0, this._imageArr[1].opacity = 255
+                }, this), cc.delayTime(e), cc.callFunc(function() {
+                    this.flowerAction(this._imageArr[1], t)
+                }, this), cc.delayTime(t), cc.callFunc(function() {
+                    this._imageArr[1].opacity = 0, this._imageArr[0].opacity = 255
+                }, this))))
             },
-            flowerAction: function(e, t) { e.runAction(cc.sequence(cc.rotateBy(t, 0, 180), cc.callFunc(function() { e.setRotation(0) }))) },
+            flowerAction: function(e, t) {
+                e.runAction(cc.sequence(cc.rotateBy(t, 0, 180), cc.callFunc(function() {
+                    e.setRotation(0)
+                })))
+            },
             start: function() {},
-            addTouchEvents: function() { cc.EventListener.TOUCH_ONE_BY_ONE },
-            update: function() { this.stopUpdateBool && this._imageArr.length >= 2 && (this.stopUpdateBool = !1, this.showLinkPic()) }
+            addTouchEvents: function() {
+                cc.EventListener.TOUCH_ONE_BY_ONE
+            },
+            update: function() {
+                this.stopUpdateBool && this._imageArr.length >= 2 && (this.stopUpdateBool = !1, this.showLinkPic())
+            }
         }), cc._RF.pop()
-    }, { GameConfig: "GameConfig", MainManage: "MainManage" }],
+    }, {
+        GameConfig: "GameConfig",
+        MainManage: "MainManage"
+    }],
     loadTools: [function(e, t) {
         "use strict";
         cc._RF.push(t, "9ea23JPr69LB6K5CalAIXPw", "loadTools");
         var a = {
-            loadNodeSprite: function(e, t, a) { e.getComponent(cc.Sprite) ? cc.loader.loadRes(t, cc.SpriteFrame, function(t, i) { t ? cc.error(t) : (e.getComponent(cc.Sprite).spriteFrame = i, null != a && a(e)) }) : cc.error("node\u4e0a\u6ca1\u6709Sprite\u7ec4\u4ef6\uff1a", e) },
-            getResSpr: function(e, t) { cc.loader.loadRes(e, cc.SpriteFrame, function(e, a) { e ? cc.error(e) : null != t && t(a) }) },
+            loadNodeSprite: function(e, t, a) {
+                e.getComponent(cc.Sprite) ? cc.loader.loadRes(t, cc.SpriteFrame, function(t, i) {
+                    t ? cc.error(t) : (e.getComponent(cc.Sprite).spriteFrame = i, null != a && a(e))
+                }) : cc.error("node\u4e0a\u6ca1\u6709Sprite\u7ec4\u4ef6\uff1a", e)
+            },
+            getResSpr: function(e, t) {
+                cc.loader.loadRes(e, cc.SpriteFrame, function(e, a) {
+                    e ? cc.error(e) : null != t && t(a)
+                })
+            },
             loadPrefab: function(e, t, a, i, o) {
                 void 0 === o && (o = 0), cc.loader.loadRes(e, cc.Prefab, function(e, n) {
                     if (e) cc.error(e);
@@ -1483,7 +2081,11 @@ window.__require = function e(t, a, i) {
                     }
                 })
             },
-            loadScene: function(e, t) { cc.director.preloadScene(e, function() { cc.director.loadScene(e, t) }) },
+            loadScene: function(e, t) {
+                cc.director.preloadScene(e, function() {
+                    cc.director.loadScene(e, t)
+                })
+            },
             loadJson: function() {}
         };
         window.loadTools = a, cc._RF.pop()
@@ -1492,7 +2094,9 @@ window.__require = function e(t, a, i) {
         "use strict";
         cc._RF.push(t, "fe57af2WNxE+67eFxNClrcq", "mTool_WHQ");
         var a = {
-            getRandomNum: function(e, t, a) { return a ? Math.floor(Math.random() * (t - e + 1) + e) : Math.random() * (t - e) + e },
+            getRandomNum: function(e, t, a) {
+                return a ? Math.floor(Math.random() * (t - e + 1) + e) : Math.random() * (t - e) + e
+            },
             cbPosToWorldPos: function(e, t, a, i, o, n) {
                 var s = a + (e.x - t / 2 + .5) * o,
                     c = i + (e.y + .5) * n;
@@ -1513,25 +2117,56 @@ window.__require = function e(t, a, i) {
                     i = t.y - e.y;
                 return 360 * Math.atan(i / a) / (2 * Math.PI)
             },
-            judgeIntersect: function(e, t, a, i, o, n, s, c) { return Math.min(e, a) <= Math.max(o, s) && Math.min(n, c) <= Math.max(t, i) && Math.min(o, s) <= Math.max(e, a) && Math.min(t, i) <= Math.max(n, c) && ((o - e) * (i - t) - (a - e) * (n - t)) * ((s - e) * (i - t) - (a - e) * (c - t)) <= 1e-8 && ((e - o) * (c - n) - (s - o) * (t - n)) * ((a - o) * (c - n) - (s - o) * (i - n)) <= 1e-8 },
-            getNormalizeVector: function(e, t) { return t.sub(e).normalize() },
-            judgeItemOverlapping: function(e, t, a, i, o, n, s, c) { return !(e + a < o || o + s < e || t + i < n || n + c < t) },
-            getCircumferencePos: function(e, t, a) { var i = cc.v2(0, 0); return i.x = e.x + Math.sin(2 * Math.PI / 360 * a) * t, i.y = e.y + Math.cos(2 * Math.PI / 360 * a) * t, i },
-            upsetArr: function(e) { return e.sort(function() { return Math.random() > .5 ? -1 : 1 }) },
-            getAudio: function(e, t) { return cc.sys.os === cc.sys.OS_IOS ? e : t },
-            setLocalData: function(e, t) { cc.sys.localStorage.setItem(e, t) },
-            getLocalData: function(e) { return cc.sys.localStorage.getItem(e) },
-            getNodePos: function(e, t, a) { return a ? e.convertToNodeSpaceAR(t.convertToWorldSpaceAR(a)) : e.convertToNodeSpaceAR(t.convertToWorldSpaceAR()) },
+            judgeIntersect: function(e, t, a, i, o, n, s, c) {
+                return Math.min(e, a) <= Math.max(o, s) && Math.min(n, c) <= Math.max(t, i) && Math.min(o, s) <= Math.max(e, a) && Math.min(t, i) <= Math.max(n, c) && ((o - e) * (i - t) - (a - e) * (n - t)) * ((s - e) * (i - t) - (a - e) * (c - t)) <= 1e-8 && ((e - o) * (c - n) - (s - o) * (t - n)) * ((a - o) * (c - n) - (s - o) * (i - n)) <= 1e-8
+            },
+            getNormalizeVector: function(e, t) {
+                return t.sub(e).normalize()
+            },
+            judgeItemOverlapping: function(e, t, a, i, o, n, s, c) {
+                return !(e + a < o || o + s < e || t + i < n || n + c < t)
+            },
+            getCircumferencePos: function(e, t, a) {
+                var i = cc.v2(0, 0);
+                return i.x = e.x + Math.sin(2 * Math.PI / 360 * a) * t, i.y = e.y + Math.cos(2 * Math.PI / 360 * a) * t, i
+            },
+            upsetArr: function(e) {
+                return e.sort(function() {
+                    return Math.random() > .5 ? -1 : 1
+                })
+            },
+            getAudio: function(e, t) {
+                return cc.sys.os === cc.sys.OS_IOS ? e : t
+            },
+            setLocalData: function(e, t) {
+                cc.sys.localStorage.setItem(e, t)
+            },
+            getLocalData: function(e) {
+                return cc.sys.localStorage.getItem(e)
+            },
+            getNodePos: function(e, t, a) {
+                return a ? e.convertToNodeSpaceAR(t.convertToWorldSpaceAR(a)) : e.convertToNodeSpaceAR(t.convertToWorldSpaceAR())
+            },
             judgeArrSame: function(e, t) {
                 for (var a = 0; a < e.length; a++)
                     for (var i = 0; i < t.length; i++)
                         if (e[a] !== t[i]) return !1;
                 return !0
             },
-            pDistance: function(e, t) { return e.sub(t).mag() },
-            getAngleByVector: function(e) { return e.y < 0 ? 360 - cc.v2(1, 0).angle(e) / Math.PI * 180 : cc.v2(1, 0).angle(e) / Math.PI * 180 },
-            getBoundingBoxToNode: function(e, t) { var a = t.convertToNodeSpaceAR(e.convertToWorldSpaceAR(cc.v2(-e.anchorX * e.width * (e.scaleX / Math.abs(e.scaleX)), -e.anchorY * e.height * (e.scaleY / Math.abs(e.scaleY))))); return cc.rect(a.x, a.y, e.width * Math.abs(e.scaleX), e.height * Math.abs(e.scaleY)) },
-            degreesToVectors: function(e) { var t = cc.misc.degreesToRadians(e); return cc.v2(1, 0).rotate(-t) },
+            pDistance: function(e, t) {
+                return e.sub(t).mag()
+            },
+            getAngleByVector: function(e) {
+                return e.y < 0 ? 360 - cc.v2(1, 0).angle(e) / Math.PI * 180 : cc.v2(1, 0).angle(e) / Math.PI * 180
+            },
+            getBoundingBoxToNode: function(e, t) {
+                var a = t.convertToNodeSpaceAR(e.convertToWorldSpaceAR(cc.v2(-e.anchorX * e.width * (e.scaleX / Math.abs(e.scaleX)), -e.anchorY * e.height * (e.scaleY / Math.abs(e.scaleY)))));
+                return cc.rect(a.x, a.y, e.width * Math.abs(e.scaleX), e.height * Math.abs(e.scaleY))
+            },
+            degreesToVectors: function(e) {
+                var t = cc.misc.degreesToRadians(e);
+                return cc.v2(1, 0).rotate(-t)
+            },
             vectorsToDegrees: function(e) {
                 if (Math.abs(e.x) + Math.abs(e.y) !== 0) {
                     var t = cc.v2(1, 0),
@@ -1548,7 +2183,9 @@ window.__require = function e(t, a, i) {
         cc._RF.push(t, "f41fcJj045KGo2ubgiEeGaA", "player2JS"), cc.Class({
             extends: cc.Component,
             properties: {},
-            onLoad: function() { this.mainSelf = cc.find("Canvas").getComponent("MainGameJS") },
+            onLoad: function() {
+                this.mainSelf = cc.find("Canvas").getComponent("MainGameJS")
+            },
             start: function() {},
             onCollisionEnter: function(e, t) {
                 if (!this.mainSelf.gameOverFlags && 1 == e.tag) {
@@ -1565,7 +2202,9 @@ window.__require = function e(t, a, i) {
         cc._RF.push(t, "ba7b9DpttpMLq9QsKGwuABo", "playerJS"), cc.Class({
             extends: cc.Component,
             properties: {},
-            onLoad: function() { this.mainSelf = cc.find("Canvas").getComponent("MainGameJS") },
+            onLoad: function() {
+                this.mainSelf = cc.find("Canvas").getComponent("MainGameJS")
+            },
             start: function() {},
             onCollisionEnter: function(e, t) {
                 if (!this.mainSelf.gameOverFlags) {
@@ -1586,8 +2225,17 @@ window.__require = function e(t, a, i) {
         "use strict";
         cc._RF.push(t, "d1951bUsVBEo7LtLLUajDCO", "resArr"), cc.Class({
             extends: cc.Component,
-            properties: { SpriteFrameArr: [cc.SpriteFrame], PrefabArr: [cc.Prefab], audiosArr: { type: cc.AudioClip, default: [] } },
-            onLoad: function() { this.addPrefabs(), this.addSpriteFrame(), this.addAudio() },
+            properties: {
+                SpriteFrameArr: [cc.SpriteFrame],
+                PrefabArr: [cc.Prefab],
+                audiosArr: {
+                    type: cc.AudioClip,
+                    default: []
+                }
+            },
+            onLoad: function() {
+                this.addPrefabs(), this.addSpriteFrame(), this.addAudio()
+            },
             addAudio: function() {
                 this.audioClipDic = {};
                 for (var e = 0; e < this.audiosArr.length; e++)
@@ -1621,11 +2269,17 @@ window.__require = function e(t, a, i) {
         "use strict";
         cc._RF.push(t, "132743iYdROWry4PeEjE8Fb", "rockerJS"), cc.Class({
             extends: cc.Component,
-            properties: { buttonNode: cc.Node },
+            properties: {
+                buttonNode: cc.Node
+            },
             onLoad: function() {
                 this.node.opacity = 0, this.mainSelf = cc.find("Canvas").getComponent("MainGameJS"), this.max_r = this.node.width / 2;
                 var e = cc.v2(0, 0);
-                this.dir = cc.v2(0, 0), this.buttonNode.setPosition(e), this.mainSelf.node.on(cc.Node.EventType.TOUCH_END, function() { this.buttonNode.setPosition(cc.v2(0, 0)) }, this), this.mainSelf.node.on(cc.Node.EventType.TOUCH_CANCEL, function() { this.buttonNode.setPosition(cc.v2(0, 0)) }, this), this.mainSelf.node.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
+                this.dir = cc.v2(0, 0), this.buttonNode.setPosition(e), this.mainSelf.node.on(cc.Node.EventType.TOUCH_END, function() {
+                    this.buttonNode.setPosition(cc.v2(0, 0))
+                }, this), this.mainSelf.node.on(cc.Node.EventType.TOUCH_CANCEL, function() {
+                    this.buttonNode.setPosition(cc.v2(0, 0))
+                }, this), this.mainSelf.node.on(cc.Node.EventType.TOUCH_MOVE, function(e) {
                     var t = e.getLocation(),
                         a = this.node.convertToNodeSpaceAR(t),
                         i = a.mag();
@@ -1645,8 +2299,26 @@ window.__require = function e(t, a, i) {
         cc._RF.push(t, "280c3rsZJJKnZ9RqbALVwtK", "startGameJs"), e("GameUiTools"), e("HttpManagerJs");
         var a = e("MainManage"),
             i = (e("LoadSceneJs"), e("GameConfig"));
-        cc.Class({ extends: cc.Component, properties: { showInfoT: cc.Label, startT: cc.Label }, onLoad: function() { i.publicGameBool && a.init(), this.showInfoT.string = a.gameInfoText, this.startT.string = a.txtStartText, this.node.zIndex = 100, this.node.on("touchend", function() { this.node.x = -2e3 }, this) }, update: function() {} }), cc._RF.pop()
-    }, { GameConfig: "GameConfig", GameUiTools: "GameUiTools", HttpManagerJs: "HttpManagerJs", LoadSceneJs: "LoadSceneJs", MainManage: "MainManage" }],
+        cc.Class({
+            extends: cc.Component,
+            properties: {
+                showInfoT: cc.Label,
+                startT: cc.Label
+            },
+            onLoad: function() {
+                i.publicGameBool && a.init(), this.showInfoT.string = a.gameInfoText, this.startT.string = a.txtStartText, this.node.zIndex = 100, this.node.on("touchend", function() {
+                    this.node.x = -2e3
+                }, this)
+            },
+            update: function() {}
+        }), cc._RF.pop()
+    }, {
+        GameConfig: "GameConfig",
+        GameUiTools: "GameUiTools",
+        HttpManagerJs: "HttpManagerJs",
+        LoadSceneJs: "LoadSceneJs",
+        MainManage: "MainManage"
+    }],
     use_reversed_rotateTo: [function(e, t) {
         "use strict";
         cc._RF.push(t, "16142aty4ZFBpA8RBwxcagf", "use_reversed_rotateTo"), cc.RotateTo._reverse = !0, cc._RF.pop()
