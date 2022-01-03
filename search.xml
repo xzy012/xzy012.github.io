@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>邮箱验证类注册账户</title>
+      <link href="/2021/11/28/Register-accounts-by-email-in-batches/"/>
+      <url>/2021/11/28/Register-accounts-by-email-in-batches/</url>
+      
+        <content type="html"><![CDATA[<h1 id><a href="#" class="headerlink" title></a></h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>​    以太坊Kovan测试网的<a href="https://gitter.im/kovan-testnet/faucet" target="_blank" rel="noopener">水龙头</a>每天每个账户只能领取0<strong>.</strong>001 ETH（少得可怜！）。由于gitter只能用twitter、gitlab以及GitHub账户进行登录，为了学（hao）知（yang）识（mao），于是想着怎么去大量注册一堆GitHub或者gitlab账户，然后每天通过这些账户去请求Kovan测试币。</p><p>​    大致思路是：获取大量账户=》利用这些账户去登录gitter=》然后利用api发送信息到gitter频道获取测试币。</p><h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="获取大量邮箱"><a href="#获取大量邮箱" class="headerlink" title="获取大量邮箱"></a>获取大量邮箱</h2><p>​    <a href="https://github.com/xjjdog/crazy-email-recv-srv" target="_blank" rel="noopener">模拟邮件服务器，批量注册利器</a>这个仓库用python实现一个邮箱服务器，最开始的想法就是利用这个方式来获取。</p><p>​    实现的批量注册逻辑大概如下：</p><p><img src="https://github.com/xjjdog/crazy-email-recv-srv/raw/master/media/15338909254129.jpg" alt="img"></p><p>​    于是跑到了狗爹上去看了看，鬼使神差的就买了一年的虚拟主机（花了360大洋）。</p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128144121418.png" alt="image-20211128144121418"></p><p>​    购买之后，遇见了第一个问题，点击虚拟主机的管理选项时出现如下情况：</p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128144435303.png" alt="image-20211128144435303"></p><p>​    然后换了QQ浏览器，又出现了另一个问题，登录cPanel的时候提示存在非法内容：</p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128144701839.png" alt="image-20211128144701839"></p><p>​    最后用火狐浏览器终于登上了（狗爹这波真的是）：</p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128145125123.png" alt="image-20211128145125123"></p><p>​    满心欢喜的XFTP、XSHELL链接后，发现我根本没有root权限，想安装个python都不能在/usr/local里面创建目录，甚至su sudo命令都没了（狗爹你赢了，系统还是Red Hat 4.4.7-23）：</p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128150845028.png" alt="image-20211128150845028"></p><p>​    于是乎，邮箱服务器的计划就这样破灭了。为了不让这360白花了，我还是去看了看服务器的控制台。</p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128151640104.png" alt="image-20211128151640104"></p><p>​    发现一个这个东西：</p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128151716096.png" alt="image-20211128151716096"></p><p>​    这个可以将邮件转发到指定的地址，这不也是先之前那个仓库的效果（真是柳暗花明又一村啊！）：</p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128151736890.png" alt="image-20211128151736890"></p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128151810735.png" alt="image-20211128151810735"></p><h2 id="注册Github账户"><a href="#注册Github账户" class="headerlink" title="注册Github账户"></a>注册Github账户</h2><p>​    由于注册只需要接受邮件即可，那么我们可以输入任意的前缀然后转发到指定邮箱就可以获取验证码，然后理论上就有了无限的邮箱可以用来注册使用了~</p><p>​    于是用GitHub试了试，成功收到了验证码并完成了注册：</p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128152303983.png" alt="image-20211128152303983"></p><p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128152404918.png" alt="image-20211128152404918"></p><p>​    </p><p>​    自动化注册脚本暂时还没有实现，看后面能不能找到实现方法，现在这样还是有点麻烦。</p><h2 id="使用GitHub账户自动登录gitter"><a href="#使用GitHub账户自动登录gitter" class="headerlink" title="使用GitHub账户自动登录gitter"></a>使用GitHub账户自动登录gitter</h2><h2 id="-1"><a href="#-1" class="headerlink" title></a></h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂七杂八 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> email </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> 邮箱注册 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>技嘉B365 Power安装win11及安卓子系统(WSA)</title>
       <link href="/2021/10/24/win11-and-wsa-install/"/>
       <url>/2021/10/24/win11-and-wsa-install/</url>
@@ -133,7 +162,7 @@
       <link href="/2019/11/20/encrypt/"/>
       <url>/2019/11/20/encrypt/</url>
       
-        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码." /><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="aabec13c2e42ab89c71cf7ecdc3aec02c42f8fb42e330481de9199f3f2b8efa5">7890088215a2ec29e6e45343d89f8df8ea5e12f74b152bca6e0ad1aee7f27e065598906e2fa48225290a12a275c87fb2d384f2509262187980963c2170f999b739215d9501d1117c81e850fe1df2b3a2335d9849c42cca572ca86d9b39c81408053b9036d69cca39d2ed15c008d45c52e781f3dfe4886b840ad76204bcea5e62</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码."><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="aabec13c2e42ab89c71cf7ecdc3aec02c42f8fb42e330481de9199f3f2b8efa5">7890088215a2ec29e6e45343d89f8df8ea5e12f74b152bca6e0ad1aee7f27e065598906e2fa48225290a12a275c87fb2d384f2509262187980963c2170f999b739215d9501d1117c81e850fe1df2b3a2335d9849c42cca572ca86d9b39c81408053b9036d69cca39d2ed15c008d45c52e781f3dfe4886b840ad76204bcea5e62</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
       
       <categories>
@@ -170,9 +199,9 @@
       
         <tags>
             
-            <tag> 信息收集 </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> 信息收集 </tag>
             
         </tags>
       
@@ -197,11 +226,11 @@
       
         <tags>
             
-            <tag> 安全 </tag>
-            
             <tag> Ethernaut </tag>
             
             <tag> WriteUp </tag>
+            
+            <tag> 安全 </tag>
             
             <tag> solidity </tag>
             
