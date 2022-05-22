@@ -5,7 +5,7 @@
     <url>/2021/11/28/Register-accounts-by-email-in-batches/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>​    以太坊Kovan测试网的<a href="https://gitter.im/kovan-testnet/faucet" target="_blank" rel="noopener">水龙头</a>每天每个账户只能领取0<strong>.</strong>001 ETH（少得可怜！）。由于gitter只能用twitter、gitlab以及GitHub账户进行登录，为了学（hao）知（yang）识（mao），于是想着怎么去大量注册一堆GitHub或者gitlab账户，然后每天通过这些账户去请求Kovan测试币。</p>
 <p>​    大致思路是：获取大量账户=》利用这些账户去登录gitter=》然后利用api发送信息到gitter频道获取测试币。</p>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="获取大量邮箱"><a href="#获取大量邮箱" class="headerlink" title="获取大量邮箱"></a>获取大量邮箱</h2><p>​    <a href="https://github.com/xjjdog/crazy-email-recv-srv" target="_blank" rel="noopener">模拟邮件服务器，批量注册利器</a>这个仓库用python实现一个邮箱服务器，最开始的想法就是利用这个方式来获取。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="获取大量邮箱"><a href="#获取大量邮箱" class="headerlink" title="获取大量邮箱"></a>获取大量邮箱</h2><p>​    <a href="https://github.com/xjjdog/crazy-email-recv-srv" target="_blank" rel="noopener">模拟邮件服务器，批量注册利器</a> 这个仓库用python实现一个邮箱服务器，最开始的想法就是利用这个方式来获取。</p>
 <p>​    实现的批量注册逻辑大概如下：</p>
 <p><img src="/2021/11/28/Register-accounts-by-email-in-batches/15338909254129.jpg" alt></p>
 <p>​    于是跑到了狗爹上去看了看，鬼使神差的就买了一年的虚拟主机（花了360大洋）。</p>
