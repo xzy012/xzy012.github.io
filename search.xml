@@ -452,10 +452,13 @@
 <p>此外，如果想要打包扩展程序后生成crx文件后在其他浏览器中导入，如果没有在chrome商店中上传并通过审核，会遇到如下问题：</p>
 <p><img src="/2020/07/20/etherscan-tags/image-20200717113817539.png" alt="image-20200717113817539"></p>
 <p>解决方案有两个：</p>
-<p>第一个当然是花费5刀注册为chrome插件开发者，然后上传自己的插件，不过这中方式耗时很长，短期可以选择另一种方式；</p>
+<p>第一个当然是花费5刀注册为chrome插件开发者，然后上传自己的插件，不过这种方式耗时很长，短期可以选择另一种方式；</p>
 <p>第二个是修改本地组策略，在<a href="https://cloud.tencent.com/developer/article/1506583" target="_blank" rel="noopener">已解决!该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的</a>这篇文章中介绍很详细。</p>
 <hr>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>完结撒花<em>★,°</em>:.☆(￣▽￣)/$:<em>.°★</em> 。，虽然本次尝试制作的插件功能比较简单，但却对我来说有实际的价值，大佬们不喜勿喷。</p>
+<p>PS：经过了近一年的审核，插件上架了啊哈哈哈哈~</p>
+<p>chrome插件商店地址：<a href="https://chrome.google.com/webstore/detail/custom-address-tag/ibjelilolcannonagncmaihfpobfmohd" target="_blank" rel="noopener">Custom Address Tag</a></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20220522232205825.png" alt="image-20220522232205825"></p>
 ]]></content>
       <categories>
         <category>区块链</category>
