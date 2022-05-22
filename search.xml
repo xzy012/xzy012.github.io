@@ -3,35 +3,35 @@
   <entry>
     <title>邮箱验证类注册账户</title>
     <url>/2021/11/28/Register-accounts-by-email-in-batches/</url>
-    <content><![CDATA[<h1 id><a href="#" class="headerlink" title></a></h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>​    以太坊Kovan测试网的<a href="https://gitter.im/kovan-testnet/faucet" target="_blank" rel="noopener">水龙头</a>每天每个账户只能领取0<strong>.</strong>001 ETH（少得可怜！）。由于gitter只能用twitter、gitlab以及GitHub账户进行登录，为了学（hao）知（yang）识（mao），于是想着怎么去大量注册一堆GitHub或者gitlab账户，然后每天通过这些账户去请求Kovan测试币。</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>​    以太坊Kovan测试网的<a href="https://gitter.im/kovan-testnet/faucet" target="_blank" rel="noopener">水龙头</a>每天每个账户只能领取0<strong>.</strong>001 ETH（少得可怜！）。由于gitter只能用twitter、gitlab以及GitHub账户进行登录，为了学（hao）知（yang）识（mao），于是想着怎么去大量注册一堆GitHub或者gitlab账户，然后每天通过这些账户去请求Kovan测试币。</p>
 <p>​    大致思路是：获取大量账户=》利用这些账户去登录gitter=》然后利用api发送信息到gitter频道获取测试币。</p>
 <h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="获取大量邮箱"><a href="#获取大量邮箱" class="headerlink" title="获取大量邮箱"></a>获取大量邮箱</h2><p>​    <a href="https://github.com/xjjdog/crazy-email-recv-srv" target="_blank" rel="noopener">模拟邮件服务器，批量注册利器</a>这个仓库用python实现一个邮箱服务器，最开始的想法就是利用这个方式来获取。</p>
 <p>​    实现的批量注册逻辑大概如下：</p>
-<p><img src="https://github.com/xjjdog/crazy-email-recv-srv/raw/master/media/15338909254129.jpg" alt="img"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/15338909254129.jpg" alt></p>
 <p>​    于是跑到了狗爹上去看了看，鬼使神差的就买了一年的虚拟主机（花了360大洋）。</p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128144121418.png" alt="image-20211128144121418"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128144121418.png" alt="image-20211128144121418"></p>
 <p>​    购买之后，遇见了第一个问题，点击虚拟主机的管理选项时出现如下情况：</p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128144435303.png" alt="image-20211128144435303"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128144435303.png" alt="image-20211128144435303"></p>
 <p>​    然后换了QQ浏览器，又出现了另一个问题，登录cPanel的时候提示存在非法内容：</p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128144701839.png" alt="image-20211128144701839"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128144701839.png" alt="image-20211128144701839"></p>
 <p>​    最后用火狐浏览器终于登上了（狗爹这波真的是）：</p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128145125123.png" alt="image-20211128145125123"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128145125123.png" alt="image-20211128145125123"></p>
 <p>​    满心欢喜的XFTP、XSHELL链接后，发现我根本没有root权限，想安装个python都不能在/usr/local里面创建目录，甚至su sudo命令都没了（狗爹你赢了，系统还是Red Hat 4.4.7-23）：</p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128150845028.png" alt="image-20211128150845028"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128150845028.png" alt="image-20211128150845028"></p>
 <p>​    于是乎，邮箱服务器的计划就这样破灭了。为了不让这360白花了，我还是去看了看服务器的控制台。</p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128151640104.png" alt="image-20211128151640104"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128151640104.png" alt="image-20211128151640104"></p>
 <p>​    发现一个这个东西：</p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128151716096.png" alt="image-20211128151716096"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128151716096.png" alt="image-20211128151716096"></p>
 <p>​    这个可以将邮件转发到指定的地址，这不也是先之前那个仓库的效果（真是柳暗花明又一村啊！）：</p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128151736890.png" alt="image-20211128151736890"></p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128151810735.png" alt="image-20211128151810735"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128151736890.png" alt="image-20211128151736890"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128151810735.png" alt="image-20211128151810735"></p>
 <h2 id="注册Github账户"><a href="#注册Github账户" class="headerlink" title="注册Github账户"></a>注册Github账户</h2><p>​    由于注册只需要接受邮件即可，那么我们可以输入任意的前缀然后转发到指定邮箱就可以获取验证码，然后理论上就有了无限的邮箱可以用来注册使用了~</p>
 <p>​    于是用GitHub试了试，成功收到了验证码并完成了注册：</p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128152303983.png" alt="image-20211128152303983"></p>
-<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/C:%5CUsers%5Chxzy%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20211128152404918.png" alt="image-20211128152404918"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128152303983.png" alt="image-20211128152303983"></p>
+<p><img src="/2021/11/28/Register-accounts-by-email-in-batches/image-20211128152404918.png" alt="image-20211128152404918"></p>
 <p>​    </p>
 <p>​    自动化注册脚本暂时还没有实现，看后面能不能找到实现方法，现在这样还是有点麻烦。</p>
-<h2 id="使用GitHub账户自动登录gitter"><a href="#使用GitHub账户自动登录gitter" class="headerlink" title="使用GitHub账户自动登录gitter"></a>使用GitHub账户自动登录gitter</h2><h2 id="-1"><a href="#-1" class="headerlink" title></a></h2>]]></content>
+<h2 id="使用GitHub账户自动登录gitter"><a href="#使用GitHub账户自动登录gitter" class="headerlink" title="使用GitHub账户自动登录gitter"></a>使用GitHub账户自动登录gitter</h2>]]></content>
       <categories>
         <category>杂七杂八</category>
       </categories>
