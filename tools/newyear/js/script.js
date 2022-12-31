@@ -2120,7 +2120,7 @@ const Spark = {
 
 
 const soundManager = {
-	baseURL: 'https://hxzy.me/tools/newyear/mp3',
+	baseURL: 'https://hxzy.me/tools/newyear/mp3/',
 	ctx: new (window.AudioContext || window.webkitAudioContext),
 	sources: {
 		lift: {
