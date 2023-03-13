@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="安全,信息收集," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="信息收集——绕过CDN寻找真实IP​    最近工作使用了很多CDN查询的网站工具之类的，为了以防以后忘记了，小小的总 (ban) 结 (yun) 一下。 ​    以下是参考到的文章，感谢大佬们。 ​    参考文章：  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;qiudabai&#x2F;p&#x2F;9763739.html   http:&#x2F;&#x2F;blog.leanote.com&#x2F;post&#x2F;snowming&#x2F;">
+<meta name="keywords" content="安全,信息收集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息收集——绕过CDN寻找真实IP">
+<meta property="og:url" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;index.html">
+<meta property="og:site_name" content="Just for fun.">
+<meta property="og:description" content="信息收集——绕过CDN寻找真实IP​    最近工作使用了很多CDN查询的网站工具之类的，为了以防以后忘记了，小小的总 (ban) 结 (yun) 一下。 ​    以下是参考到的文章，感谢大佬们。 ​    参考文章：  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;qiudabai&#x2F;p&#x2F;9763739.html   http:&#x2F;&#x2F;blog.leanote.com&#x2F;post&#x2F;snowming&#x2F;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img6.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img7.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img8.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img9.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img11.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img13.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img12.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img14.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img15.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img16.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img17.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img18.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img19.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img20.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img21.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img22.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img25.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img26.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img23.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img24.png">
+<meta property="og:updated_time" content="2020-07-31T06:26:24.999Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2019&#x2F;11&#x2F;19&#x2F;bypass-cdn&#x2F;img1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hxzy.me/2019/11/19/bypass-cdn/"/>
+
+
+
+
+
+  <title>信息收集——绕过CDN寻找真实IP | Just for fun.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just for fun.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">菜得真实</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hxzy.me/2019/11/19/bypass-cdn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hxzy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just for fun.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">信息收集——绕过CDN寻找真实IP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2019-11-19T22:01:45+08:00">
+                2019-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E6%B8%97%E9%80%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">web渗透</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="post.wordcount">
+                  3.4k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="post.min2read">
+                  12 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="信息收集——绕过CDN寻找真实IP"><a href="#信息收集——绕过CDN寻找真实IP" class="headerlink" title="信息收集——绕过CDN寻找真实IP"></a>信息收集——绕过CDN寻找真实IP</h1><p>​    最近工作使用了很多CDN查询的网站工具之类的，为了以防以后忘记了，小小的总 (ban) 结 (yun) 一下。</p>
+<p>​    以下是参考到的文章，感谢大佬们。</p>
+<p>​    参考文章：</p>
+<p> <a href="https://www.cnblogs.com/qiudabai/p/9763739.html" target="_blank" rel="noopener">https://www.cnblogs.com/qiudabai/p/9763739.html</a> </p>
+<p> <a href="http://blog.leanote.com/post/snowming/CDN" target="_blank" rel="noopener">http://blog.leanote.com/post/snowming/CDN</a> </p>
+<p> <a href="https://www.lsablog.com/networksec/penetration/some-ways-to-check-cdn-and-find-real-ip/" target="_blank" rel="noopener">https://www.lsablog.com/networksec/penetration/some-ways-to-check-cdn-and-find-real-ip/</a> </p>
+<p> <a href="https://www.lstazl.com/cdn检测与绕过/" target="_blank" rel="noopener">https://www.lstazl.com/cdn%E6%A3%80%E6%B5%8B%E4%B8%8E%E7%BB%95%E8%BF%87/</a> </p>
+<p>​    首先我们要了解什么是CDN：</p>
+<blockquote>
+<p>CDN 即 <code>content delivery network</code>，内容交付网络，通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。</p>
+<p>开了CDN 之后，会智能匹配当地最近的节点来的，所以请求的实际 IP 不同。</p>
+</blockquote>
+<p>​    对用户来说CDN的存在能够使你访问网站的响应速度更快，用户体验更好。</p>
+<p>​    对网站所有者来说，CDN的存在减轻了服务器的压力，同时也将真实服务器IP隐藏了起来，降低被黑客入侵的风险。</p>
+<h2 id="验证是否存在CDN"><a href="#验证是否存在CDN" class="headerlink" title="验证是否存在CDN"></a>验证是否存在CDN</h2><h3 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h3><p>​    使用nslookup查询，如果查询结果是多个IP，则很大可能使用了CDN，如果返回一个IP也不一定是真实IP。</p>
+<p>​    下面这种就是使用了CDN的：</p>
+<p><img src="/2019/11/19/bypass-cdn/img1.png" alt></p>
+<p>​    下面这种是没有使用CDN的：</p>
+<p><img src="/2019/11/19/bypass-cdn/img2.png" alt></p>
+<h3 id="多地ping"><a href="#多地ping" class="headerlink" title="多地ping"></a>多地ping</h3><p>​    使用各种多地 ping 的服务，查看返回的IP 地址是否唯一，如果返回的IP不是唯一的，那么很有可能使用了CDN。 </p>
+<p>多地 Ping 网站有：<br><a href="http://ping.chinaz.com/" target="_blank" rel="noopener">http://ping.chinaz.com/</a><br><a href="http://ping.aizhan.com/" target="_blank" rel="noopener">http://ping.aizhan.com/</a><br><a href="https://www.17ce.com/" target="_blank" rel="noopener">https://www.17ce.com/</a><br><a href="https://wepcc.com/" target="_blank" rel="noopener">https://wepcc.com/</a></p>
+<p><img src="/2019/11/19/bypass-cdn/img3.png" alt></p>
+<p><img src="/2019/11/19/bypass-cdn/img4.png" alt></p>
+<p><img src="/2019/11/19/bypass-cdn/img5.png" alt></p>
+<p><img src="/2019/11/19/bypass-cdn/img6.png" alt></p>
+<h3 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h3><p> <a href="http://www.12306.cn的响应头" target="_blank" rel="noopener">www.12306.cn的响应头</a></p>
+<blockquote>
+<p>Accept-Ranges: bytes<br>null: HTTP/1.1 200 OK<br>X-Cache: HIT from cache.51cdn.com<br>X-Via: 1.1 zib232:4 (Cdn Cache Server V2.0), 1.1 xz115:6 (Cdn Cache Server V2.0)<br>Connection: keep-alive<br>Last-Modified: Fri, 24 Oct 2014 09:24:58 GMT<br>Content-Length: 1480<br>Age: 22852<br>Date: Sat, 14 Oct 2017 04:22:44 GMT<br>X-Powered-By: Servlet/2.5 JSP/2.1<br>Content-Type: text/html</p>
+</blockquote>
+<p>从响应头字段可以看出cdn相关信息。 </p>
+<h3 id="在线分析网站"><a href="#在线分析网站" class="headerlink" title="在线分析网站"></a>在线分析网站</h3><p><a href="https://builtwith.com/" target="_blank" rel="noopener">https://builtwith.com</a><br><a href="https://www.cdnplanet.com/tools/cdnfinder/" target="_blank" rel="noopener">https://www.cdnplanet.com/tools/cdnfinder/</a> </p>
+<p><img src="/2019/11/19/bypass-cdn/img7.png" alt></p>
+<p><img src="/2019/11/19/bypass-cdn/img8.png" alt></p>
+<h3 id="dig"><a href="#dig" class="headerlink" title="dig"></a>dig</h3><p>​    通过dig命令查看DNS解析记录， 一般有的 CNAME 的大多数是 CDN。 </p>
+<p><img src="/2019/11/19/bypass-cdn/img9.png" alt></p>
+<h3 id="CDN厂商ASN号和CDN段列表"><a href="#CDN厂商ASN号和CDN段列表" class="headerlink" title="CDN厂商ASN号和CDN段列表"></a>CDN厂商ASN号和CDN段列表</h3><p>​    在这篇<a href="http://blog.leanote.com/post/snowming/CDN" target="_blank" rel="noopener">文章</a>中 ，提到了一中域名批量CDN检测的方式，使用python脚本来进行扫描，脚本来源于 <a href="https://github.com/al0ne/Vxscan" target="_blank" rel="noopener">vxscan</a>(Author: al0ne) 。</p>
+<blockquote>
+<p>​    这个脚本的原理是利用 ASN。ASN 是自治系统号，相同组织的 ASN 是一样的，所以一个 CDN 厂商的 IP 段可能都在一个 ASN 里。</p>
+<p>​    判断逻辑如下：</p>
+<ol>
+<li>解析域名，获取解析之后的 IP；</li>
+<li>判断此 IP 是否命中国内外常见 CDN 段，如果命中，说明有 CDN；</li>
+<li>对此 IP 查询其对应的 ASN 号（通过 <code>response = reader.asn(host)</code> 这一句代码）。如果获取的 ASN 号命中了上面的国内外常见 CDN 厂商的 ASN 号，说明有 CDN；</li>
+<li>如果通过这两次判断都没有命中，那么极有可能说明是真实 IP。</li>
+</ol>
+</blockquote>
+<h2 id="绕过-CDN-查找网站真实-IP"><a href="#绕过-CDN-查找网站真实-IP" class="headerlink" title="绕过 CDN 查找网站真实 IP"></a>绕过 CDN 查找网站真实 IP</h2><h3 id="nslookup-1"><a href="#nslookup-1" class="headerlink" title="nslookup"></a>nslookup</h3><p>​    使用国外冷门DNS进行域名解析，可能解析到真实IP。</p>
+<h3 id="查询历史DNS记录"><a href="#查询历史DNS记录" class="headerlink" title="查询历史DNS记录"></a>查询历史DNS记录</h3><p>​    查看 IP 与 域名绑定的历史记录，可能会存在使用 CDN 前的记录，相关查询网站有：</p>
+<p><a href="https://dnsdb.io/zh-cn/" target="_blank" rel="noopener">    DNS查询</a><br><a href="https://x.threatbook.cn/" target="_blank" rel="noopener">    微步在线</a><br><a href="http://toolbar.netcraft.com/site_report?url=" target="_blank" rel="noopener">    在线域名信息查询</a><br><a href="http://viewdns.info/" target="_blank" rel="noopener">    DNS、IP等查询</a><br><a href="https://tools.ipip.net/cdn.php" target="_blank" rel="noopener">    CDN查询IP</a></p>
+<p>​    SecurityTrails</p>
+<p>​    利用<a href="https://securitytrails.com/" target="_blank" rel="noopener">SecurityTrails</a>平台，攻击者就可以精准的找到真实原始IP。他们只需在搜索字段中输入网站域名，然后按Enter键即可，这时“历史数据”就可以在左侧的菜单中找到。</p>
+<p><img src="/2019/11/19/bypass-cdn/img11.png" alt></p>
+<p>​    除了过去的DNS记录，即使是当前的记录也可能泄漏原始服务器IP。例如，MX记录是一种常见的查找IP的方式。如果网站在与web相同的服务器和IP上托管自己的邮件服务器，那么原始服务器IP将在MX记录中。</p>
+<h3 id="查询子域名"><a href="#查询子域名" class="headerlink" title="查询子域名"></a>查询子域名</h3><p>​    很多站长可能只会对主站或者流量大的子站点做了 CDN，很多在同一台服务器或者同一个C段内的其他子站点就没有做CDN，此时就可以通过查询子域名对应的 IP 来辅助查找网站的真实IP。</p>
+<p>​    修改host绑定到目标域名，能访问则目标域名和其子域名在同服务器，若不在可尝试c段。 </p>
+<p>​    常用的子域名查找的方法和工具：</p>
+<ol>
+<li><p>一个大佬博客的工具：<a href="https://phpinfo.me/domain/" target="_blank" rel="noopener">https://phpinfo.me/domain/</a> </p>
+<p><img src="/2019/11/19/bypass-cdn/img13.png" alt></p>
+</li>
+<li><p>微步在线(<a href="https://x.threatbook.cn/" target="_blank" rel="noopener">https://x.threatbook.cn/</a>)</p>
+</li>
+</ol>
+<p>​    输入要查找的域名(如baidu.com)，点击子域名选项就可以查找它的子域名了，但是免费用户每月只有5次免费查询机会。如图：</p>
+<p><img src="/2019/11/19/bypass-cdn/img12.png" alt="img"></p>
+<ol start="3">
+<li>Dnsdb查询法。(<a href="https://dnsdb.io/zh-cn/" target="_blank" rel="noopener">https://dnsdb.io/zh-cn/</a>)</li>
+</ol>
+<p>​    只需输入baidu.com type:A就能收集百度的子域名和ip了。如图：<br><img src="/2019/11/19/bypass-cdn/img14.png" alt="img"></p>
+<ol start="4">
+<li><p>Google 搜索</p>
+<p>Google site:baidu.com -www 就能查看除www外的子域名，如图：</p>
+</li>
+</ol>
+<p><img src="/2019/11/19/bypass-cdn/img15.png" alt="img"></p>
+<ol start="5">
+<li><p>各种子域名扫描器</p>
+<p><a href="https://github.com/euphrat1ca/LayerDomainFinder" target="_blank" rel="noopener">子域名挖掘机</a></p>
+<p>子域名挖掘机仅需输入域名即可基于字典挖掘它的子域名，如图：</p>
+</li>
+</ol>
+<p><img src="/2019/11/19/bypass-cdn/img16.png" alt="img"></p>
+<p>​    <a href="https://github.com/lijiejie/subDomainsBrute" target="_blank" rel="noopener">subdomainbrute</a></p>
+<p>​    Subdomainbrute以windows为例，打开cmd进入它所在的目录输入    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Python subdomainbrute.py baidu.com --full</span><br></pre></td></tr></table></figure>
+
+<p>​    即可收集百度的子域名，如图：</p>
+<p><img src="/2019/11/19/bypass-cdn/img17.png" alt="img"></p>
+<h3 id="网络空间引擎搜索法"><a href="#网络空间引擎搜索法" class="headerlink" title="网络空间引擎搜索法"></a>网络空间引擎搜索法</h3><ol>
+<li><a href="https://www.zoomeye.org/" target="_blank" rel="noopener">钟馗之眼(Zoomeye)</a></li>
+</ol>
+<p><img src="/2019/11/19/bypass-cdn/img18.png" alt></p>
+<p>​    zoomeye 用户手册： <a href="https://www.zoomeye.org/doc?channel=user" target="_blank" rel="noopener">https://www.zoomeye.org/doc?channel=user</a> </p>
+<ol start="2">
+<li><a href="https://fofa.so/" target="_blank" rel="noopener">Fofa</a></li>
+</ol>
+<p><img src="/2019/11/19/bypass-cdn/img19.png" alt></p>
+<p>​    查询语法在搜索页面即可看到。</p>
+<ol start="3">
+<li><a href="https://www.shodan.io/" target="_blank" rel="noopener">Shodan</a></li>
+</ol>
+<p>​    搜索语法： <a href="https://help.shodan.io/the-basics/search-query-fundamentals" target="_blank" rel="noopener">https://help.shodan.io/the-basics/search-query-fundamentals</a> </p>
+<p>​    通过这些网络空间搜索引擎， 网站的title关键字或者网站的body特征就可以找出收录的有这些关键字的ip域名，很多时候能获取网站的真实ip </p>
+<h3 id="利用SSL证书寻找真实原始IP"><a href="#利用SSL证书寻找真实原始IP" class="headerlink" title="利用SSL证书寻找真实原始IP"></a>利用SSL证书寻找真实原始IP</h3><p>​    转自 <a href="https://www.cnblogs.com/qiudabai/p/9763739.html" target="_blank" rel="noopener">https://www.cnblogs.com/qiudabai/p/9763739.html</a> </p>
+<blockquote>
+<p>使用给定的域名</p>
+<p>假如你在xyz123boot.com上托管了一个服务，原始服务器IP是136.23.63.44。 而CloudFlare则会为你提供DDoS保护，Web应用程序防火墙和其他一些安全服务，以保护你的服务免受攻击。为此，你的Web服务器就必须支持SSL并具有证书，此时CloudFlare与你的服务器之间的通信，就像你和CloudFlare之间的通信一样，会被加密（即没有灵活的SSL存在）。这看起来很安全，但问题是，当你在端443（<a href="https://136.23.63.44:443）上直接连接到IP时，SSL证书就会被暴露。" target="_blank" rel="noopener">https://136.23.63.44:443）上直接连接到IP时，SSL证书就会被暴露。</a></p>
+<p>此时，如果攻击者扫描0.0.0.0/0，即整个互联网，他们就可以在端口443上获取在xyz123boot.com上的有效证书，进而获取提供给你的Web服务器IP。</p>
+<p>目前Censys工具就能实现对整个互联网的扫描，Censys是一款用以搜索联网设备信息的新型搜索引擎，安全专家可以使用它来评估他们实现方案的安全性，而黑客则可以使用它作为前期侦查攻击目标、收集目标信息的强大利器。Censys搜索引擎能够扫描整个互联网，Censys每天都会扫描IPv4地址空间，以搜索所有联网设备并收集相关的信息，并返回一份有关资源（如设备、网站和证书）配置和部署信息的总体报告。</p>
+<p>而攻击者唯一需要做的就是把上面用文字描述的搜索词翻译成实际的搜索查询参数。</p>
+<p>xyz123boot.com证书的搜索查询参数为：parsed.names：xyz123boot.com</p>
+<p>只显示有效证书的查询参数为：tags.raw：trusted</p>
+<p>攻击者可以在Censys上实现多个参数的组合，这可以通过使用简单的布尔逻辑来完成。</p>
+<p>组合后的搜索参数为：parsed.names: xyz123boot.com and tags.raw: trusted</p>
+<p><img src="/2019/11/19/bypass-cdn/img20.png" alt="img"></p>
+<p>Censys将向你显示符合上述搜索条件的所有标准证书，以上这些证书是在扫描中找到的。</p>
+<p>要逐个查看这些搜索结果，攻击者可以通过单击右侧的“Explore”，打开包含多个工具的下拉菜单。What’s using this certificate? &gt; IPv4 Hosts</p>
+<p><img src="/2019/11/19/bypass-cdn/img21.png" alt="img"></p>
+<p>此时，攻击者将看到一个使用特定证书的IPv4主机列表，而真实原始 IP就藏在其中。</p>
+<p><img src="/2019/11/19/bypass-cdn/img22.png" alt="img"></p>
+<p>你可以通过导航到端口443上的IP来验证，看它是否重定向到xyz123boot.com？或它是否直接在IP上显示网站？</p>
+<p>使用给定的SSL证书</p>
+<p>如果你是执法部门的人员，想要找出一个隐藏在cheesecp5vaogohv.onion下的儿童色情网站。做好的办法，就是找到其原始IP，这样你就可以追踪到其托管的服务器，甚至查到背后的运营商以及金融线索。</p>
+<p>隐藏服务具有SSL证书，要查找它使用的IPv4主机，只需将”SHA1 fingerprint”（签名证书的sha1值）粘贴到Censys IPv4主机搜索中，即可找到证书，使用此方法可以轻松找到配置错误的Web服务器。</p>
+</blockquote>
+<h3 id><a href="#" class="headerlink" title></a></h3><h3 id="HTTP标头寻找真实原始IP"><a href="#HTTP标头寻找真实原始IP" class="headerlink" title="HTTP标头寻找真实原始IP"></a>HTTP标头寻找真实原始IP</h3><blockquote>
+<p>借助SecurityTrails这样的平台，任何人都可以在茫茫的大数据搜索到自己的目标，甚至可以通过比较HTTP标头来查找到原始服务器。</p>
+<p>特别是当用户拥有一个非常特别的服务器名称与软件名称时，攻击者找到你就变得更容易。</p>
+<p>如果要搜索的数据相当多，如上所述，攻击者可以在Censys上组合搜索参数。假设你正在与1500个Web服务器共享你的服务器HTTP标头，这些服务器都发送的是相同的标头参数和值的组合。而且你还使用新的PHP框架发送唯一的HTTP标头（例如：X-Generated-Via：XYZ框架），目前约有400名网站管理员使用了该框架。而最终由三个服务器组成的交集，只需手动操作就可以找到了IP，整个过程只需要几秒钟。</p>
+<p>例如，Censys上用于匹配服务器标头的搜索参数是80.http.get.headers.server :，查找由CloudFlare提供服务的网站的参数如下：</p>
+<p>80.http.get.headers.server:cloudflare</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title></a><img src="/2019/11/19/bypass-cdn/img25.png" alt="img"></h3></blockquote>
+<h3 id="利用网站返回的内容寻找真实原始IP"><a href="#利用网站返回的内容寻找真实原始IP" class="headerlink" title="利用网站返回的内容寻找真实原始IP"></a>利用网站返回的内容寻找真实原始IP</h3><blockquote>
+<p>如果原始服务器IP也返回了网站的内容，那么可以在网上搜索大量的相关数据。</p>
+<p>浏览网站源代码，寻找独特的代码片段。在JavaScript中使用具有访问或标识符参数的第三方服务（例如Google Analytics，reCAPTCHA）是攻击者经常使用的方法。</p>
+<p>以下是从HackTheBox网站获取的Google Analytics跟踪代码示例：</p>
+<p>ga（’create’，’UA-93577176-1’，’auto’）;<br>可以使用80.http.get.body：参数通过body/source过滤Censys数据，不幸的是，正常的搜索字段有局限性，但你可以在Censys请求研究访问权限，该权限允许你通过Google BigQuery进行更强大的查询。</p>
+<p>Shodan是一种类似于Censys的服务，也提供了http.html搜索参数。</p>
+<p>搜索示例：<a href="https://www.shodan.io/search?query=http.html%3AUA-32023260-1" target="_blank" rel="noopener">https://www.shodan.io/search?query=http.html%3AUA-32023260-1</a></p>
+<p><img src="/2019/11/19/bypass-cdn/img26.png" alt="img"></p>
+</blockquote>
+<h3 id="网站漏洞查找"><a href="#网站漏洞查找" class="headerlink" title="网站漏洞查找"></a>网站漏洞查找</h3><ol>
+<li>目标敏感文件泄露，例如：phpinfo之类的探针、GitHub信息泄露等。</li>
+<li>XSS盲打，命令执行反弹shell，SSRF等。</li>
+<li>无论是用社工还是其他手段，拿到了目标网站管理员在CDN的账号，从而在从CDN的配置中找到网站的真实IP。</li>
+</ol>
+<h3 id="-2"><a href="#-2" class="headerlink" title></a></h3><h3 id="网站邮件订阅查找"><a href="#网站邮件订阅查找" class="headerlink" title="网站邮件订阅查找"></a>网站邮件订阅查找</h3><p>​    RSS邮件订阅，很多网站都自带 sendmail，会发邮件给我们，此时查看邮件源码里面就会包含服务器的真实 IP 了。</p>
+<p>​    也可让服务器发送一些非HTML的数据，比如让服务器发送邮件给你，查看邮件原文即可获得SMTP服务器的真实IP。</p>
+<p>​    注册邮件<br>​    密码重置邮件<br>​    广告推送邮件</p>
+<p>​    如下图，可以通过显示邮件原文，在原文中可能会有目标站点的IP。<img src="/2019/11/19/bypass-cdn/img23.png" alt></p>
+<p><img src="/2019/11/19/bypass-cdn/img24.png" alt></p>
+<h3 id="用-Zmap-扫全网"><a href="#用-Zmap-扫全网" class="headerlink" title="用 Zmap 扫全网"></a>用 Zmap 扫全网</h3><blockquote>
+<p>​    需要找 xiaix.me 网站的真实 IP，我们首先从 apnic 获取 IP 段，然后使用 Zmap 的 banner-grab 扫描出来 80 端口开放的主机进行 banner 抓取，最后在 http-req 中的 Host 写 xiaix.me。</p>
+</blockquote>
+<h3 id="-3"><a href="#-3" class="headerlink" title></a></h3><h3 id="F5-LTM解码法"><a href="#F5-LTM解码法" class="headerlink" title="F5 LTM解码法"></a>F5 LTM解码法</h3><blockquote>
+<p>​    当服务器使用F5 LTM做负载均衡时，通过对set-cookie关键字的解码真实ip也可被获取，例如：Set-Cookie: BIGipServerpool_8.29_8030=487098378.24095.0000，先把第一小节的十进制数即487098378取出来，然后将其转为十六进制数1d08880a，接着从后至前，以此取四位数出来，也就是0a.88.08.1d，最后依次把他们转为十进制数10.136.8.29，也就是最后的真实ip。</p>
+</blockquote>
+<h3 id="DOS"><a href="#DOS" class="headerlink" title="DOS"></a>DOS</h3><p>​     打光cdn流量，回溯真实ip。 这种不能轻易尝试，造成严重后果就不好了。</p>
+<h3 id="针对CloudFlare"><a href="#针对CloudFlare" class="headerlink" title="针对CloudFlare"></a>针对CloudFlare</h3><p>​    如果目标站点使用的是cloudflare的CDN，可以去<a href="http://www.crimeflare.org:82/cfs.html#box" target="_blank" rel="noopener">crimeflare</a> 碰碰运气，说不定就会又意外的发现哦。</p>
+<h2 id="验证真实IP"><a href="#验证真实IP" class="headerlink" title="验证真实IP"></a>验证真实IP</h2><p>​    找到真实 IP 后 先访问 IP 看看和原站是否一样。 如果不能直接访问，可能做了IP访问限制，可以通过修改hosts再访问网站，测试是否成功。 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    hxzy
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://hxzy.me/2019/11/19/bypass-cdn/" title="信息收集——绕过CDN寻找真实IP">http://hxzy.me/2019/11/19/bypass-cdn/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 https://creativecommons.org/licenses/by-nc-sa/3.0/ 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tags"></i> 安全</a>
+          
+            <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag"><i class="fa fa-tags"></i> 信息收集</a>
+          
+        </div>
+      
+
+      <div>
+        
+          
+        
+      </div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/09/Ethernaut%20WriteUp/" rel="next" title="Zeppelin Ethernaut WriteUp">
+                <i class="fa fa-chevron-left"></i> Zeppelin Ethernaut WriteUp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/20/encrypt/" rel="prev" title="文章加密测试">
+                文章加密测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="hxzy" />
+            
+              <p class="site-author-name" itemprop="name">hxzy</p>
+              <p class="site-description motion-element" itemprop="description">不吃饱，哪有力气敲代码。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xzy012" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:xuzhiyi1001@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                大佬列表
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xuing.cn/" title="xuing" target="_blank">xuing</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#信息收集——绕过CDN寻找真实IP"><span class="nav-number">1.</span> <span class="nav-text">信息收集——绕过CDN寻找真实IP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#验证是否存在CDN"><span class="nav-number">1.1.</span> <span class="nav-text">验证是否存在CDN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nslookup"><span class="nav-number">1.1.1.</span> <span class="nav-text">nslookup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多地ping"><span class="nav-number">1.1.2.</span> <span class="nav-text">多地ping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应头"><span class="nav-number">1.1.3.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线分析网站"><span class="nav-number">1.1.4.</span> <span class="nav-text">在线分析网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dig"><span class="nav-number">1.1.5.</span> <span class="nav-text">dig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDN厂商ASN号和CDN段列表"><span class="nav-number">1.1.6.</span> <span class="nav-text">CDN厂商ASN号和CDN段列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绕过-CDN-查找网站真实-IP"><span class="nav-number">1.2.</span> <span class="nav-text">绕过 CDN 查找网站真实 IP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nslookup-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">nslookup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询历史DNS记录"><span class="nav-number">1.2.2.</span> <span class="nav-text">查询历史DNS记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询子域名"><span class="nav-number">1.2.3.</span> <span class="nav-text">查询子域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络空间引擎搜索法"><span class="nav-number">1.2.4.</span> <span class="nav-text">网络空间引擎搜索法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用SSL证书寻找真实原始IP"><span class="nav-number">1.2.5.</span> <span class="nav-text">利用SSL证书寻找真实原始IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.2.6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP标头寻找真实原始IP"><span class="nav-number">1.2.7.</span> <span class="nav-text">HTTP标头寻找真实原始IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-number">1.2.8.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用网站返回的内容寻找真实原始IP"><span class="nav-number">1.2.9.</span> <span class="nav-text">利用网站返回的内容寻找真实原始IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站漏洞查找"><span class="nav-number">1.2.10.</span> <span class="nav-text">网站漏洞查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-2"><span class="nav-number">1.2.11.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站邮件订阅查找"><span class="nav-number">1.2.12.</span> <span class="nav-text">网站邮件订阅查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用-Zmap-扫全网"><span class="nav-number">1.2.13.</span> <span class="nav-text">用 Zmap 扫全网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-3"><span class="nav-number">1.2.14.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F5-LTM解码法"><span class="nav-number">1.2.15.</span> <span class="nav-text">F5 LTM解码法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOS"><span class="nav-number">1.2.16.</span> <span class="nav-text">DOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对CloudFlare"><span class="nav-number">1.2.17.</span> <span class="nav-text">针对CloudFlare</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证真实IP"><span class="nav-number">1.3.</span> <span class="nav-text">验证真实IP</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hxzy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("10/27/2019 00:00:00");//修改为自己的blog建站时间
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="本站已安全运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+    if (i<10)
+    {i="0" + i};
+    return i;
+}
+show_date_time();
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '7834f2c22d33806630a5',
+          clientSecret: 'a43dfc39fc90fd24ac2f0b468447096a12e64d6f',
+          repo: 'gitalk',
+          owner: 'xzy012',
+          admin: ['xzy012'],
+          id: md5(location.pathname),
+          labels: ['Gitalk'],
+          perPage: 15,
+          pagerDirection: 'last',
+          createIssueManually: false,
+          distractionFreeMode: false
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

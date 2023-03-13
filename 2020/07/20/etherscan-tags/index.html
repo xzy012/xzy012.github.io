@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Etherscan,Chrome插件," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言Etherscan 是以太坊上应用最广泛的区块链浏览器，日常工作中经常需要使用到它。在实际使用中，经常需要在不同的地址交易信息之间来回切换，有时候会忘记了哪个地址是什么的地址。于是乎某个周五的日常工（mo）作（yu）中和同事聊到了这个，在网上搜索也没有看见有类似的插件（有也当没看见，哈哈哈哈~），于是突发奇想——要是做个插件，让浏览器在加载页面的时候就将自己自定义的标签渲染出来，岂不美哉！">
+<meta name="keywords" content="Etherscan,Chrome插件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="etherscan自定义标签插件编写">
+<meta property="og:url" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;index.html">
+<meta property="og:site_name" content="Just for fun.">
+<meta property="og:description" content="前言Etherscan 是以太坊上应用最广泛的区块链浏览器，日常工作中经常需要使用到它。在实际使用中，经常需要在不同的地址交易信息之间来回切换，有时候会忘记了哪个地址是什么的地址。于是乎某个周五的日常工（mo）作（yu）中和同事聊到了这个，在网上搜索也没有看见有类似的插件（有也当没看见，哈哈哈哈~），于是突发奇想——要是做个插件，让浏览器在加载页面的时候就将自己自定义的标签渲染出来，岂不美哉！">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714095712858.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714111524304.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714111702158.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714135033177.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714115438099.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714113039494.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714120032496.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.gif">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717105731138.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717112751028.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717113439764.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717114624467.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717114611209.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200717113817539.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20220522232205825.png">
+<meta property="og:updated_time" content="2022-05-22T15:22:43.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;hxzy.me&#x2F;2020&#x2F;07&#x2F;20&#x2F;etherscan-tags&#x2F;image-20200714095712858.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hxzy.me/2020/07/20/etherscan-tags/"/>
+
+
+
+
+
+  <title>etherscan自定义标签插件编写 | Just for fun.</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Just for fun.</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">菜得真实</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hxzy.me/2020/07/20/etherscan-tags/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hxzy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Just for fun.">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">etherscan自定义标签插件编写</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2020-07-20T09:50:45+08:00">
+                2020-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="post.wordcount">
+                  4k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="post.min2read">
+                  16 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><em>Etherscan 是</em>以太坊上应用最广泛的区块链浏览器，日常工作中经常需要使用到它。在实际使用中，经常需要在不同的地址交易信息之间来回切换，有时候会忘记了哪个地址是什么的地址。于是乎某个周五的日常工（mo）作（yu）中和同事聊到了这个，在网上搜索也没有看见有类似的插件（有也当没看见，哈哈哈哈<del>~</del>），于是突发奇想——要是做个插件，让浏览器在加载页面的时候就将自己自定义的标签渲染出来，岂不美哉！</p>
+<hr>
+<p>下面就是实现的效果：</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714095712858.png" alt="image-20200714095712858"></p>
+<p>PS：由于本人CSS、Html等知识严重缺乏，没有对那些按钮啥的进行美化，全部都是用的默认样式，难看是难看了一点，能用就行<del>~</del></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>要完成一个自定义标签插件的实现，最开始面临的问题主要是两个方面：一是插件的编写；二是自定义标签数据存储在什么地方。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>首先是第一个问题，插件的编写。百度、谷歌一搜，一大堆的编写教程，这个倒不是什么大问题。</p>
+<p>主要参考了一下文章：</p>
+<p><a href="https://www.jianshu.com/p/146ab0ca3246" target="_blank" rel="noopener">从零开始编写一个chrome插件</a></p>
+<p><a href="https://juejin.im/post/5c135a275188257284143418" target="_blank" rel="noopener">一篇文章教你顺利入门和开发chrome扩展程序（插件）</a></p>
+<p><a href="https://blog.csdn.net/qq_41368391/article/details/105996336" target="_blank" rel="noopener">chrome浏览器网页通过插件形式，自动调用js脚本</a></p>
+<p><a href="https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html" target="_blank" rel="noopener">【干货】Chrome插件(扩展)开发全攻略</a></p>
+<p><a href="https://developer.chrome.com/extensions" target="_blank" rel="noopener">chrome官方插件开发文档</a></p>
+<p>最基础的一个插件是由两个部分组成的：一个是manifest文件，它用于描述 Chrome 插件的源数据，配置信息等；二是js文件，js不用多解释吧，你要实现的功能基本都在里面写。</p>
+<p>manifest.json文件基础内容如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"name"</span>: <span class="string">"Hello Extensions"</span>,</span><br><span class="line">   <span class="string">"description"</span> : <span class="string">"Hello world Extension"</span>,</span><br><span class="line">   <span class="string">"version"</span>: <span class="string">"1.0"</span>,</span><br><span class="line">   <span class="string">"manifest_version"</span>: <span class="number">2</span>,</span><br><span class="line">   <span class="string">"icons"</span>:&#123;</span><br><span class="line">       <span class="string">"16"</span>: <span class="string">"img/icon.png"</span>,</span><br><span class="line">       <span class="string">"48"</span>: <span class="string">"img/icon.png"</span>,</span><br><span class="line">       <span class="string">"128"</span>: <span class="string">"img/icon.png"</span></span><br><span class="line"> 	&#125;,</span><br><span class="line"> <span class="string">"content_scripts"</span>: [</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="string">"matches"</span>: [</span><br><span class="line">       <span class="string">"http://*/*"</span>,</span><br><span class="line">       <span class="string">"https://*/*"</span></span><br><span class="line">     ],</span><br><span class="line">     <span class="string">"js"</span>: [</span><br><span class="line">       <span class="string">"scripts/contentscript.js"</span></span><br><span class="line">     ],</span><br><span class="line">     <span class="string">"all_frames"</span>: <span class="literal">false</span></span><br><span class="line">   &#125;</span><br><span class="line"> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>name：必填项，插件的名字。</p>
+<p>description：插件的描述，132个字符的限制。</p>
+<p>version：插件的版本号，打包完成后用于判断插件是否需要更新。</p>
+<p>manifest_version ：必填项，指定插件使用的清单文件规范的版本，chrome官方文档使用的是2。</p>
+<p>Content Scripts：运行在Web页面的上下文的JavaScript文件。通过标准的DOM，Content Scripts 可以操作（读取并修改）浏览器当前访问的Web页面的内容。</p>
+<p>icons：插件的图标，可以用在 Chrome 商店展示(128 * 128) | 插件管理界面 (48 * 48) | 扩展页图标 (16 * 16) 最好是 png 格式。</p>
+<p>mathches：选择插件默认在什么网站上生效。</p>
+<p>js：引入自己写js文件。</p>
+<p>all_frames：控制JS文件是否在匹配的Web页面中的所有框架中运行。默认false表示只在顶层框架中运行。</p>
+<hr>
+<p>然后是第二个问题，自定义标签的数据存储在什么地方。</p>
+<p>最开始的想的是能不能直接读取本地文件然后进行数据的更新，然鹅chrome的安全策略给了我当头一棒。</p>
+<p>在js中尝试读取本地文件时，控制台中报了如下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Not allowed to load local resource: file// XXXX</span><br></pre></td></tr></table></figure>
+
+<p>然后百度、谷歌一顿搜索：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">解决方法有这样的：</span><br><span class="line">	修改快捷方式的属性中的目标为下面这样：</span><br><span class="line">	&quot;C:\Program Files (x86)\Google\Chrome\Application\chrome.exe&quot; --args --disable-web-security --allow-file-access-from-files</span><br><span class="line">	</span><br><span class="line">有这样的：</span><br><span class="line">	安装LocalLinks插件</span><br><span class="line"></span><br><span class="line">上面两种方式我都有试过，但是！不知道是不是我自己的原因，问题并没有得到解决，chrome还是一样的报错！</span><br></pre></td></tr></table></figure>
+
+<p>于是乎继续搜索：</p>
+<p><a href="https://www.itdaan.com/blog/2016/11/21/13c3c7db987b2f8d6c98d18565778ddd.html" target="_blank" rel="noopener">解決chrome報Not allowed to load local resource錯誤的方法</a>文中提到了Tomcat下可以使用目录映射的方式，可惜的是我没有用Tomcat呀!</p>
+<p><a href="https://www.codenong.com/cs105905824/" target="_blank" rel="noopener">解决Chrome浏览器Not allowed to load local resource</a>这篇文章提到了使用搭建本地服务器的形式来解决这个问题，我最初的实现方式也是这样。</p>
+<p>实现本地服务器的方式有很多，我以前用的主要是使用phpstudy以及nodejs。</p>
+<hr>
+<p>phpstudy的使用方式，百度一堆，这里就不在赘述。</p>
+<p>安装完成后将数据json文件放在网站根目录后，再次尝试在网站上访问，然后chrome报了这种类型的错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mixed Content: The page at &apos;https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.html&apos; was loaded over HTTPS, but requested an insecure script &apos;http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.js&apos;. This request has been blocked; the content must be served over HTTPS.</span><br></pre></td></tr></table></figure>
+
+<p>大概意思就是不能在https网站中使用http请求来访问资源。</p>
+<p>又双叒叕是一通百度，最后发现在phpstudy中可以切换为https：</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714111524304.png" alt="image-20200714111524304"></p>
+<p>只不过需要一个SSL证书，这个倒不是什么大问题，我的网站之前就有证书，直接拿下来用，改下host就可以了。</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714111702158.png" alt="image-20200714111702158"></p>
+<p>改好之后便可以通过<a href="https://localhost来访问本地服务器中的文件了！" target="_blank" rel="noopener">https://localhost来访问本地服务器中的文件了！</a></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714135033177.png" alt="image-20200714135033177"></p>
+<p>在js中使用Jquery获取数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.getJSON(&quot;https://xxxxx.cn:18081&quot;,function(result)&#123;</span><br><span class="line">	for(var key in result)&#123;</span><br><span class="line">		tag[key.toLowerCase()] = result[key]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>然后是nodejs搭建本地服务器的方式，使用了express框架。</p>
+<p>参考文章：</p>
+<p><a href="https://juejin.im/post/5a7a88125188257a624cb117" target="_blank" rel="noopener">使用Express搭建https服务器</a></p>
+<p>全部代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">var app = require(&apos;express&apos;)();</span><br><span class="line">var fs = require(&apos;fs&apos;);</span><br><span class="line">var http = require(&apos;http&apos;);</span><br><span class="line">var https = require(&apos;https&apos;);</span><br><span class="line">var privateKey  = fs.readFileSync(&quot;./https/https.key&quot;, &apos;utf8&apos;);</span><br><span class="line">var certificate = fs.readFileSync(&quot;./https/https.crt&quot;, &apos;utf8&apos;);</span><br><span class="line">var credentials = &#123;key: privateKey, cert: certificate&#125;;</span><br><span class="line"></span><br><span class="line">var httpServer = http.createServer(app);</span><br><span class="line">var httpsServer = https.createServer(credentials, app);</span><br><span class="line">var PORT = 18080;</span><br><span class="line">var SSLPORT = 18081;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//设置允许跨域</span><br><span class="line">app.all(&apos;*&apos;,function(req,res,next)&#123;</span><br><span class="line">  res.header(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);</span><br><span class="line">  res.header(&quot;Access-Control-Allow-Methods&quot;,&quot;PUT,GET,POST,DELETE,OPTIONS&quot;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Headers&apos;, &apos;Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild&apos;);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">httpServer.listen(PORT, function() &#123;</span><br><span class="line">    console.log(&apos;HTTP Server is running on: http://localhost:%s&apos;, PORT);</span><br><span class="line">&#125;);</span><br><span class="line">httpsServer.listen(SSLPORT, function() &#123;</span><br><span class="line">    console.log(&apos;HTTPS Server is running on: https://localhost:%s&apos;, SSLPORT);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// Welcome</span><br><span class="line">app.get(&apos;/&apos;, function(req, res) &#123;</span><br><span class="line">    if(req.protocol === &apos;https&apos;) &#123;</span><br><span class="line">        var file=&quot;./addr_tag.json&quot;;</span><br><span class="line">        var result=JSON.parse(fs.readFileSync(file));</span><br><span class="line">        console.log(result)</span><br><span class="line">        res.send(result)</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        res.status(200).send(&apos;Welcome!&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在采用nodejs方式搭建时，由于有了phpstudy的失败经历，nodejs直接选择了https形式的搭建，过程中没有在遇到其他的问题，成功实现了数据的获取。</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714115438099.png" alt="image-20200714115438099"></p>
+<hr>
+<p>做完之后，不禁想到，搭建服务器的方式有点太复杂了，https证书也麻烦，于是又想了一下。想到了直接在插件的js文件中保存数据即可，直接将数据存入addr_tag.js文件中，在manifest文件中导入后，直接在contentscript.js文件中使用即可，以后每次修改数据直接在add_tag文件中修改即可，不需要经历繁琐的步骤去搭建服务器了。</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200714113039494.png" alt="image-20200714113039494"></p>
+<hr>
+<p>后来第二天上班的时候，把我做好的这个两个版本给同事看了之后，他问我为啥不用localstorage来存储数据？？？Excuse me？？？为啥我把这个给忘了！</p>
+<p>于是我又改了改代码，直接使用localstorage.getItem来获取里面的数据，然后在加载到页面上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var tokenTag = document.getElementsByClassName(&apos;hash-tag text-truncate&apos;);</span><br><span class="line">for(var x =0;x&lt;tokenTag.length;x++)&#123;</span><br><span class="line">	if(localStorage.getItem((ethTag[x].innerText.toLowerCase()))!=undefined)&#123;</span><br><span class="line">	tokenTag[x].innerText =	&apos;Local:&apos;+localStorage.getItem(ethTag[x].innerText.toLowerCase());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/20/etherscan-tags/image-20200714120032496.png" alt="image-20200714120032496"></p>
+<p>虽然能够避免繁琐的前置步骤了，但在使用中，同</p>
+<hr>
+<p>事又提出了新的”需求“——每次更新数据都要打开F12，太麻烦了。</p>
+<p>参考文章：</p>
+<p><a href="https://www.cnblogs.com/f-l-y/p/8991247.html" target="_blank" rel="noopener">js动态往div里添加按钮的两种方式</a></p>
+<p><a href="https://blog.csdn.net/wei13636075/article/details/25219039" target="_blank" rel="noopener">JS打开选择本地文件的对话框</a></p>
+<p><a href="https://www.jianshu.com/p/40cfe9a12f9e" target="_blank" rel="noopener">javascript实现生成并下载txt文件</a></p>
+<p>于是有了下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">var MyDiv =document.getElementById(&quot;logoAndNav&quot;);</span><br><span class="line"></span><br><span class="line">var addr_data =document.createElement(&apos;input&apos;);</span><br><span class="line">   addr_data.setAttribute(&apos;type&apos;, &apos;text&apos;);//输入框的类型</span><br><span class="line">   addr_data.setAttribute(&quot;placeholder&quot;, &quot;地址&quot;);</span><br><span class="line">   addr_data.setAttribute(&apos;id&apos;,&apos;addr_data&apos;)</span><br><span class="line">   addr_data.style.width = &quot;16%&quot;;</span><br><span class="line">   MyDiv.appendChild(addr_data);</span><br><span class="line"></span><br><span class="line">   var tag_data =document.createElement(&apos;input&apos;);</span><br><span class="line">   tag_data.setAttribute(&apos;type&apos;, &apos;text&apos;);//输入框的类型</span><br><span class="line">   tag_data.setAttribute(&quot;placeholder&quot;, &quot;标签名&quot;);</span><br><span class="line">   tag_data.setAttribute(&apos;id&apos;,&apos;tag_data&apos;)</span><br><span class="line">   tag_data.style.width = &quot;16%&quot;;</span><br><span class="line">   MyDiv.appendChild(tag_data);</span><br><span class="line"></span><br><span class="line">  	var button = document.createElement(&quot;input&quot;);</span><br><span class="line">button.setAttribute(&quot;type&quot;, &quot;button&quot;);</span><br><span class="line">button.setAttribute(&quot;value&quot;, &quot;添加/修改标签&quot;);</span><br><span class="line">button.style.width = &quot;17%&quot;;</span><br><span class="line">button.setAttribute(&quot;onclick&quot;, </span><br><span class="line">	&quot;javascript:\</span><br><span class="line">		var addr_data = document.getElementById(&apos;addr_data&apos;); \</span><br><span class="line">		var tag_data = document.getElementById(&apos;tag_data&apos;); \</span><br><span class="line">		if(addr_data.value!=&apos;&apos;&amp;&amp;tag_data.value!=&apos;&apos;)&#123;\</span><br><span class="line">			localStorage.setItem(addr_data.value.toLowerCase(),tag_data.value);\</span><br><span class="line">			document.location.reload();\</span><br><span class="line">		&#125;\</span><br><span class="line">		else&#123;\</span><br><span class="line">			alert(\&quot;请输入数据哦！\&quot;)\</span><br><span class="line">		&#125;\</span><br><span class="line">	&quot;</span><br><span class="line">	)</span><br><span class="line">MyDiv.appendChild(button);</span><br><span class="line"></span><br><span class="line">var button2 = document.createElement(&quot;input&quot;);</span><br><span class="line">button2.setAttribute(&quot;type&quot;, &quot;button&quot;);</span><br><span class="line">button2.setAttribute(&quot;value&quot;, &quot;删除标签&quot;);</span><br><span class="line">button2.style.width = &quot;17%&quot;;</span><br><span class="line">button2.setAttribute(&quot;onclick&quot;, </span><br><span class="line">	&quot;javascript:\</span><br><span class="line">		var addr_data = document.getElementById(&apos;addr_data&apos;); \</span><br><span class="line">		if(addr_data.value!=&apos;&apos;)&#123;\</span><br><span class="line">			localStorage.removeItem(addr_data.value.toLowerCase());\</span><br><span class="line">			document.location.reload();\</span><br><span class="line">		&#125;\</span><br><span class="line">		else&#123;\</span><br><span class="line">			alert(\&quot;请输入要删除的地址哦！\&quot;)\</span><br><span class="line">		&#125;\</span><br><span class="line">	&quot;</span><br><span class="line">	)</span><br><span class="line">MyDiv.appendChild(button2);</span><br><span class="line"></span><br><span class="line">var button3 = document.createElement(&quot;input&quot;);</span><br><span class="line">button3.setAttribute(&quot;type&quot;, &quot;button&quot;);</span><br><span class="line">button3.setAttribute(&quot;value&quot;, &quot;导出标签&quot;);</span><br><span class="line">button3.style.width = &quot;17%&quot;;</span><br><span class="line">button3.setAttribute(&quot;onclick&quot;, </span><br><span class="line">	&quot;javascript:\</span><br><span class="line">		var output_data=&#123;&#125;;\</span><br><span class="line">		for(var i=0;i&lt;localStorage.length;i++)&#123;\</span><br><span class="line">			output_data[localStorage.key(i)] = localStorage.getItem(localStorage.key(i));\</span><br><span class="line">		&#125;\</span><br><span class="line">		function download(filename, text) &#123;\</span><br><span class="line">		    var pom = document.createElement(&apos;a&apos;);\</span><br><span class="line">		    pom.setAttribute(&apos;href&apos;, &apos;data:text/plain;charset=utf-8,&apos; + encodeURIComponent(text));\</span><br><span class="line">		    pom.setAttribute(&apos;download&apos;, filename);\</span><br><span class="line">		    if (document.createEvent) &#123;\</span><br><span class="line">		        var event = document.createEvent(&apos;MouseEvents&apos;);\</span><br><span class="line">		        event.initEvent(&apos;click&apos;, true, true);\</span><br><span class="line">		        pom.dispatchEvent(event)\</span><br><span class="line">		    &#125; else &#123;\</span><br><span class="line">		        pom.click();\</span><br><span class="line">		    &#125;\</span><br><span class="line">		&#125;\</span><br><span class="line">		download(&apos;tag_data.txt&apos;,JSON.stringify(output_data));\</span><br><span class="line">	&quot;</span><br><span class="line">	)</span><br><span class="line">MyDiv.appendChild(button3);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var inputObj=document.createElement(&apos;input&apos;)</span><br><span class="line">   inputObj.setAttribute(&apos;id&apos;,&apos;upload_data&apos;);</span><br><span class="line">   inputObj.setAttribute(&apos;type&apos;,&apos;file&apos;);</span><br><span class="line">   inputObj.setAttribute(&quot;style&quot;,&apos;visibility:hidden&apos;);</span><br><span class="line">   document.body.appendChild(inputObj);</span><br><span class="line"></span><br><span class="line">var button4 = document.createElement(&quot;input&quot;);</span><br><span class="line">button4.setAttribute(&quot;type&quot;, &quot;button&quot;);</span><br><span class="line">button4.setAttribute(&quot;value&quot;, &quot;批量导入标签&quot;);</span><br><span class="line">button4.style.width = &quot;17%&quot;;</span><br><span class="line">button4.setAttribute(&quot;onclick&quot;, </span><br><span class="line">	&quot;javascript:\</span><br><span class="line">		var input =document.getElementById(&apos;upload_data&apos;);\</span><br><span class="line">		input.click();\</span><br><span class="line">		input.addEventListener(&apos;change&apos;,()=&gt;&#123;\</span><br><span class="line">		    var reader = new FileReader();\</span><br><span class="line">		    reader.readAsText(input.files[0],&apos;utf8&apos;);\</span><br><span class="line">		    reader.onload = ()=&gt;&#123;\</span><br><span class="line">		      	var input_data = JSON.parse(reader.result);\</span><br><span class="line">				for(var key in input_data)&#123;\</span><br><span class="line">					localStorage.setItem(key,input_data[key]);\</span><br><span class="line">				&#125;\</span><br><span class="line">				document.location.reload();\</span><br><span class="line">		    &#125;\</span><br><span class="line">		&#125;, false);	\</span><br><span class="line">	&quot;)</span><br><span class="line">MyDiv.appendChild(button4);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码实现了在etherscan的页面上添加了两个输入框和四个按钮，分别是地址、标签的输入以及添加/修改标签按钮、删除标签按钮、导出标签按钮和批量导入标签按钮。</p>
+<p>最终效果：</p>
+<p><img src="/2020/07/20/etherscan-tags/%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.gif" alt="最终效果"></p>
+<hr>
+<p>2020.07.17更新</p>
+<hr>
+<p>上个版本的插件已经能够满足日常的基本使用了，但是由于localStorage的5M大小的限制，使得标签的数量被限制在了10W以下（利用假数据简单测试结果是7W多条），为了能够储存更多的数据，不得不放弃localstorage从而寻找新的思路。</p>
+<p>查阅资料可以使用chrome.storage，通过在赋予unlimitedStorage权限，在本地存储区储存的数据量大小不受限制。但在实际使用过程中遇到了chrome.storage未定义的问题，有可能是我的使用方式存在问题，查询大量资料之后无果，遂放弃。</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717105731138.png" alt="image-20200717105731138"></p>
+<p>在Storage中，一共有五个储存数据的地方，如上图所示，详细介绍如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="center">sessionStorage</th>
+<th align="left">sessionStorage是个全局对象，它维护着在页面会话(page session)期间有效的存储空间。只要浏览器开着，页面会话周期就会一直持续。当页面重新载入(reload)或者被恢复(restores)时，页面会话也是一直存在的。每在新标签或者新窗口中打开一个新页面，都会初始化一个新的会话。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">localStorage</td>
+<td align="left">localStorage与sessionStorage相同，但应用了相同的规则，但它是持久性的。LocalStorage 在 2.5MB 到 10MB 之间（各家浏览器不同），而且不提供搜索功能，不能建立自定义的索引。</td>
+</tr>
+<tr>
+<td align="center">IndexedDB</td>
+<td align="left">通俗地说，IndexedDB 就是浏览器提供的本地数据库，它可以被网页脚本创建和操作。IndexedDB 允许储存大量数据，提供查找接口，还能建立索引。这些都是 LocalStorage 所不具备的。就数据库类型而言，IndexedDB 不属于关系型数据库（不支持 SQL 查询语句），更接近 NoSQL 数据库。</td>
+</tr>
+<tr>
+<td align="center">WebSQL</td>
+<td align="left">WebSQL是一个在浏览器客户端的结构关系数据库，这是浏览器内的本地RDBMS(关系型数据库系统)</td>
+</tr>
+<tr>
+<td align="center">cookies</td>
+<td align="left">用于保存登陆信息</td>
+</tr>
+</tbody></table>
+<p>localStorage和sessionStorage都有着大小的限制，且存储的数据类型只能是键值对形式。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API" target="_blank" rel="noopener">IndexedDB_API</a>中推荐8种使用IndexedDB的更方便的方式：</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://localforage.github.io/localForage/" target="_blank" rel="noopener">localForage</a></th>
+<th>一个简单名称的Polyfill：客户端数据存储的值语法，它在后台使用IndexedDB，但在不支持IndexedDB的浏览器中回退到WebSQL或localStorage。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="http://www.dexie.org/" target="_blank" rel="noopener">Dexie.js</a></td>
+<td>IndexedDB的包装器，通过简单的语法，可以更快地进行代码开发。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/erikolson186/zangodb" target="_blank" rel="noopener">ZangoDB</a></td>
+<td>类似MongoDB的IndexedDB接口，支持MongoDB的大多数熟悉的过滤，投影，排序，更新和聚合功能。</td>
+</tr>
+<tr>
+<td><a href="http://jsstore.net/" target="_blank" rel="noopener">JsStore</a></td>
+<td>一个带有SQL语法的IndexedDB包装器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mWater/minimongo" target="_blank" rel="noopener">MiniMongo</a></td>
+<td>由localstorage支持的客户端内存中的mongodb，通过http进行服务器同步。MeteorJS使用MiniMongo。</td>
+</tr>
+<tr>
+<td><a href="https://pouchdb.com/" target="_blank" rel="noopener">PouchDB</a></td>
+<td>使用IndexedDB在浏览器中实现CouchDB的客户端。</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/idb" target="_blank" rel="noopener">idb</a></td>
+<td>一个微小的（〜1.15k）库，主要反映了IndexedDB的API，但小的改进，使一个很大的区别的可用性。</td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/idb-keyval" target="_blank" rel="noopener">idb-keyval</a></td>
+<td>使用IndexedDB实现的超简单小（~600B）基于Promise的键值存储。</td>
+</tr>
+</tbody></table>
+<p>本次我采用的是localForage。</p>
+<p>引入localforage.js文件文件后便可以利用localforage中定义的方法来进行indexedDB的使用了，而不需要去写复杂的语句。</p>
+<p>插件中使用localforage很顺利，但在网页上使用出现了问题：提示localforage未定义。</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717112751028.png" alt="image-20200717112751028"></p>
+<p>查阅资料后，在<a href="https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html" target="_blank" rel="noopener">【干货】Chrome插件(扩展)开发全攻略</a>这篇文章中看到，文中提到content-script只能操作DOM，但DOM却不能调用它，也就是说DOM没办法直接使用插件内部的js文件，只有通过向页面注入代码后才能调用，注入代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 向页面注入JS</span><br><span class="line">function injectCustomJs(jsPath)</span><br><span class="line">&#123;</span><br><span class="line">	jsPath = jsPath || &apos;js/inject.js&apos;;</span><br><span class="line">	var temp = document.createElement(&apos;script&apos;);</span><br><span class="line">	temp.setAttribute(&apos;type&apos;, &apos;text/javascript&apos;);</span><br><span class="line">	// 获得的地址类似：chrome-extension://ihcokhadfjfchaeagdoclpnjdiokfakg/js/inject.js</span><br><span class="line">	temp.src = chrome.extension.getURL(jsPath);</span><br><span class="line">	temp.onload = function()</span><br><span class="line">	&#123;</span><br><span class="line">		// 放在页面不好看，执行完后移除掉</span><br><span class="line">		this.parentNode.removeChild(this);</span><br><span class="line">	&#125;;</span><br><span class="line">	document.head.appendChild(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此外，还需要在配置文件中添加如下配置，不然会报 Resources must be listed in the web_accessible_resources manifest key in order to be loaded by pages outside the extension.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 普通页面能够直接访问的插件资源列表，如果不设置是无法直接访问的</span><br><span class="line">&quot;web_accessible_resources&quot;: [&quot;js/inject.js&quot;],</span><br></pre></td></tr></table></figure>
+
+<p>向页面注入localforage.js后发现，能够使用localforage了：</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717113439764.png" alt="image-20200717113439764"></p>
+<p>localforage的使用可以参考这个网站：<a href="http://localforage.docschina.org/" target="_blank" rel="noopener">http://localforage.docschina.org/</a></p>
+<p>localforage简单测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function()&#123;</span><br><span class="line">	localforage.setItem(&apos;key&apos;, &apos;value&apos;).then(</span><br><span class="line">		localforage.getItem(&apos;key&apos;, function(err, value) &#123;</span><br><span class="line">    // 当离线仓库中的值被载入时，此处代码运行</span><br><span class="line">    		console.log(value);</span><br><span class="line">		&#125;)</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>导入插件后，刷新网页可以发现，成功插入了键值对key：value。</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717114624467.png" alt="image-20200717114624467"></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717114611209.png" alt="image-20200717114611209"></p>
+<hr>
+<p>此外，如果想要打包扩展程序后生成crx文件后在其他浏览器中导入，如果没有在chrome商店中上传并通过审核，会遇到如下问题：</p>
+<p><img src="/2020/07/20/etherscan-tags/image-20200717113817539.png" alt="image-20200717113817539"></p>
+<p>解决方案有两个：</p>
+<p>第一个当然是花费5刀注册为chrome插件开发者，然后上传自己的插件，不过这种方式耗时很长，短期可以选择另一种方式；</p>
+<p>第二个是修改本地组策略，在<a href="https://cloud.tencent.com/developer/article/1506583" target="_blank" rel="noopener">已解决!该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的</a>这篇文章中介绍很详细。</p>
+<hr>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>完结撒花<em>★,°</em>:.☆(￣▽￣)/$:<em>.°★</em> 。，虽然本次尝试制作的插件功能比较简单，但却对我来说有实际的价值，大佬们不喜勿喷。</p>
+<p>PS：经过了近一年的审核，插件上架了啊哈哈哈哈~</p>
+<p>chrome插件商店地址：<a href="https://chrome.google.com/webstore/detail/custom-address-tag/ibjelilolcannonagncmaihfpobfmohd" target="_blank" rel="noopener">Custom Address Tag</a></p>
+<p><img src="/2020/07/20/etherscan-tags/image-20220522232205825.png" alt="image-20220522232205825"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    hxzy
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://hxzy.me/2020/07/20/etherscan-tags/" title="etherscan自定义标签插件编写">http://hxzy.me/2020/07/20/etherscan-tags/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 https://creativecommons.org/licenses/by-nc-sa/3.0/ 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Etherscan/" rel="tag"><i class="fa fa-tags"></i> Etherscan</a>
+          
+            <a href="/tags/Chrome%E6%8F%92%E4%BB%B6/" rel="tag"><i class="fa fa-tags"></i> Chrome插件</a>
+          
+        </div>
+      
+
+      <div>
+        
+          
+        
+      </div>
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/20/encrypt/" rel="next" title="文章加密测试">
+                <i class="fa fa-chevron-left"></i> 文章加密测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/21/scrapy-data-save/" rel="prev" title="python scrapy -o 方式按指定顺序导出csv">
+                python scrapy -o 方式按指定顺序导出csv <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="hxzy" />
+            
+              <p class="site-author-name" itemprop="name">hxzy</p>
+              <p class="site-description motion-element" itemprop="description">不吃饱，哪有力气敲代码。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xzy012" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:xuzhiyi1001@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                大佬列表
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xuing.cn/" title="xuing" target="_blank">xuing</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hxzy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("10/27/2019 00:00:00");//修改为自己的blog建站时间
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="本站已安全运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+    if (i<10)
+    {i="0" + i};
+    return i;
+}
+show_date_time();
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  <script src="/js/src/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '7834f2c22d33806630a5',
+          clientSecret: 'a43dfc39fc90fd24ac2f0b468447096a12e64d6f',
+          repo: 'gitalk',
+          owner: 'xzy012',
+          admin: ['xzy012'],
+          id: md5(location.pathname),
+          labels: ['Gitalk'],
+          perPage: 15,
+          pagerDirection: 'last',
+          createIssueManually: false,
+          distractionFreeMode: false
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":200,"height":500},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

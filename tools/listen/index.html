@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta content="upgrade-insecure-requests" http-equiv="Content-Security-Policy">
+<link rel="shortcut icon" href="./favicon.ico">
+<body style="overflow:-Scroll;overflow-y:hidden">
+    <iframe id="iframe" name="iframe" height="100%" width="100%" src="http://118.31.247.129:8080/eth" scrolling="no"
+        frameborder="0" onload="changeFrameHeight()">
+    </iframe>
+    <script>
+        function changeFrameHeight() {
+            var iframe = document.getElementById("iframe");
+            iframe.height = document.documentElement.clientHeight;
+        }
+        //onresize属性可以用来获取或设置当前窗口的resize事件的事件处理函数
+        //onresize事件会在窗口或框架被调整大小时发生
+        window.onresize = function () {
+            changeFrameHeight();
+        }
+    </script>
+</body>
+
+</html>
